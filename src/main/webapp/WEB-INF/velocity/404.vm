@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+    #include( "model_header.vm" )
+    <body>
+		#include( "model_head.vm" )
+        <div class="container-fluid">
+			404
+        </div>
+    </body>
+</html>

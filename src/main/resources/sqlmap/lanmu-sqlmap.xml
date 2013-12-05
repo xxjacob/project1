@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+"http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="Lanmu">
+    <!-- Alias Map Defined -->
+    <typeAlias alias="LanmuQuery" type="com.ideax.project1.query.LanmuQuery" />
+    <typeAlias alias="Lanmu" type="com.ideax.project1.pojo.Lanmu" />
+    <resultMap id="lanmu" class="Lanmu">
+                    <result property="id" column="id" />
+                    <result property="name" column="name" />
+                    <result property="pdId" column="pd_id" />
+                    <result property="orderNum" column="order_num" />
+            </resultMap>
+    <!-- Select SQL -->
+    <sql id="lanmu.selector">
+        SELECT id,name,pd_id,order_num            FROM lanmu
+    </sql>
+    <sql id="lanmuList.where">
+        <dynamic>
+                                                <isNotNull property="id" prepend=" AND ">
+                        id=#id#
+                    </isNotNull>
+                                                                <isNotNull property="name" prepend=" AND ">
+                        name=#name#
+                    </isNotNull>
+                                                                <isNotNull property="pdId" prepend=" AND ">
+                        pd_id=#pdId#
+                    </isNotNull>
+                                                                <isNotNull property="orderNum" prepend=" AND ">
+                        order_num=#orderNum#
+                    </isNotNull>
+                                    </dynamic>
+    </sql>
+        <sql id="lanmuList.order">
+        <dynamic prepend=" ORDER BY ">
+            <isNotEmpty property="orderFields">
+                <iterate property="orderFields" conjunction="," open="" close="">
+                    #orderFields[].fieldName# #orderFields[].order#
+                </iterate>
+            </isNotEmpty>
+        </dynamic>
+    </sql>
+            <select id="Lanmu.getLanmu" resultMap="lanmu">
+            <include refid="lanmu.selector" />
+            WHERE id=#id#
+        </select>
+                <select id="Lanmu.getLanmusByKeys" resultMap="lanmu">
+            <include refid="lanmu.selector" />
+            WHERE id in
+            <iterate conjunction="," open="(" close=")" property="keys">
+                #keys[]#
+            </iterate>
+        </select>
+                <delete id="Lanmu.deleteByKey">
+            DELETE FROM lanmu
+            WHERE id = #key#
+        </delete>
+                <delete id="Lanmu.deleteByKeys">
+            DELETE FROM lanmu
+            WHERE id in
+            <iterate conjunction="," open="(" close=")" property="keys">
+                #keys[]#
+            </iterate>
+        </delete>
+                                <update id="Lanmu.updateLanmusByKeys" parameterClass="Lanmu">
+            UPDATE lanmu SET 
+                                                                            <isNotNull prepend="," property="name">
+                        name = #name#
+                    </isNotNull>
+				                                                <isNotNull prepend="," property="pdId">
+                        pd_id = #pdId#
+                    </isNotNull>
+				                                                <isNotNull prepend="," property="orderNum">
+                        order_num = #orderNum#
+                    </isNotNull>
+				                        WHERE id in
+            <iterate conjunction="," open="(" close=")" property="keys">
+                #keys[]#
+            </iterate>
+        </update>
+        <update id="Lanmu.updateLanmu" parameterClass="Lanmu">
+            UPDATE lanmu SET modify_time=UNIX_TIMESTAMP()
+                                                                            <isNotNull prepend="," property="name">
+                        name = #name#
+                    </isNotNull>
+                                                                <isNotNull prepend="," property="pdId">
+                        pd_id = #pdId#
+                    </isNotNull>
+                                                                <isNotNull prepend="," property="orderNum">
+                        order_num = #orderNum#
+                    </isNotNull>
+                                        WHERE id = #id#
+        </update>
+            <select id="Lanmu.getLanmuListWithPage" parameterClass="LanmuQuery" resultMap="lanmu">
+        <include refid="lanmu.selector" />
+        <include refid="lanmuList.where" />
+        <include refid="lanmuList.order" />
+        LIMIT #startRow#,#pageSize#
+    </select>
+    <select id="Lanmu.getLanmuListCount" parameterClass="LanmuQuery" resultClass="int">
+        SELECT count(*) FROM lanmu
+        <include refid="lanmuList.where" />
+    </select>
+        <select id="Lanmu.getLanmuList" parameterClass="LanmuQuery" resultMap="lanmu">
+        <include refid="lanmu.selector" />
+        <include refid="lanmuList.where" />
+        <include refid="lanmuList.order" />
+    </select>
+    <!--    <insert id="Lanmu.insertLanmu" parameterClass="Lanmu">
+    INSERT INTO lanmu(
+                    name,
+                pd_id,
+                order_num,
+                )
+    VALUES(#name#,#pdId#,#orderNum#,    )
+    <selectKey resultClass="long" type="post" keyProperty="id">
+    SELECT last_insert_id() AS id
+    </selectKey>
+    </insert>
+    -->
+        <insert id="Lanmu.insertLanmu" parameterClass="Lanmu">
+        INSERT INTO lanmu
+        <dynamic prepend="(" close=")">
+                                                                            <isNotEmpty prepend="," property="name">
+                        name
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="pdId">
+                        pd_id
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="orderNum">
+                        order_num
+                    </isNotEmpty >
+                                    </dynamic>
+        VALUES
+        <dynamic prepend="(" close=")">
+                                                                                                        <isNotEmpty  prepend="," property="name">
+                                #name#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="pdId">
+                                #pdId#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="orderNum">
+                                #orderNum#
+                            </isNotEmpty >
+                                                        </dynamic>
+        <selectKey resultClass="int" type="post" keyProperty="id">
+            SELECT last_insert_id() AS id
+        </selectKey>
+    </insert>
+</sqlMap>

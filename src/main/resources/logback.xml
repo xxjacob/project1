@@ -50,17 +50,14 @@
 		<appender-ref ref="sysAppender" />
 		<appender-ref ref="DEBUGOUT" />
 	</logger>
-	<logger name="com.baidu.openplatform" additivity="false">
-		<level value="INFO" />
+	<logger name="com.ideax" additivity="false">
+		<level value="DEBUG" />
 		<appender-ref ref="sysAppender" />
 		<appender-ref ref="DEBUGOUT" />
 	</logger>
-
-	<logger name="validator" additivity="true">
-		<level value="DEBUG" />
-		<appender-ref ref="sysAppender" />
-		<appender-ref ref="validatorAppender" />
+	<logger name="com.ibatis" additivity="false">
+        <level value="DEBUG" />
         <appender-ref ref="DEBUGOUT" />
-	</logger>
+    </logger>
 
 </configuration>

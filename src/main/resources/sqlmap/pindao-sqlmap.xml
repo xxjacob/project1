@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+"http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="Pindao">
+    <!-- Alias Map Defined -->
+    <typeAlias alias="PindaoQuery" type="com.ideax.project1.query.PindaoQuery" />
+    <typeAlias alias="Pindao" type="com.ideax.project1.pojo.Pindao" />
+    <resultMap id="pindao" class="Pindao">
+                    <result property="id" column="id" />
+                    <result property="name" column="name" />
+                    <result property="orderNum" column="order_num" />
+            </resultMap>
+    <!-- Select SQL -->
+    <sql id="pindao.selector">
+        SELECT id,name,order_num            FROM pindao
+    </sql>
+    <sql id="pindaoList.where">
+        <dynamic>
+                                                <isNotNull property="id" prepend=" AND ">
+                        id=#id#
+                    </isNotNull>
+                                                                <isNotNull property="name" prepend=" AND ">
+                        name=#name#
+                    </isNotNull>
+                                                                <isNotNull property="orderNum" prepend=" AND ">
+                        order_num=#orderNum#
+                    </isNotNull>
+                                    </dynamic>
+    </sql>
+        <sql id="pindaoList.order">
+        <dynamic prepend=" ORDER BY ">
+            <isNotEmpty property="orderFields">
+                <iterate property="orderFields" conjunction="," open="" close="">
+                    #orderFields[].fieldName# #orderFields[].order#
+                </iterate>
+            </isNotEmpty>
+        </dynamic>
+    </sql>
+            <select id="Pindao.getPindao" resultMap="pindao">
+            <include refid="pindao.selector" />
+            WHERE id=#id#
+        </select>
+                <select id="Pindao.getPindaosByKeys" resultMap="pindao">
+            <include refid="pindao.selector" />
+            WHERE id in
+            <iterate conjunction="," open="(" close=")" property="keys">
+                #keys[]#
+            </iterate>
+        </select>
+                <delete id="Pindao.deleteByKey">
+            DELETE FROM pindao
+            WHERE id = #key#
+        </delete>
+                <delete id="Pindao.deleteByKeys">
+            DELETE FROM pindao
+            WHERE id in
+            <iterate conjunction="," open="(" close=")" property="keys">
+                #keys[]#
+            </iterate>
+        </delete>
+                                <update id="Pindao.updatePindaosByKeys" parameterClass="Pindao">
+            UPDATE pindao SET 
+                                                                            <isNotNull prepend="," property="name">
+                        name = #name#
+                    </isNotNull>
+				                                                <isNotNull prepend="," property="orderNum">
+                        order_num = #orderNum#
+                    </isNotNull>
+				                        WHERE id in
+            <iterate conjunction="," open="(" close=")" property="keys">
+                #keys[]#
+            </iterate>
+        </update>
+        <update id="Pindao.updatePindao" parameterClass="Pindao">
+            UPDATE pindao SET modify_time=UNIX_TIMESTAMP()
+                                                                            <isNotNull prepend="," property="name">
+                        name = #name#
+                    </isNotNull>
+                                                                <isNotNull prepend="," property="orderNum">
+                        order_num = #orderNum#
+                    </isNotNull>
+                                        WHERE id = #id#
+        </update>
+            <select id="Pindao.getPindaoListWithPage" parameterClass="PindaoQuery" resultMap="pindao">
+        <include refid="pindao.selector" />
+        <include refid="pindaoList.where" />
+        <include refid="pindaoList.order" />
+        LIMIT #startRow#,#pageSize#
+    </select>
+    <select id="Pindao.getPindaoListCount" parameterClass="PindaoQuery" resultClass="int">
+        SELECT count(*) FROM pindao
+        <include refid="pindaoList.where" />
+    </select>
+        <select id="Pindao.getPindaoList" parameterClass="PindaoQuery" resultMap="pindao">
+        <include refid="pindao.selector" />
+        <include refid="pindaoList.where" />
+        <include refid="pindaoList.order" />
+    </select>
+    <!--    <insert id="Pindao.insertPindao" parameterClass="Pindao">
+    INSERT INTO pindao(
+                    name,
+                order_num,
+                )
+    VALUES(#name#,#orderNum#,    )
+    <selectKey resultClass="long" type="post" keyProperty="id">
+    SELECT last_insert_id() AS id
+    </selectKey>
+    </insert>
+    -->
+        <insert id="Pindao.insertPindao" parameterClass="Pindao">
+        INSERT INTO pindao
+        <dynamic prepend="(" close=")">
+                                                                            <isNotEmpty prepend="," property="name">
+                        name
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="orderNum">
+                        order_num
+                    </isNotEmpty >
+                                    </dynamic>
+        VALUES
+        <dynamic prepend="(" close=")">
+                                                                                                        <isNotEmpty  prepend="," property="name">
+                                #name#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="orderNum">
+                                #orderNum#
+                            </isNotEmpty >
+                                                        </dynamic>
+        <selectKey resultClass="int" type="post" keyProperty="id">
+            SELECT last_insert_id() AS id
+        </selectKey>
+    </insert>
+</sqlMap>

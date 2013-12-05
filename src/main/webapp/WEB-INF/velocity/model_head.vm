@@ -1,0 +1,21 @@
+<div class="row">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <a class="brand" href="#">单相思</a>
+                    <ul class="nav">
+                        <li #if( $page == 1 ) class="active" #end>
+                            <a href="#">我的主页</a>
+                        </li>
+                        <li #if( $page == 2 ) class="active" #end>
+                            <a href="/love/send">发布暗恋</a>
+                        </li>
+                        <li #if( $page == 3 ) class="active" #end>
+                            <a href="#">我的暗恋</a>
+                        </li>
+                        <li #if( $page == 4 ) class="active" #end>
+                            <a href="/user/setting">我的设置</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>

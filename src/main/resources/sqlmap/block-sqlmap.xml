@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+"http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="Block">
+    <!-- Alias Map Defined -->
+    <typeAlias alias="BlockQuery" type="com.ideax.project1.query.BlockQuery" />
+    <typeAlias alias="Block" type="com.ideax.project1.pojo.Block" />
+    <resultMap id="block" class="Block">
+                    <result property="id" column="id" />
+                    <result property="blockGroup" column="block_group" />
+                    <result property="blockName" column="block_name" />
+                    <result property="url" column="url" />
+                    <result property="title" column="title" />
+                    <result property="html" column="html" />
+            </resultMap>
+    <!-- Select SQL -->
+    <sql id="block.selector">
+        SELECT id,block_group,block_name,url,title,html            FROM block
+    </sql>
+    <sql id="blockList.where">
+        <dynamic>
+                                                <isNotNull property="id" prepend=" AND ">
+                        id=#id#
+                    </isNotNull>
+                                                                <isNotNull property="blockGroup" prepend=" AND ">
+                        block_group=#blockGroup#
+                    </isNotNull>
+                                                                <isNotNull property="blockName" prepend=" AND ">
+                        block_name=#blockName#
+                    </isNotNull>
+                                                                <isNotNull property="url" prepend=" AND ">
+                        url=#url#
+                    </isNotNull>
+                                                                <isNotNull property="title" prepend=" AND ">
+                        title=#title#
+                    </isNotNull>
+                                                                <isNotNull property="html" prepend=" AND ">
+                        html=#html#
+                    </isNotNull>
+                                    </dynamic>
+    </sql>
+        <sql id="blockList.order">
+        <dynamic prepend=" ORDER BY ">
+            <isNotEmpty property="orderFields">
+                <iterate property="orderFields" conjunction="," open="" close="">
+                    #orderFields[].fieldName# #orderFields[].order#
+                </iterate>
+            </isNotEmpty>
+        </dynamic>
+    </sql>
+            <select id="Block.getBlock" resultMap="block">
+            <include refid="block.selector" />
+            WHERE id=#id#
+        </select>
+                <select id="Block.getBlocksByKeys" resultMap="block">
+            <include refid="block.selector" />
+            WHERE id in
+            <iterate conjunction="," open="(" close=")" property="keys">
+                #keys[]#
+            </iterate>
+        </select>
+                <delete id="Block.deleteByKey">
+            DELETE FROM block
+            WHERE id = #key#
+        </delete>
+                <delete id="Block.deleteByKeys">
+            DELETE FROM block
+            WHERE id in
+            <iterate conjunction="," open="(" close=")" property="keys">
+                #keys[]#
+            </iterate>
+        </delete>
+                                <update id="Block.updateBlocksByKeys" parameterClass="Block">
+            UPDATE block SET 
+                                                                            <isNotNull prepend="," property="blockGroup">
+                        block_group = #blockGroup#
+                    </isNotNull>
+				                                                <isNotNull prepend="," property="blockName">
+                        block_name = #blockName#
+                    </isNotNull>
+				                                                <isNotNull prepend="," property="url">
+                        url = #url#
+                    </isNotNull>
+				                                                <isNotNull prepend="," property="title">
+                        title = #title#
+                    </isNotNull>
+				                                                <isNotNull prepend="," property="html">
+                        html = #html#
+                    </isNotNull>
+				                        WHERE id in
+            <iterate conjunction="," open="(" close=")" property="keys">
+                #keys[]#
+            </iterate>
+        </update>
+        <update id="Block.updateBlock" parameterClass="Block">
+            UPDATE block SET modify_time=UNIX_TIMESTAMP()
+                                                                            <isNotNull prepend="," property="blockGroup">
+                        block_group = #blockGroup#
+                    </isNotNull>
+                                                                <isNotNull prepend="," property="blockName">
+                        block_name = #blockName#
+                    </isNotNull>
+                                                                <isNotNull prepend="," property="url">
+                        url = #url#
+                    </isNotNull>
+                                                                <isNotNull prepend="," property="title">
+                        title = #title#
+                    </isNotNull>
+                                                                <isNotNull prepend="," property="html">
+                        html = #html#
+                    </isNotNull>
+                                        WHERE id = #id#
+        </update>
+            <select id="Block.getBlockListWithPage" parameterClass="BlockQuery" resultMap="block">
+        <include refid="block.selector" />
+        <include refid="blockList.where" />
+        <include refid="blockList.order" />
+        LIMIT #startRow#,#pageSize#
+    </select>
+    <select id="Block.getBlockListCount" parameterClass="BlockQuery" resultClass="int">
+        SELECT count(*) FROM block
+        <include refid="blockList.where" />
+    </select>
+        <select id="Block.getBlockList" parameterClass="BlockQuery" resultMap="block">
+        <include refid="block.selector" />
+        <include refid="blockList.where" />
+        <include refid="blockList.order" />
+    </select>
+    <!--    <insert id="Block.insertBlock" parameterClass="Block">
+    INSERT INTO block(
+                    block_group,
+                block_name,
+                url,
+                title,
+                html,
+                )
+    VALUES(#blockGroup#,#blockName#,#url#,#title#,#html#,    )
+    <selectKey resultClass="long" type="post" keyProperty="id">
+    SELECT last_insert_id() AS id
+    </selectKey>
+    </insert>
+    -->
+        <insert id="Block.insertBlock" parameterClass="Block">
+        INSERT INTO block
+        <dynamic prepend="(" close=")">
+                                                                            <isNotEmpty prepend="," property="blockGroup">
+                        block_group
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="blockName">
+                        block_name
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="url">
+                        url
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="title">
+                        title
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="html">
+                        html
+                    </isNotEmpty >
+                                    </dynamic>
+        VALUES
+        <dynamic prepend="(" close=")">
+                                                                                                        <isNotEmpty  prepend="," property="blockGroup">
+                                #blockGroup#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="blockName">
+                                #blockName#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="url">
+                                #url#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="title">
+                                #title#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="html">
+                                #html#
+                            </isNotEmpty >
+                                                        </dynamic>
+        <selectKey resultClass="int" type="post" keyProperty="id">
+            SELECT last_insert_id() AS id
+        </selectKey>
+    </insert>
+</sqlMap>
