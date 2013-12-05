@@ -128,13 +128,42 @@
 			<artifactId>velocity-tools</artifactId>
 			<version>2.0</version>
 		</dependency>
+		<!-- jdbc-pool -->
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-jdbc</artifactId>
+			<version>7.0.47</version>
+		</dependency>
 	</dependencies>
 	<build>
-		<finalName>love</finalName>
+		<finalName>project1</finalName>
+		<defaultGoal>package</defaultGoal>
+		<testSourceDirectory>src/test/java</testSourceDirectory>
 		<resources>
 			<resource>
-				<directory>src/main/resources</directory>
+				<directory>src/main/resources/properties</directory>
+				<includes>
+					<include>**</include>
+				</includes>
+				<targetPath>properties</targetPath>
 				<filtering>true</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>logback.xml</include>
+				</includes>
+				<filtering>true</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**</include>
+				</includes>
+				<excludes>
+					<exclude>properties/**</exclude>
+					<exclude>logback.xml</exclude>
+				</excludes>
 			</resource>
 		</resources>
 		<plugins>
@@ -169,23 +198,31 @@
 		</plugins>
 	</build>
 	<properties>
-		<java-version>1.6</java-version>
-		<spring.version>3.2.0.RELEASE</spring.version>
-		<maven.tomcat.charset>UTF-8</maven.tomcat.charset>
-		<maven.tomcat.uriEncoding>UTF-8</maven.tomcat.uriEncoding>
+		<mysql.version>5.1.6</mysql.version>
+		<log.base>/home/work/lightapp/logs</log.base>
+		<pic.path>/home/work/pic</pic.path>
+		<app.jdbc.url>jdbc\:mysql\://10.46.7.20\:6014,10.42.8.18\:6014/mco_developer_openplatform?useUnicode\=true&amp;characterEncoding\=UTF8</app.jdbc.url>
+		<app.jdbc.username>developer_w</app.jdbc.username>
+		<app.jdbc.password>v60KOStx8cMQrv60</app.jdbc.password>
 	</properties>
 	<profiles>
 		<!--profile for dev -->
 		<profile>
 			<id>dev</id>
-			<build>
-			</build>
+			<properties>
+				<app.jdbc.url>jdbc\:mysql\://10.46.7.20\:6014,10.42.8.18\:6014/mco_developer_openplatform?useUnicode\=true&amp;characterEncoding\=UTF8</app.jdbc.url>
+				<app.jdbc.username>developer_w</app.jdbc.username>
+				<app.jdbc.password>v60KOStx8cMQrv60</app.jdbc.password>
+			</properties>
 		</profile>
 		<!--profile for perf -->
 		<profile>
 			<id>prod</id>
-			<build>
-			</build>
+			<properties>
+				<app.jdbc.url>jdbc\:mysql\://10.46.7.20\:6014,10.42.8.18\:6014/mco_developer_openplatform?useUnicode\=true&amp;characterEncoding\=UTF8</app.jdbc.url>
+				<app.jdbc.username>developer_w</app.jdbc.username>
+				<app.jdbc.password>v60KOStx8cMQrv60</app.jdbc.password>
+			</properties>
 		</profile>
 	</profiles>
 </project>

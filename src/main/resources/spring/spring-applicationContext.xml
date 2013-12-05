@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+		   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+	<!-- 部署文件定义 -->
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+		<property name="ignoreResourceNotFound" value="true" />
+		<property name="locations">
+			<list>
+				<value>classpath:properties/*.properties</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<context:component-scan base-package="com.baidu.openplatform.lightapp" />
+
+	<!-- bean holder -->
+	<bean class="com.baidu.openplatform.common.ApplicationContextHolder"></bean>
+
+	<!-- s3上传接口 -->
+	<bean id="bcsAccess" class="com.baidu.openplatform.common.BcsAccess">
+		<constructor-arg name="ak" value="${bcs.accessKey}" />
+		<constructor-arg name="sk" value="${bcs.secretKey}" />
+		<constructor-arg name="host" value="${bcs.host}" />
+		<constructor-arg name="charset" value="${bcs.charset}" />
+		<constructor-arg name="bucket" value="${bcs.bucket}" />
+	</bean>
+
+	<!-- schema holder -->
+	<bean id="schemaHolder" class="com.baidu.openplatform.lightapp.service.SchemaHolder">
+		<constructor-arg name="schemaPath" value="${schema.path}" />
+		<property name="bcsAccess" ref="bcsAccess" />
+	</bean>
+
+	<!-- 导入其他配置文件 -->
+	<import resource="spring-dataAccess.xml" />
+	
+	<bean class="com.baidu.openplatform.lightapp.Const">
+        <property name="host" value="${internalapi.host}" />
+    </bean>
+
+</beans>
