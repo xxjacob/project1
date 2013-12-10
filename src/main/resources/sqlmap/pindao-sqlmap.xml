@@ -13,27 +13,16 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
             </resultMap>
     <!-- Select SQL -->
     <sql id="pindao.selector">
-        SELECT id,name,order_num            FROM pindao
+        SELECT id,name,order_num FROM pindao
     </sql>
     <sql id="pindaoList.where">
-        <dynamic>
-                                                <isNotNull property="id" prepend=" AND ">
-                        id=#id#
-                    </isNotNull>
-                                                                <isNotNull property="name" prepend=" AND ">
-                        name=#name#
-                    </isNotNull>
-                                                                <isNotNull property="orderNum" prepend=" AND ">
-                        order_num=#orderNum#
-                    </isNotNull>
-                                    </dynamic>
+		<dynamic prepend=" WHERE ">
+            <isNotNull property="id" prepend=" AND ">id=#id#</isNotNull><isNotNull property="name" prepend=" AND ">name=#name#</isNotNull><isNotNull property="orderNum" prepend=" AND ">order_num=#orderNum#</isNotNull>        </dynamic>
     </sql>
-        <sql id="pindaoList.order">
+    <sql id="pindaoList.order">
         <dynamic prepend=" ORDER BY ">
             <isNotEmpty property="orderFields">
-                <iterate property="orderFields" conjunction="," open="" close="">
-                    #orderFields[].fieldName# #orderFields[].order#
-                </iterate>
+                <iterate property="orderFields" conjunction="," open="" close="">$orderFields[].fieldName$ $orderFields[].order$</iterate>
             </isNotEmpty>
         </dynamic>
     </sql>
@@ -44,13 +33,10 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
                 <select id="Pindao.getPindaosByKeys" resultMap="pindao">
             <include refid="pindao.selector" />
             WHERE id in
-            <iterate conjunction="," open="(" close=")" property="keys">
-                #keys[]#
-            </iterate>
+            <iterate conjunction="," open="(" close=")" property="keys">#keys[]#</iterate>
         </select>
                 <delete id="Pindao.deleteByKey">
-            DELETE FROM pindao
-            WHERE id = #key#
+            DELETE FROM pindao WHERE id = #key#
         </delete>
                 <delete id="Pindao.deleteByKeys">
             DELETE FROM pindao

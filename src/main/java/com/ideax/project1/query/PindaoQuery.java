@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  *
- * @author 王永玲
+ * @author xuxin03
  */
 public class PindaoQuery extends BaseQuery {
 	

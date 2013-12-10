@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  *
- * @author 王永玲
+ * @author xuxin03
  */
 public class BlockQuery extends BaseQuery {
 	
@@ -32,13 +32,13 @@ public class BlockQuery extends BaseQuery {
     	return this;
     }
 	/** block_group **/
-    private String blockGroup;
+    private Integer blockGroup;
 	/**
     * 获取属性:blockGroup
     * block_group
     * @return blockGroup
     */
-	public String getBlockGroup () {
+	public Integer getBlockGroup () {
     	return blockGroup;
    	}
    	/**
@@ -46,8 +46,46 @@ public class BlockQuery extends BaseQuery {
      * block_group
      * @param blockGroup
      */
-    public BlockQuery setBlockGroup(String blockGroup) {
+    public BlockQuery setBlockGroup(Integer blockGroup) {
     	this.blockGroup = blockGroup;
+    	return this;
+    }
+	/** order_num **/
+    private Integer orderNum;
+	/**
+    * 获取属性:orderNum
+    * order_num
+    * @return orderNum
+    */
+	public Integer getOrderNum () {
+    	return orderNum;
+   	}
+   	/**
+     * 设置属性:orderNum
+     * order_num
+     * @param orderNum
+     */
+    public BlockQuery setOrderNum(Integer orderNum) {
+    	this.orderNum = orderNum;
+    	return this;
+    }
+	/** 1首页 **/
+    private Integer pageId;
+	/**
+    * 获取属性:pageId
+    * 1首页
+    * @return pageId
+    */
+	public Integer getPageId () {
+    	return pageId;
+   	}
+   	/**
+     * 设置属性:pageId
+     * 1首页
+     * @param pageId
+     */
+    public BlockQuery setPageId(Integer pageId) {
+    	this.pageId = pageId;
     	return this;
     }
 	/** block_name **/
@@ -126,6 +164,101 @@ public class BlockQuery extends BaseQuery {
     	this.html = html;
     	return this;
     }
+	/** template **/
+    private String template;
+	/**
+    * 获取属性:template
+    * template
+    * @return template
+    */
+	public String getTemplate () {
+    	return template;
+   	}
+   	/**
+     * 设置属性:template
+     * template
+     * @param template
+     */
+    public BlockQuery setTemplate(String template) {
+    	this.template = template;
+    	return this;
+    }
+	/** newsid **/
+    private Integer newsId;
+	/**
+    * 获取属性:newsId
+    * newsid
+    * @return newsId
+    */
+	public Integer getNewsId () {
+    	return newsId;
+   	}
+   	/**
+     * 设置属性:newsId
+     * newsid
+     * @param newsId
+     */
+    public BlockQuery setNewsId(Integer newsId) {
+    	this.newsId = newsId;
+    	return this;
+    }
+	/** image_url **/
+    private String img;
+	/**
+    * 获取属性:img
+    * image_url
+    * @return img
+    */
+	public String getImg () {
+    	return img;
+   	}
+   	/**
+     * 设置属性:img
+     * image_url
+     * @param img
+     */
+    public BlockQuery setImg(String img) {
+    	this.img = img;
+    	return this;
+    }
+	/** create_time **/
+    private Integer createTime;
+	/**
+    * 获取属性:createTime
+    * create_time
+    * @return createTime
+    */
+	public Integer getCreateTime () {
+    	return createTime;
+   	}
+   	/**
+     * 设置属性:createTime
+     * create_time
+     * @param createTime
+     */
+    public BlockQuery setCreateTime(Integer createTime) {
+    	this.createTime = createTime;
+    	return this;
+    }
+	/** modify_time **/
+    private Integer modifyTime;
+	/**
+    * 获取属性:modifyTime
+    * modify_time
+    * @return modifyTime
+    */
+	public Integer getModifyTime () {
+    	return modifyTime;
+   	}
+   	/**
+     * 设置属性:modifyTime
+     * modify_time
+     * @param modifyTime
+     */
+    public BlockQuery setModifyTime(Integer modifyTime) {
+    	this.modifyTime = modifyTime;
+    	return this;
+    }
 	/**==============================批量查询时的Order条件顺序设置==================================**/
 	public class OrderField{
 		public OrderField(String fieldName, String order) {
@@ -171,6 +304,22 @@ public class BlockQuery extends BaseQuery {
 		return this;
 	}
 	/**
+	 * 设置排序按属性：order_num
+	 * @param isAsc 是否升序，否则为降序
+	 */	
+	public BlockQuery orderbyOrderNum(boolean isAsc){
+		orderFields.add(new OrderField("order_num",isAsc?"ASC":"DESC"));
+		return this;
+	}
+	/**
+	 * 设置排序按属性：1首页
+	 * @param isAsc 是否升序，否则为降序
+	 */	
+	public BlockQuery orderbyPageId(boolean isAsc){
+		orderFields.add(new OrderField("page_id",isAsc?"ASC":"DESC"));
+		return this;
+	}
+	/**
 	 * 设置排序按属性：block_name
 	 * @param isAsc 是否升序，否则为降序
 	 */	
@@ -200,6 +349,62 @@ public class BlockQuery extends BaseQuery {
 	 */	
 	public BlockQuery orderbyHtml(boolean isAsc){
 		orderFields.add(new OrderField("html",isAsc?"ASC":"DESC"));
+		return this;
+	}
+	/**
+	 * 设置排序按属性：template
+	 * @param isAsc 是否升序，否则为降序
+	 */	
+	public BlockQuery orderbyTemplate(boolean isAsc){
+		orderFields.add(new OrderField("template",isAsc?"ASC":"DESC"));
+		return this;
+	}
+	/**
+	 * 设置排序按属性：0其他链接, 1其他图片链接, 2本站新闻链接,3本站图片新闻链接 4 静态块
+	 * @param isAsc 是否升序，否则为降序
+	 */	
+	public BlockQuery orderbyType(boolean isAsc){
+		orderFields.add(new OrderField("type",isAsc?"ASC":"DESC"));
+		return this;
+	}
+	/**
+	 * 设置排序按属性：0 false 1 true
+	 * @param isAsc 是否升序，否则为降序
+	 */	
+	public BlockQuery orderbyIsBold(boolean isAsc){
+		orderFields.add(new OrderField("is_bold",isAsc?"ASC":"DESC"));
+		return this;
+	}
+	/**
+	 * 设置排序按属性：newsid
+	 * @param isAsc 是否升序，否则为降序
+	 */	
+	public BlockQuery orderbyNewsId(boolean isAsc){
+		orderFields.add(new OrderField("news_id",isAsc?"ASC":"DESC"));
+		return this;
+	}
+	/**
+	 * 设置排序按属性：image_url
+	 * @param isAsc 是否升序，否则为降序
+	 */	
+	public BlockQuery orderbyImg(boolean isAsc){
+		orderFields.add(new OrderField("img",isAsc?"ASC":"DESC"));
+		return this;
+	}
+	/**
+	 * 设置排序按属性：create_time
+	 * @param isAsc 是否升序，否则为降序
+	 */	
+	public BlockQuery orderbyCreateTime(boolean isAsc){
+		orderFields.add(new OrderField("create_time",isAsc?"ASC":"DESC"));
+		return this;
+	}
+	/**
+	 * 设置排序按属性：modify_time
+	 * @param isAsc 是否升序，否则为降序
+	 */	
+	public BlockQuery orderbyModifyTime(boolean isAsc){
+		orderFields.add(new OrderField("modify_time",isAsc?"ASC":"DESC"));
 		return this;
 	}
 }

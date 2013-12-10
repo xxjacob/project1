@@ -59,5 +59,9 @@
         <level value="DEBUG" />
         <appender-ref ref="DEBUGOUT" />
     </logger>
+	<logger name="java">
+		<level value="DEBUG" />
+		<appender-ref ref="DEBUGOUT" />
+	</logger>
 
 </configuration>

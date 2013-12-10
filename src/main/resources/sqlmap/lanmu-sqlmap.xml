@@ -14,30 +14,16 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
             </resultMap>
     <!-- Select SQL -->
     <sql id="lanmu.selector">
-        SELECT id,name,pd_id,order_num            FROM lanmu
+        SELECT id,name,pd_id,order_num FROM lanmu
     </sql>
     <sql id="lanmuList.where">
-        <dynamic>
-                                                <isNotNull property="id" prepend=" AND ">
-                        id=#id#
-                    </isNotNull>
-                                                                <isNotNull property="name" prepend=" AND ">
-                        name=#name#
-                    </isNotNull>
-                                                                <isNotNull property="pdId" prepend=" AND ">
-                        pd_id=#pdId#
-                    </isNotNull>
-                                                                <isNotNull property="orderNum" prepend=" AND ">
-                        order_num=#orderNum#
-                    </isNotNull>
-                                    </dynamic>
+		<dynamic prepend=" WHERE ">
+            <isNotNull property="id" prepend=" AND ">id=#id#</isNotNull><isNotNull property="name" prepend=" AND ">name=#name#</isNotNull><isNotNull property="pdId" prepend=" AND ">pd_id=#pdId#</isNotNull><isNotNull property="orderNum" prepend=" AND ">order_num=#orderNum#</isNotNull>        </dynamic>
     </sql>
-        <sql id="lanmuList.order">
+    <sql id="lanmuList.order">
         <dynamic prepend=" ORDER BY ">
             <isNotEmpty property="orderFields">
-                <iterate property="orderFields" conjunction="," open="" close="">
-                    #orderFields[].fieldName# #orderFields[].order#
-                </iterate>
+                <iterate property="orderFields" conjunction="," open="" close="">$orderFields[].fieldName$ $orderFields[].order$</iterate>
             </isNotEmpty>
         </dynamic>
     </sql>
@@ -48,13 +34,10 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
                 <select id="Lanmu.getLanmusByKeys" resultMap="lanmu">
             <include refid="lanmu.selector" />
             WHERE id in
-            <iterate conjunction="," open="(" close=")" property="keys">
-                #keys[]#
-            </iterate>
+            <iterate conjunction="," open="(" close=")" property="keys">#keys[]#</iterate>
         </select>
                 <delete id="Lanmu.deleteByKey">
-            DELETE FROM lanmu
-            WHERE id = #key#
+            DELETE FROM lanmu WHERE id = #key#
         </delete>
                 <delete id="Lanmu.deleteByKeys">
             DELETE FROM lanmu

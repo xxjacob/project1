@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  *
- * @author 王永玲
+ * @author xuxin03
  */
 public class CommentQuery extends BaseQuery {
 	
@@ -29,6 +29,25 @@ public class CommentQuery extends BaseQuery {
      */
     public CommentQuery setId(Integer id) {
     	this.id = id;
+    	return this;
+    }
+	/** news_id **/
+    private Integer newsId;
+	/**
+    * 获取属性:newsId
+    * news_id
+    * @return newsId
+    */
+	public Integer getNewsId () {
+    	return newsId;
+   	}
+   	/**
+     * 设置属性:newsId
+     * news_id
+     * @param newsId
+     */
+    public CommentQuery setNewsId(Integer newsId) {
+    	this.newsId = newsId;
     	return this;
     }
 	/** content **/
@@ -126,6 +145,25 @@ public class CommentQuery extends BaseQuery {
     	this.ip = ip;
     	return this;
     }
+	/** modify_time **/
+    private Integer modifyTime;
+	/**
+    * 获取属性:modifyTime
+    * modify_time
+    * @return modifyTime
+    */
+	public Integer getModifyTime () {
+    	return modifyTime;
+   	}
+   	/**
+     * 设置属性:modifyTime
+     * modify_time
+     * @param modifyTime
+     */
+    public CommentQuery setModifyTime(Integer modifyTime) {
+    	this.modifyTime = modifyTime;
+    	return this;
+    }
 	/**==============================批量查询时的Order条件顺序设置==================================**/
 	public class OrderField{
 		public OrderField(String fieldName, String order) {
@@ -160,6 +198,14 @@ public class CommentQuery extends BaseQuery {
 	 */	
 	public CommentQuery orderbyId(boolean isAsc){
 		orderFields.add(new OrderField("id",isAsc?"ASC":"DESC"));
+		return this;
+	}
+	/**
+	 * 设置排序按属性：news_id
+	 * @param isAsc 是否升序，否则为降序
+	 */	
+	public CommentQuery orderbyNewsId(boolean isAsc){
+		orderFields.add(new OrderField("news_id",isAsc?"ASC":"DESC"));
 		return this;
 	}
 	/**
@@ -200,6 +246,14 @@ public class CommentQuery extends BaseQuery {
 	 */	
 	public CommentQuery orderbyIp(boolean isAsc){
 		orderFields.add(new OrderField("ip",isAsc?"ASC":"DESC"));
+		return this;
+	}
+	/**
+	 * 设置排序按属性：modify_time
+	 * @param isAsc 是否升序，否则为降序
+	 */	
+	public CommentQuery orderbyModifyTime(boolean isAsc){
+		orderFields.add(new OrderField("modify_time",isAsc?"ASC":"DESC"));
 		return this;
 	}
 }

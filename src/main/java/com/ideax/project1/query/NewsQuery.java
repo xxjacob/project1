@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  *
- * @author 王永玲
+ * @author xuxin03
  */
 public class NewsQuery extends BaseQuery {
 	
@@ -468,6 +468,14 @@ public class NewsQuery extends BaseQuery {
 	 */	
 	public NewsQuery orderbyShowComment(boolean isAsc){
 		orderFields.add(new OrderField("show_comment",isAsc?"ASC":"DESC"));
+		return this;
+	}
+	/**
+	 * 设置排序按属性：0 not 1yes
+	 * @param isAsc 是否升序，否则为降序
+	 */	
+	public NewsQuery orderbyShowBold(boolean isAsc){
+		orderFields.add(new OrderField("show_bold",isAsc?"ASC":"DESC"));
 		return this;
 	}
 	/**

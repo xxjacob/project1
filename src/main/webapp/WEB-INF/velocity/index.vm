@@ -26,412 +26,214 @@
         </div>
         <div style="clear:both;">
         </div>
-        <div><!--
-            顶部栏目导航
-            -->
-            <div class="nav">
+<div><!--
+    顶部栏目导航
+    -->
+    <div class="nav">
 #foreach ($pd in $pdmap.keySet())
     <a href="pd?id=${pd.id}">${pd.name}</a>
-    #if($foreach.count % 5 == 0) <br /> #end
+#if($foreach.count % 5 == 0) <br /> #end
 #end
             </div>
-        </div>
-        <div class="block">
-            <p>
-                <a style="font-weight:bold;" href="view.html?id=522024">习近平同美国副总统拜登会谈</a>
-            </p>
-            <p>
-                <a style="font-weight:bold;" href="view.html?id=522052">美日印专家谈"嫦娥三号"探月</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522048">日"国安会"分析中日防卫能力</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522051">英将发布报告"积极评价"华为</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522933">日本"特定密保法"获强行通过 </a>
-            </p>
-            <p>
-                <a  href="http://114.111.161.217/ad.html?id=493&pbid=2">外交部用三个"不要"回击日本</a>
-            </p>
-            <p>
-                <a  href="http://114.111.161.217/ad.html?id=729&pbid=2">闪融生活：办卡、保险、贷款</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522106">
-                    <img src="http://wapimg1.huanqiu.com/12/05/08/39/30/1205083930180.jpg" alt=""/>
-                </a>
-            </p>
-        </div>
-        <div class="block">
-            <p>
-                <a  href="http://114.111.161.217/ad.html?id=754&pbid=19">[爆]三星Note3手机上市,大降价</a>
-            </p>
-            <p>
-                <a  href="http://114.111.161.217/ad.html?id=808&pbid=19">★双色球+3D精准预测 包中奖</a>
-            </p>
-        </div>
+</div>
+<div class="block">
+	#foreach( $blk in $blocks[1])
+		<p>
+			#if($blk.type == 0)
+				<a #if($blk.isBold == true) style="font-weight:bold;"#end href="${blk.url}">${blk.title}</a>
+			#elseif($blk.type == 1)
+				<a href="${blk.url}"><img src="${blk.img}"/></a>
+			#elseif($blk.type == 2)
+                <a #if($blk.isBold == true) style="font-weight:bold;"#end href="view?id=${blk.newId}">${blk.title}</a>
+			#elseif($blk.type == 3)
+                <a href="view?id=${blk.newId}"><img src="${blk.img}"/></a>
+			#elseif($blk.type == 4)
+                ${blk.html}
+			#end
+		</p>
+	#end
+</div>
         <div>
             <p class="index-line">
-                <img alt="" src="http://wap.huanqiu.com/wap/img/r.png" />
+                <img alt="" src="/s/img/r.png" />
                 <a href="pd.html?id=31">国际</a>
                 | <a href="lm.html?id=33">独家</a>
                 | <a href="lm.html?id=35">海外看中国</a>
             </p>
         </div>
-        <div class="block">
-            <p>
-                <a style="font-weight:bold;" href="http://114.111.161.217/ad.html?id=346&pbid=3">欧洲外交中国热:看好中国机遇</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522043">中美关系被指已经"超越岛屿"</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522768">安倍称不能让自卫队无处用力</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522552">拜登访华别只看"台面上的事"</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522776">日本"革命军"对袭美基地负责</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522046">乌克兰总统访华寻求"救生索"</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522597">中企对美投资大多数不需审查</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522961">澳一政客被曝曾骂选民是粗人</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522605">日本和食列入非物质文化遗产</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522638">欧洲外交"中国热":无历史问题</a>
-            </p>
-        </div>
-        <div class="block">
-            <p>
-                <a  href="http://114.111.161.217/ad.html?id=620&pbid=20">美的惊叹:瞬间戳中你的小心脏</a>
-            </p>
-            <p>
-                <a  href="http://114.111.161.217/ad.html?id=135&pbid=20">HOT！落落最红小妞图书:《17》</a>
-            </p>
-            <p>
-                <a  href="http://114.111.161.217/ad.html?id=833&pbid=20">脱发秃顶男性吸引美女有绝招</a>
-            </p>
-        </div>
-        <div>
-            <script type="text/javascript">
-                function ycsearch(){
-                var yckey = document.getElementById('key').value;
-                window.location.href='http://yicha.cn/union/u.jsp?p=page&site=2145959810&key='+yckey;
-                }
-            </script>
-            <div class="search">
-                <form action="search.html" method="post">
-                    <input class="searchKey" id="key" name="key" style="width: 160px" type="text" />
-                    &nbsp;<input class="searchBtn" name="" style="width: 40px" type="submit" value="站内" />
-                    <input class="searchBtn" name="" style="width: 40px" type="button" value="易查" onclick="ycsearch()" />
-                </form>
-            </div>
-        </div>
+<div class="block">
+    #foreach( $blk in $blocks[2])
+<p>
+	#if($blk.type == 0)
+		<a #if($blk.isBold == true) style="font-weight:bold;"#end href="${blk.url}">${blk.title}</a>
+	#elseif($blk.type == 1)
+		<a href="${blk.url}"><img src="${blk.img}"/></a>
+	#elseif($blk.type == 2)
+        <a #if($blk.isBold == true) style="font-weight:bold;"#end href="view?id=${blk.newId}">${blk.title}</a>
+	#elseif($blk.type == 3)
+        <a href="view?id=${blk.newId}"><img src="${blk.img}"/></a>
+	#elseif($blk.type == 4)
+        ${blk.html}
+	#end
+</p>
+	#end
+</div>
         <div>
             <p class="index-line">
-                <img alt="" src="http://wap.huanqiu.com/wap/img/r.png" />
+                <img alt="" src="/s/img/r.png" />
                 &nbsp;<a href="pd.html?id=36">国内</a>
                 | <a href="pd.html?id=15">台海</a>
                 | <a href="pd.html?id=16">评论</a>
             </p>
         </div>
-        <div class="block">
-            <p>
-                <a style="font-weight:bold;" href="view.html?id=521990">习近平:全党掌握历史唯物主义</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522018">刘奇葆与来华各国汉学家座谈</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522734">农村土地改革三底线不能突破</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522677">我国航天暂取消载人登月计划</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522852">高考或将减少科目不分文理科</a>
-            </p>
-            <p>
-                <a  href="http://114.111.161.217/ad.html?id=683&pbid=4">苏州拆迁人员殴打拆迁户被杀</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522730">不宜过高估计网络大V的能量</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522142">中国人更重民主实质而非形式</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522714">台7成民众认为防识区涉台领土</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522745">台公务员或将禁止赴大陆进修</a>
-            </p>
-        </div>
-        <div class="block">
-            <p>
-                <a  href="http://114.111.161.217/ad.html?id=793&pbid=21">[荐]中国移动手机阅读榜中榜</a>
-            </p>
-            <p>
-                <a  href="http://114.111.161.217/ad.html?id=848&pbid=21">郭敬明重磅推荐之作：《17》</a>
-            </p>
-            <p>
-                <a  href="http://114.111.161.217/ad.html?id=858&pbid=21">【爆】苹果5狂促,5S秒杀价1980 </a>
-            </p>
-            <p>
-                <a  href="http://114.111.161.217/ad.html?id=4&pbid=21">手机上网用uc时尚快速省流量</a>
-            </p>
-        </div>
+<div class="block">
+   #foreach( $blk in $blocks[3])
+    <p>
+    	#if($blk.type == 0)
+    		<a #if($blk.isBold == true) style="font-weight:bold;"#end href="${blk.url}">${blk.title}</a>
+    	#elseif($blk.type == 1)
+    		<a href="${blk.url}"><img src="${blk.img}"/></a>
+    	#elseif($blk.type == 2)
+            <a #if($blk.isBold == true) style="font-weight:bold;"#end href="view?id=${blk.newId}">${blk.title}</a>
+    	#elseif($blk.type == 3)
+            <a href="view?id=${blk.newId}"><img src="${blk.img}"/></a>
+    	#elseif($blk.type == 4)
+            ${blk.html}
+    	#end
+    </p>
+   #end
+</div>
+<div>
+    <p class="index-line">
+        <img alt="" src="/s/img/r.png" />
+        <a href="pd.html?id=17">财经</a>
+        | <a href="pd.html?id=28">科技</a>
+        | <a href="zt.html?">专题</a>
+    </p>
+</div>
+<div class="block">
+ #foreach( $blk in $blocks[4])
+<p>
+    	#if($blk.type == 0)
+    		<a #if($blk.isBold == true) style="font-weight:bold;"#end href="${blk.url}">${blk.title}</a>
+    	#elseif($blk.type == 1)
+    		<a href="${blk.url}"><img src="${blk.img}"/></a>
+    	#elseif($blk.type == 2)
+            <a #if($blk.isBold == true) style="font-weight:bold;"#end href="view?id=${blk.newId}">${blk.title}</a>
+    	#elseif($blk.type == 3)
+            <a href="view?id=${blk.newId}"><img src="${blk.img}"/></a>
+    	#elseif($blk.type == 4)
+            ${blk.html}
+    	#end
+</p>
+#end
+</div>
         <div>
             <p class="index-line">
-                <img alt="" src="http://wap.huanqiu.com/wap/img/r.png" />
-                <a href="pd.html?id=17">财经</a>
-                | <a href="pd.html?id=28">科技</a>
-                | <a href="zt.html?">专题</a>
-            </p>
-        </div>
-        <div class="block">
-            <p>
-                <a  href="http://114.111.161.217/ad.html?id=489&pbid=5">
-                    <img src="http://wapimg1.huanqiu.com/12/05/08/55/14/1205085514229.jpg" alt=""/>
-                </a>
-            </p>
-            <p>
-                <a style="font-weight:bold;" href="view.html?id=522362">任志强:若调控明年房价将暴涨</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522444">英法领导人为对华合作寻突破</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522651">俄欧就俄气公司反垄断寻和解</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522679">CK与淑女屋等服装质量不合格</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522535">4G牌照引发连锁反应谁受益?</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522459">2013年度五款最佳平板大盘点</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522421">比特币:要么傲视要么啥也不是</a>
-            </p>
-        </div>
-        <div class="block">
-            <p>
-                <a  href="http://114.111.161.217/ad.html?id=841&pbid=22">火辣奔放!宛如维多利亚的秘密</a>
-            </p>
-            <p>
-                <a  href="http://114.111.161.217/ad.html?id=842&pbid=22">缪斯女神:令人窒息的性感尤物</a>
-            </p>
-            <p>
-                <a  href="http://114.111.161.217/ad.html?id=870&pbid=22">珠宝加工轻松创业；月入万元 </a>
-            </p>
-        </div>
-        <div>
-            <p class="index-line">
-                <img alt="" src="http://wap.huanqiu.com/wap/img/r.png" />
+                <img alt="" src="/s/img/r.png" />
                 &nbsp;<a href="pd.html?id=23">军事</a>
                 | <a href="lm.html?id=90">军评</a>
                 | <a href="lm.html?id=43">图说</a>
             </p>
         </div>
-        <div class="block">
-            <p>
-                <a style="font-weight:bold;" href="http://114.111.161.217/ad.html?id=504&pbid=170">俄媒:中国对日本用歼-10足够</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522518">菲抗议辽宁号航母进南海训练</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522296">澳防长希望中澳加强国防合作</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522731">专家对比中印两国的航天实力</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522580">俄"基辅"级航母半数落户中国</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522800">少将谈航母:要总结001舰经验</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522377">外媒称中国将扩大对中东影响</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522691">我军东海舰队战机群有大动作</a>
-            </p>
-        </div>
-        <div class="block">
-            <p>
-                <a  href="http://114.111.161.217/ad.html?id=792&pbid=172">6000万人用UU电话长途仅3分</a>
-            </p>
-        </div>
+<div class="block">
+ #foreach( $blk in $blocks[5])
+<p>
+    	#if($blk.type == 0)
+    		<a #if($blk.isBold == true) style="font-weight:bold;"#end href="${blk.url}">${blk.title}</a>
+    	#elseif($blk.type == 1)
+    		<a href="${blk.url}"><img src="${blk.img}"/></a>
+    	#elseif($blk.type == 2)
+            <a #if($blk.isBold == true) style="font-weight:bold;"#end href="view?id=${blk.newId}">${blk.title}</a>
+    	#elseif($blk.type == 3)
+            <a href="view?id=${blk.newId}"><img src="${blk.img}"/></a>
+    	#elseif($blk.type == 4)
+            ${blk.html}
+    	#end
+</p>
+#end
+</div>
         <div>
             <p class="index-line">
-                <img alt="" src="http://wap.huanqiu.com/wap/img/r.png" />
+                <img alt="" src="/s/img/r.png" />
                 <a href="pd.html?id=109">博览</a>
                 | <a href="lm.html?id=114">给跪</a>
                 | <a href="pd.html?id=60">图片</a>
             </p>
         </div>
-        <div class="block">
-            <p>
-                <a  href="view.html?id=522121">美媒为各州男性阴茎尺寸排名</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522342">浙江土豪20万买我军退役坦克</a>
-            </p>
-            <p>
-                <a  href="ztview.html?id=377">日本从娃娃抓起打造萝莉文化</a>
-            </p>
-            <p>
-                <a  href="http://114.111.161.217/ad.html?id=531&pbid=171">没有最"土豪"只有更加"土豪"</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522324">英国疗养院超千住院者被渴死</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522556">考眼力找亮点"奸情"真是太多</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522534">走进亚洲最大的动物交易市场</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522655">英女王少女时代演舞台剧曝光</a>
-            </p>
-        </div>
-        <div class="block">
-            <p>
-                <a  href="http://114.111.161.217/ad.html?id=789&pbid=173">★爆!麻将机遥控器 逢赌必赢!</a>
-            </p>
-        </div>
+<div class="block">
+ #foreach( $blk in $blocks[6])
+<p>
+    	#if($blk.type == 0)
+    		<a #if($blk.isBold == true) style="font-weight:bold;"#end href="${blk.url}">${blk.title}</a>
+    	#elseif($blk.type == 1)
+    		<a href="${blk.url}"><img src="${blk.img}"/></a>
+    	#elseif($blk.type == 2)
+            <a #if($blk.isBold == true) style="font-weight:bold;"#end href="view?id=${blk.newId}">${blk.title}</a>
+    	#elseif($blk.type == 3)
+            <a href="view?id=${blk.newId}"><img src="${blk.img}"/></a>
+    	#elseif($blk.type == 4)
+            ${blk.html}
+    	#end
+</p>
+#end
+</div>
         <div>
             <p class="index-line">
-                <img alt="" src="http://wap.huanqiu.com/wap/img/r.png" />
+                <img alt="" src="/s/img/r.png" />
                 &nbsp;<a href="pd.html?id=64">健康</a>
                 | <a href="pd.html?id=94">旅游</a>
                 | <a href="lm.html?id=95">环游地球</a>
             </p>
         </div>
-        <div class="block">
-            <p>
-                <a  href="http://114.111.161.217/ad.html?id=486&pbid=29">
-                    <img src="http://wapimg1.huanqiu.com/12/05/16/19/27/1205161927985.jpg" alt=""/>
-                </a>
-            </p>
-            <p>
-                <a  href="view.html?id=522864">今年冬季冷地旅游格外受追捧</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522810">香港对泰旅游警示属全球最高</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522678">韩推荐5个12月值得去的地方</a>
-            </p>
-            <p>
-                <a  href="http://114.111.161.217/ad.html?id=844&pbid=29">女人出轨后身体留下的6个特征</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522856">美味零食巧妙吃法解馋不长胖</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522858">冬季吃火锅去火消痘肌有秘籍</a>
-            </p>
-            <p>
-                <a  href="http://114.111.161.217/ad.html?id=487&pbid=29">告诉你什么才是真正的处女膜</a>
-            </p>
-        </div>
-        <div class="block">
-            <p>
-                <a  href="http://114.111.161.217/ad.html?id=435&pbid=23">我不是坏女孩终结版:《蛰伏》</a>
-            </p>
-            <p>
-                <a  href="http://114.111.161.217/ad.html?id=358&pbid=23">撒旦篇章：二战德军窃听实录</a>
-            </p>
-            <p>
-                <a  href="http://114.111.161.217/ad.html?id=753&pbid=23">500元创业月入3万，一年买车</a>
-            </p>
-        </div>
+<div class="block">
+ #foreach( $blk in $blocks[7])
+<p>
+    	#if($blk.type == 0)
+    		<a #if($blk.isBold == true) style="font-weight:bold;"#end href="${blk.url}">${blk.title}</a>
+    	#elseif($blk.type == 1)
+    		<a href="${blk.url}"><img src="${blk.img}"/></a>
+    	#elseif($blk.type == 2)
+            <a #if($blk.isBold == true) style="font-weight:bold;"#end href="view?id=${blk.newId}">${blk.title}</a>
+    	#elseif($blk.type == 3)
+            <a href="view?id=${blk.newId}"><img src="${blk.img}"/></a>
+    	#elseif($blk.type == 4)
+            ${blk.html}
+    	#end
+</p>
+#end
+</div>
         <div>
             <p class="index-line">
-                <img alt="" src="http://wap.huanqiu.com/wap/img/r.png" />
+                <img alt="" src="/s/img/r.png" />
                 &nbsp;<a href="pd.html?id=55">娱乐</a>
                 | <a href="lm.html?id=57">影视</a>
                 | <a href="pd.html?id=86">体育</a>
             </p>
         </div>
-        <div class="block">
-            <p>
-                <a  href="http://114.111.161.217/ad.html?id=533&pbid=6">
-                    <img src="http://wapimg1.huanqiu.com/12/05/09/24/44/1205092444328.jpg" alt=""/>
-                </a>
-            </p>
-            <p>
-                <a  href="view.html?id=522113">张艺谋回应放弃移民美国质疑</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522191">赵本山无缘春晚舞台将只执导</a>
-            </p>
-            <p>
-                <a  href="ztview.html?id=379">明星频频上演"下跪剧"为哪般</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522150">女星辛酸求子路:刘嘉玲找代孕</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522477">容嬷嬷助阵《2013幽默盛典》</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522726">步行者队客场终结爵士两连胜</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522626">欧足联公布年度最佳40人候选</a>
-            </p>
-            <p>
-                <a  href="view.html?id=522750">科比否认将在战国王赛中复出</a>
-            </p>
-        </div>
-        <div class="block">
-            <p>
-                <a  href="http://114.111.161.217/ad.html?id=853&pbid=30">顶级超模施展魅力的秘密武器</a>
-            </p>
-            <p>
-                <a  href="http://114.111.161.217/ad.html?id=679&pbid=30">《胡锡进论复杂中国》:中国日记</a>
-            </p>
-            <p>
-                <a  href="http://114.111.161.217/ad.html?id=529&pbid=30">★逢赌必赢 超级麻将机遥控器 </a>
-            </p>
-        </div>
+<div class="block">
+ #foreach( $blk in $blocks[8])
+<p>
+    	#if($blk.type == 0)
+    		<a #if($blk.isBold == true) style="font-weight:bold;"#end href="${blk.url}">${blk.title}</a>
+    	#elseif($blk.type == 1)
+    		<a href="${blk.url}"><img src="${blk.img}"/></a>
+    	#elseif($blk.type == 2)
+            <a #if($blk.isBold == true) style="font-weight:bold;"#end href="view?id=${blk.newId}">${blk.title}</a>
+    	#elseif($blk.type == 3)
+            <a href="view?id=${blk.newId}"><img src="${blk.img}"/></a>
+    	#elseif($blk.type == 4)
+            ${blk.html}
+    	#end
+</p>
+#end
+</div>
         <div>
             <div class="nav">
-                <a href="pd.html?id=31">国际</a>
-                <a href="pd.html?id=36">国内</a>
-                <a href="pd.html?id=23">军事</a>
-                <a href="pd.html?id=15">台海</a>
-                <a href="pd.html?id=16">评论</a>
-                <br />
-                <a href="pd.html?id=17">财经</a>
-                <a href="pd.html?id=28">科技</a>
-                <a href="pd.html?id=109">博览</a>
-                <a href="pd.html?id=94">旅游</a>
-                <a href="pd.html?id=55">娱乐</a>
-                <br />
-                <a href="pd.html?id=86">体育</a>
-                <a href="pd.html?id=64">健康</a>
-                <a href="pd.html?id=60">图片</a>
-                <a href="zt.html">专题</a>
+#foreach ($pd in $pdmap.keySet())
+    <a href="pd?id=${pd.id}">${pd.name}</a>
+#if($foreach.count % 5 == 0) <br /> #end
+#end
             </div>
             <div class="foot">
                 <p>

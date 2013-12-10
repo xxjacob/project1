@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author 王永玲
+ * @author xuxin03
  */
 public class Comment implements Serializable{
 
@@ -14,6 +14,8 @@ public class Comment implements Serializable{
 
 	/** id **/
     private Integer id;
+	/** news_id **/
+    private Integer newsId;
 	/** content **/
     private String content;
 	/** create_time **/
@@ -24,6 +26,8 @@ public class Comment implements Serializable{
     private String device;
 	/** ip **/
     private String ip;
+	/** modify_time **/
+    private Integer modifyTime;
 
 	
    /**
@@ -41,6 +45,23 @@ public class Comment implements Serializable{
     */
    public void setId(Integer id) {
        this.id = id;
+   }
+	
+   /**
+    * 获取属性:newsId
+    * news_id
+    * @return newsId
+    */
+   public Integer getNewsId() {
+       return newsId;
+   }
+   /**
+    * 设置属性:newsId
+    * news_id
+    * @param newsId
+    */
+   public void setNewsId(Integer newsId) {
+       this.newsId = newsId;
    }
 	
    /**
@@ -126,6 +147,23 @@ public class Comment implements Serializable{
     */
    public void setIp(String ip) {
        this.ip = ip;
+   }
+	
+   /**
+    * 获取属性:modifyTime
+    * modify_time
+    * @return modifyTime
+    */
+   public Integer getModifyTime() {
+       return modifyTime;
+   }
+   /**
+    * 设置属性:modifyTime
+    * modify_time
+    * @param modifyTime
+    */
+   public void setModifyTime(Integer modifyTime) {
+       this.modifyTime = modifyTime;
    }
 
 	/**

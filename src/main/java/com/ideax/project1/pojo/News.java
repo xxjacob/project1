@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author 王永玲
+ * @author xuxin03
  */
 public class News implements Serializable{
 
@@ -34,6 +34,8 @@ public class News implements Serializable{
     private String images;
 	/** 0show 1disable **/
     private Byte showComment;
+	/** 0 not 1yes **/
+    private Byte showBold;
 	/** modify_time **/
     private Integer modifyTime;
 	/** create_time **/
@@ -239,6 +241,23 @@ public class News implements Serializable{
     */
    public void setShowComment(Byte showComment) {
        this.showComment = showComment;
+   }
+	
+   /**
+    * 获取属性:showBold
+    * 0 not 1yes
+    * @return showBold
+    */
+   public Byte getShowBold() {
+       return showBold;
+   }
+   /**
+    * 设置属性:showBold
+    * 0 not 1yes
+    * @param showBold
+    */
+   public void setShowBold(Byte showBold) {
+       this.showBold = showBold;
    }
 	
    /**

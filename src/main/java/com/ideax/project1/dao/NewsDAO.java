@@ -15,7 +15,7 @@ import java.util.Collections;
 import com.ideax.project1.common.Result;
 import com.ideax.project1.query.NewsQuery;
 /**
- * @author 王永玲
+ * @author xuxin03
  */
 @Repository
 public class NewsDAO {

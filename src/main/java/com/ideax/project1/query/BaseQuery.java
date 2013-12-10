@@ -1,7 +1,7 @@
 package com.ideax.project1.query;
 
 /**
- * @author 王永玲
+ * @author xuxin03
  */
 public class BaseQuery {
 	public final static int DEFAULT_SIZE = 10;
