@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>设置新闻链接</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="http://libs.baidu.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <link href="http://libs.baidu.com/bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+        <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script src="/s/js/jquery.uploadify.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="/s/css/uploadify.css">
+		<script>
+		var initUploadBtn = function(id){
+			$("#file_upload"+id).uploadify({
+                    height        : 25,
+                    swf           : '/s/swf/uploadify.swf',
+                    uploader      : '/upload',
+                    width         : 60,
+    				fileTypeExts:'*.gif; *.jpg; *.png',
+    				'fileTypeDesc' : '图片',
+    				buttonText:'传图',
+					preventCaching:false,
+    				multi:false,
+    				'onUploadSuccess' : function(file, data, response) {
+                        var json = eval('('+data+')');
+    					if (json.filename)
+    						$('#img_'+id).val('/img/upload/'+json.filename);
+    					else
+    						alert('上传图片出错!'+data);
+                    },
+    				'onUploadError' : function(file, errorCode, errorMsg, errorString) {
+                        alert('上传图片出错!');
+                    }
+                });
+		}
+		
+		var initFetchNewsBtn = function(id){
+			$("#getNews"+id).click(function(){
+				var newsid = $("#news_id_"+id).val();
+				if (!newsid){
+					alert('请填新闻id')
+					return false;
+				}
+				$.ajax({
+                  url: '/asdf/news/jsoninfo?id='+newsid,
+                  success: function(json){
+					if(json && json.id){
+						$("#title_"+id).val(json.shortTitle);
+						$("#url_"+id).val('/pd?id='+newsid);
+						$("#img_"+id).val(json.coverImg);
+					}else {
+						alert('新闻不存在!');
+					}
+				  },
+				  error:function(){
+				  	alert('获取错误');
+				  },
+                  dataType: 'json'
+                });
+			})
+		}
+		
+		$(function(){
+			var ids=[#foreach($block in $blockgroup) $block.id, #end];
+			for (var i = 0;i<ids.length;i++){
+    			initUploadBtn(ids[i]);
+				initFetchNewsBtn(ids[i]);
+			}
+		})
+
+        </script>
+</head>
+<body>
+    <div class="container-fluid">
+		#if($info)
+            <div class="alert alert-success">${info}</div>
+		#end
+        <div class="row">
+            <div class="span12">
+                <form class="form-horizontal" method="POST" action="update">
+					<input type="hidden" id="blockgroup" name="blockgroup" value="$!{blockgroup[0].blockGroup}">
+                    <fieldset>
+                        <div id="legend" class="">
+                            <legend class="">设置</legend>
+                        </div>
+						#foreach($block in $blockgroup)
+                        <div class="control-group">
+                            <label class="control-label">${block.blockName}</label>
+                            <div class="controls controls-row">
+								<input class="span3" type="text" id="title_${block.id}" name="title_${block.id}" placeholder="标题" value="${block.title}" />
+                                <input class="span3" type="text" id="url_${block.id}" name="url_${block.id}" placeholder="链接" value="${block.url}" />
+								<select id='is_bold_${block.id}' name='is_bold_${block.id}' class="span2">
+                                    <option value='0' #if($block.isBold == 0) selected #end>标题不加粗</option>
+                                    <option value='1' #if($block.isBold == 1) selected #end>标题加粗</option>
+                                </select>
+                            </div>
+                        </div>
+						<div class="control-group">
+							<div class="controls controls-row">
+                                <input class="span2" type="text" id="news_id_${block.id}" name="news_id_${block.id}" placeholder="新闻id" #if($block.newsId gt 0) value="${block.newsId}" #end/>
+								<input type="button"  class="span2 btn btn-info" id="getNews${block.id}" value="获取" />
+                                <select class="span2" id='type_${block.id}' name='type_${block.id}' class="span2">
+                                    <option value='2' #if($block.type == 2) selected #end>本站新闻链接</option>
+                                    <option value='3' #if($block.type == 3) selected #end>本站图片新闻链接</option>
+									<option value='0' #if($block.type == 0) selected #end>外站文字链接</option>
+                                    <option value='1' #if($block.type == 1) selected #end>外站图片新闻链接</option>
+                                    <!--<option value='4' #if($block.isBold == 4) selected #end>静态块</option>-->
+                                </select>
+								<input class="span3" type="text" id="img_${block.id}" name="img_${block.id}" placeholder="图片地址" value="${block.img}"/>
+                            </div>
+                        </div>
+						<div class="control-group">
+							<div class="controls controls-row">
+    							<input id="file_upload${block.id}" type="button" multiple="false">
+							</div>
+                        </div>
+						#end
+						<div class="control-group">
+                            <label class="control-label"></label>
+                            <div class="controls">
+                              <button id="submitBtn" type="submit" class="btn btn-primary" data-loading-text="提交...">提交</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
