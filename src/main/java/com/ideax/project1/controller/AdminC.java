@@ -15,12 +15,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ideax.common.Util;
 import com.ideax.common.exception.IllegalException;
+import com.ideax.project1.pojo.Admin;
 import com.ideax.project1.pojo.Block;
 import com.ideax.project1.pojo.News;
+import com.ideax.project1.service.AdminService;
 import com.ideax.project1.service.BlockService;
 import com.ideax.project1.service.NewsService;
 
@@ -35,6 +39,29 @@ public class AdminC {
 
     @Autowired
     NewsService newsService;
+    @Autowired
+    AdminService adminService;
+
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public String loginpage() {
+        
+        return "admin/login";
+    }
+
+    @RequestMapping(value = "dologin", method = RequestMethod.POST)
+    public String dologin(@RequestParam String username, @RequestParam String password, Model model) {
+        String passwordmd5 = Util.md5Encoding(password);
+        Admin admin = adminService.verifyUser(username, passwordmd5);
+        if (admin != null) {
+            
+        }
+        return "redirect:/asdf/main";
+    }
+
+    @RequestMapping("main")
+    public String mainpage(@RequestParam int blockgroup, HttpServletRequest req, Model model) {
+        return "admin/login";
+    }
 
     @RequestMapping("block/setting")
     public String blockSettingPage(@RequestParam int blockgroup, HttpServletRequest req, Model model) {

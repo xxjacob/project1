@@ -28,6 +28,8 @@ public class Comment implements Serializable{
     private String ip;
 	/** modify_time **/
     private Integer modifyTime;
+	/** 楼层 **/
+    private Integer floor;
 
 	
    /**
@@ -164,6 +166,23 @@ public class Comment implements Serializable{
     */
    public void setModifyTime(Integer modifyTime) {
        this.modifyTime = modifyTime;
+   }
+	
+   /**
+    * 获取属性:floor
+    * 楼层
+    * @return floor
+    */
+   public Integer getFloor() {
+       return floor;
+   }
+   /**
+    * 设置属性:floor
+    * 楼层
+    * @param floor
+    */
+   public void setFloor(Integer floor) {
+       this.floor = floor;
    }
 
 	/**

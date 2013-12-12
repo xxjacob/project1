@@ -38,6 +38,13 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
             </isNotEmpty>
         </dynamic>
     </sql>
+	<sql id="blockList.limit">
+        <dynamic prepend=" LIMIT ">
+            <isGreaterThan  property="pageSize" compareValue="0">
+                #startRow#,#pageSize#
+            </isGreaterThan>
+        </dynamic>
+    </sql>
             <select id="Block.getBlock" resultMap="block">
             <include refid="block.selector" />
             WHERE id=#id#
@@ -59,95 +66,104 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
         </delete>
                                 <update id="Block.updateBlocksByKeys" parameterClass="Block">
             UPDATE block SET 
-                                                                            <isNotNull prepend="," property="blockGroup">
+            				            				                    <isNotNull prepend="," property="blockGroup">
                         block_group = #blockGroup#
                     </isNotNull>
-				                                                <isNotNull prepend="," property="orderNum">
+                            				                    <isNotNull prepend="," property="orderNum">
                         order_num = #orderNum#
                     </isNotNull>
-				                                                <isNotNull prepend="," property="pageId">
+                            				                    <isNotNull prepend="," property="pageId">
                         page_id = #pageId#
                     </isNotNull>
-				                                                <isNotNull prepend="," property="blockName">
+                            				                    <isNotNull prepend="," property="blockName">
                         block_name = #blockName#
                     </isNotNull>
-				                                                <isNotNull prepend="," property="url">
+                            				                    <isNotNull prepend="," property="url">
                         url = #url#
                     </isNotNull>
-				                                                <isNotNull prepend="," property="title">
+                            				                    <isNotNull prepend="," property="title">
                         title = #title#
                     </isNotNull>
-				                                                <isNotNull prepend="," property="html">
+                            				                    <isNotNull prepend="," property="html">
                         html = #html#
                     </isNotNull>
-				                                                <isNotNull prepend="," property="template">
+                            				                    <isNotNull prepend="," property="template">
                         template = #template#
                     </isNotNull>
-				                                                <isNotNull prepend="," property="type">
+                            				                    <isNotNull prepend="," property="type">
                         type = #type#
                     </isNotNull>
-				                                                <isNotNull prepend="," property="isBold">
+                            				                    <isNotNull prepend="," property="isBold">
                         is_bold = #isBold#
                     </isNotNull>
-				                                                <isNotNull prepend="," property="newsId">
+                            				                    <isNotNull prepend="," property="newsId">
                         news_id = #newsId#
                     </isNotNull>
-				                                                <isNotNull prepend="," property="img">
+                            				                    <isNotNull prepend="," property="img">
                         img = #img#
                     </isNotNull>
-				                                                        					<dynamic prepend=",">
+                            				                    <isNotNull prepend="," property="createTime">
+                        create_time = #createTime#
+                    </isNotNull>
+                            									<dynamic prepend=",">
 						modify_time=UNIX_TIMESTAMP()
 					</dynamic>
-                                        WHERE id in
+				                        WHERE id in
             <iterate conjunction="," open="(" close=")" property="keys">
                 #keys[]#
             </iterate>
         </update>
         <update id="Block.updateBlock" parameterClass="Block">
             UPDATE block SET modify_time=UNIX_TIMESTAMP()
-                                                                            <isNotNull prepend="," property="blockGroup">
+            				            				                    <isNotNull prepend="," property="blockGroup">
                         block_group = #blockGroup#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="orderNum">
+                            				                    <isNotNull prepend="," property="orderNum">
                         order_num = #orderNum#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="pageId">
+                            				                    <isNotNull prepend="," property="pageId">
                         page_id = #pageId#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="blockName">
+                            				                    <isNotNull prepend="," property="blockName">
                         block_name = #blockName#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="url">
+                            				                    <isNotNull prepend="," property="url">
                         url = #url#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="title">
+                            				                    <isNotNull prepend="," property="title">
                         title = #title#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="html">
+                            				                    <isNotNull prepend="," property="html">
                         html = #html#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="template">
+                            				                    <isNotNull prepend="," property="template">
                         template = #template#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="type">
+                            				                    <isNotNull prepend="," property="type">
                         type = #type#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="isBold">
+                            				                    <isNotNull prepend="," property="isBold">
                         is_bold = #isBold#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="newsId">
+                            				                    <isNotNull prepend="," property="newsId">
                         news_id = #newsId#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="img">
+                            				                    <isNotNull prepend="," property="img">
                         img = #img#
                     </isNotNull>
-                                                                                                WHERE id = #id#
+                            				                    <isNotNull prepend="," property="createTime">
+                        create_time = #createTime#
+                    </isNotNull>
+                            									<dynamic prepend=",">
+						modify_time=UNIX_TIMESTAMP()
+					</dynamic>
+				                        WHERE id = #id#
         </update>
             <select id="Block.getBlockListWithPage" parameterClass="BlockQuery" resultMap="block">
         <include refid="block.selector" />
         <include refid="blockList.where" />
         <include refid="blockList.order" />
-        LIMIT #startRow#,#pageSize#
+        <include refid="blockList.limit" />
     </select>
     <select id="Block.getBlockListCount" parameterClass="BlockQuery" resultClass="int">
         SELECT count(*) FROM block
@@ -157,6 +173,7 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
         <include refid="block.selector" />
         <include refid="blockList.where" />
         <include refid="blockList.order" />
+		<include refid="blockList.limit" />
     </select>
     <!--    <insert id="Block.insertBlock" parameterClass="Block">
     INSERT INTO block(

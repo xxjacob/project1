@@ -72,7 +72,7 @@ public class BlockService implements InitializingBean {
         }
     }
 
-    public void generateHtml(int pageId) {
+    public Map<Integer, List<Block>> getAllBlocksByPageid(int pageId) {
         try {
             Map<Integer, List<Block>> blocks = new HashMap<Integer, List<Block>>();
             List<Block> pagelist = blockDAO.getBlockList(new BlockQuery().setPageId(pageId).orderbyOrderNum(true));
@@ -85,6 +85,16 @@ public class BlockService implements InitializingBean {
                 }
                 list.add(block);
             }
+            return blocks;
+        } catch (SQLException e) {
+            logger.error("", e);
+            throw new IllegalException(EC.EC_DB);
+        }
+    }
+
+    public void generateHtml(int pageId) {
+        try {
+            Map<Integer, List<Block>> blocks = getAllBlocksByPageid(pageId);
 
             VelocityEngine engine = velocityConfig.getVelocityEngine();
             Template tpl = engine.getTemplate("index.vm");
@@ -97,8 +107,6 @@ public class BlockService implements InitializingBean {
             writer.flush();
             writer.close();
             return;
-        } catch (SQLException e) {
-            logger.error("", e);
         } catch (ResourceNotFoundException e) {
             logger.error("", e);
         } catch (ParseErrorException e) {

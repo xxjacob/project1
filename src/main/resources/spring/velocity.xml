@@ -16,6 +16,9 @@
 				<entry key="esc">
 					<bean class="org.apache.velocity.tools.generic.EscapeTool" />
 				</entry>
+				<entry key="date">
+					<bean class="org.apache.velocity.tools.generic.DateTool" />
+				</entry>
 			</map>
 		</property>
 	</bean>  

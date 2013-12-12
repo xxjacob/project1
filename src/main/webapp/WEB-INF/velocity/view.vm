@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+<meta name="keywords"
+			content="环球新闻网,新闻，环球，军事，新闻网，环球网，环球时报，娱乐，国内新闻，图片新闻网" />
+		<meta name="description" content="正文页" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<meta name="viewport"
+			content="width=device-width, minimum-scale=1.0, maximum-scale=2.0" />
+		<title>世界正看到"自信强大"的中国_手机环球网</title>
+		<link rel="stylesheet" href="/s/css/style.css" type="text/css" />
+</head>
+	<body>
+<div class="main">
+			<div>
+	</div>
+<div class="loginline">
+	<a href="nav.html" style="font-weight:bold;float:left;">导航</a>
+</div>
+<div style="clear:both;">
+</div>
+<!--
+			导航条
+			-->
+			<div class="nav">
+				<a href="/">XXX网</a>&gt;
+				<a href="pd?id=$!{pindao.id}">$!{pindao.name}</a>&gt;
+				<a href="lm?id=$!{lanmu.id}">$!{lanmu.name}</a>
+			</div>
+			<!--
+			动态广告位碎片      正文页-广告位-页头 123
+			-->
+
+			<div>
+				<div class="block">
+	<p>
+		#set($blk = $blocks[9][0])
+		#if($blk.type == 0)
+    		<a #if($blk.isBold == true) style="font-weight:bold;"#end href="${blk.url}">${blk.title}</a>
+    	#elseif($blk.type == 1)
+    		<a href="${blk.url}"><img src="${blk.img}"/></a>
+    	#elseif($blk.type == 2)
+            <a #if($blk.isBold == true) style="font-weight:bold;"#end href="view?id=${blk.newId}">${blk.title}</a>
+    	#elseif($blk.type == 3)
+            <a href="view?id=${blk.newId}"><img src="${blk.img}"/></a>
+    	#elseif($blk.type == 4)
+            ${blk.html}
+    	#end</p>
+		</div>
+
+</div>
+			<!--
+			正文
+			-->
+			<div>
+				<p class="newstitle">
+					$!{news.title}</p>
+				<p class="newstime">
+					#set($s = $date.format("MM-dd HH:mm",$news.sendTime))
+					$!{s}
+					来源:$!{news.source}</p>
+				<div class="newscont">
+					$!{news.content}</div>
+				#if($total > 1 && $r != 1)
+				<p style="text-align: center;">
+					#if($page < $total)<a href="view?id=$!{news.id}&page=$!{page}&r=2">余下全文</a>#end
+					第 <font color='red'>$page</font>/$total 页 
+					#set($v = $page - 1)
+					#if($page > 1)<a href="/view?id=$!{news.id}&page=$v"> 上一页 </a>#end 
+					#foreach($p in [1..$total])<a href="view?id=525597&amp;page=2&amp;pagePerSize=1">2.</a>#end
+					#set($v = $page + 1)
+					#if($page < $total) <a href="/view?id=$!{news.id}&page=$v">下一页</a>#end
+				<p>
+				#end
+					
+					<!-- <a
+						href="http://go.10086.cn/ishare.do?m=t&u=http://wap.huanqiu.com/view.html?id=525597&t=世界看到“自信强大”的中国&sid=414917446121"><img
+							src="wap/img/button_medium.png" /> </a> -->
+<div class="bshare-custom icon-medium">分享：<a title="分享到QQ空间" class="bshare-qzone"></a><a title="分享到新浪微博" class="bshare-sinaminiblog"></a><a title="分享到人人网" class="bshare-renren"></a><a title="分享到腾讯微博" class="bshare-qqmb"></a><a title="分享到网易微博" class="bshare-neteasemb"></a><a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a><span class="BSHARE_COUNT bshare-share-count">0</span></div><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=2&amp;lang=zh"></script><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+				</p>
+			</div> 
+			<!--
+			动态广告位碎片      正文页-广告位-文末121
+			-->
+
+			<div>
+				<div class="block">
+	<p>
+		#set($blk = $blocks[10][0])
+		#if($blk.type == 0)
+    		<a #if($blk.isBold == true) style="font-weight:bold;"#end href="${blk.url}">${blk.title}</a>
+    	#elseif($blk.type == 1)
+    		<a href="${blk.url}"><img src="${blk.img}"/></a>
+    	#elseif($blk.type == 2)
+            <a #if($blk.isBold == true) style="font-weight:bold;"#end href="view?id=${blk.newId}">${blk.title}</a>
+    	#elseif($blk.type == 3)
+            <a href="view?id=${blk.newId}"><img src="${blk.img}"/></a>
+    	#elseif($blk.type == 4)
+            ${blk.html}
+    	#end
+</p>
+		</div>
+
+</div>
+
+			<!--
+				评论
+			-->
+			<div  class="biaoqing" > 
+					<ul>
+						<li> 
+								<a href="javascript:toupiao(1,525597,'喜',273);" >
+									<img src="/s/img/biaoqing1.jpg" /> 
+									<span id="1">喜&nbsp;(${news.cmtNumLv1})</span> </a>
+							</li>
+						<li> 
+								<a href="javascript:toupiao(2,525597,'怒',39);" >
+									<img src="/s/img/biaoqing2.jpg" /> 
+									<span id="2">怒&nbsp;(${news.cmtNumLv2})</span> </a>
+							</li>
+						<li> 
+								<a href="javascript:toupiao(3,525597,'哀',65);" >
+									<img src="/s/img/biaoqing3.jpg" /> 
+									<span id="3">哀&nbsp;(${news.cmtNumLv4})</span> </a>
+							</li>
+						<li> 
+								<a href="javascript:toupiao(4,525597,'怨',85);" >
+									<img src="/s/img/biaoqing4.jpg" /> 
+									<span id="4">怨&nbsp;(${news.cmtNumLv4})</span> </a>
+							</li>
+						</ul>
+				</div>
+				<script>
+	
+var toupiaoflag=false;	
+function toupiao(eid,id,con,count)
+{
+
+if(toupiaoflag==true)
+{
+	alert("您已经投票，请误重复投票");
+	return;
+}
+
+try
+{
+// Firefox,Opera 8.0+,Safari
+var xmlHttp =new XMLHttpRequest();
+}
+catch (e)
+{
+// Internet Explorer
+try
+{
+xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+}
+catch (e)
+{
+try
+{
+xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+}
+catch (e)
+{
+alert("您的浏览器不支持AJAX！");
+return false;
+}
+}
+}
+xmlHttp.onreadystatechange=function()
+{
+if(xmlHttp.readyState==4)  
+{  
+toupiaoflag=true;
+ document.getElementById(eid).innerHTML=con + "("+(count+1)+")";
+ 
+}    
+}    
+xmlHttp.open("GET","http://114.111.161.216/toupiao.html?id="+id+"&ctype=1&eid="+eid+"&t="+Math.random(),true); 
+xmlHttp.send(null);
+}  
+	
+	
+	
+	function funkuaisu() {
+		document.getElementById("kuaisu").style.display = "none";
+		document.getElementById("xiala").style.display = "block";
+
+		document.getElementById("pinglu").style.display = "block";
+		document.getElementById("wenben").style.display = "none";
+	}
+
+	function funpinglun() {
+		document.getElementById("kuaisu").style.display = "block";
+		document.getElementById("xiala").style.display = "none";
+
+		document.getElementById("pinglu").style.display = "none";
+		document.getElementById("wenben").style.display = "block";
+	}
+	function commonsubmit() {
+		var neirong = "";
+		if (document.getElementById("xiala").style.display == "block") {
+			neirong = document.getElementById("xiala").value;
+			document.getElementById("ctype").value="ks";
+		} else {
+			neirong = document.getElementById("wenben").value;
+			document.getElementById("ctype").value="";
+		}
+		document.getElementById("cont").value = neirong;
+		document.getElementById("commentForm").submit();
+	}
+</script>
+				<div class="search"  >
+					<form action="comment.html" id="commentForm" method="post">
+						<p>
+<div style="float:left">
+<input type="hidden" id="ctype" name="ctype" value="" />
+							<input type="hidden" name="act" value="comment" />
+							<input type="hidden" name="id" value="525597" />
+							<input type="text" name="cont" id="cont" value=""
+								style="display: none" />
+							<input type="text" value="" style="height: 50px; " class="searchKey" id="wenben" />
+							<select class="searchKey" id="xiala" style="display: none;height: 50px;">
+								<option value="给个赞">
+										给个赞</option>
+								<option value="我和我的小伙伴们都惊呆了">
+										我和我的小伙伴们都惊呆了</option>
+								<option value="高端大气上档次">
+										高端大气上档次</option>
+								<option value="低调奢华有内涵">
+										低调奢华有内涵</option>
+								<option value="土豪，我们做朋友吧">
+										土豪，我们做朋友吧</option>
+								<option value="节操满地">
+										节操满地</option>
+								<option value="喜大普奔">
+										喜大普奔</option>
+								<option value="人艰不拆">
+										人艰不拆</option>
+								<option value="累觉不爱">
+										累觉不爱</option>
+								<option value="不明觉厉">
+										不明觉厉</option>
+								</select>
+</div>
+<div style="float:right">
+							<input type="button" value="发言(70字)" class="searchBtn"
+								onclick="commonsubmit()" /><br /> 
+							<input type="button" id="kuaisu" value="快速发言" class="searchBtn"
+								onclick="funkuaisu()" />
+							<input type="button" id="pinglu" value="我要评论" class="searchBtn"
+								onclick="funpinglun()"  style=" display: none" />
+</div>
+<div style="clear:both"></div>
+						</p>
+					</form>
+				</div>
+
+<div class="lanmu-line">
+					<a href="#">[网友评论]</a>
+				</div>
+				<div style="padding: 5px;">
+					#foreach($comment in $comments)
+						<p><a href="comment_index?cid=${comment.id}">[回复]</a>
+    					$!{comment.floor}楼 : $!{comment.content}
+						#set($s = $date.format("MM-dd HH:mm",$comment.createTime))[$!{s} ] 
+							$!{$comment.device}</p>
+						#foreach($refid in $refIds[$foreach.index])
+							#set($cc = $refComments[$refid])
+							<div style="border:1px solid #AEAEF3;background:#eee;margin:5px;" ><p>$!{cc.floor} 楼: $!{cc.content}</p> 
+						#end
+						#foreach($refid in $refIds[$foreach.index])</div>#end
+					#end
+				</div>
+				<div>
+					<p>
+						<a href="comments?id=$!{news.id}">&gt;&gt;全部评论</a>
+					</p>
+				</div>
+ 
+			<!--
+			动态广告位碎片      正文页-广告位-评论下方 122
+			-->
+
+			<div>
+				<div class="block">
+	<p>
+		
+		#set($blk = $blocks[11][0])
+		#if($blk.type == 0)
+    		<a #if($blk.isBold == true) style="font-weight:bold;"#end href="${blk.url}">${blk.title}</a>
+    	#elseif($blk.type == 1)
+    		<a href="${blk.url}"><img src="${blk.img}"/></a>
+    	#elseif($blk.type == 2)
+            <a #if($blk.isBold == true) style="font-weight:bold;"#end href="view?id=${blk.newId}">${blk.title}</a>
+    	#elseif($blk.type == 3)
+            <a href="view?id=${blk.newId}"><img src="${blk.img}"/></a>
+    	#elseif($blk.type == 4)
+            ${blk.html}
+    	#end</p>
+		<p>
+		#set($blk = $blocks[11][1])
+		#if($blk.type == 0)
+    		<a #if($blk.isBold == true) style="font-weight:bold;"#end href="${blk.url}">${blk.title}</a>
+    	#elseif($blk.type == 1)
+    		<a href="${blk.url}"><img src="${blk.img}"/></a>
+    	#elseif($blk.type == 2)
+            <a #if($blk.isBold == true) style="font-weight:bold;"#end href="view?id=${blk.newId}">${blk.title}</a>
+    	#elseif($blk.type == 3)
+            <a href="view?id=${blk.newId}"><img src="${blk.img}"/></a>
+    	#elseif($blk.type == 4)
+            ${blk.html}
+    	#end</p>
+		</div>
+
+</div>
+
+
+			<div style="clear: both;">
+				<p>
+							<a href="view.html?id=525580">上一条：外媒猜测金正恩牢牢掌控局势</a>
+						</p>
+					<p>
+							<a href="view.html?id=525598">下一条：俄2013年因腐败损失近40亿元</a>
+						</p>
+					</div>
+			<!--
+			动态广告位碎片      正文页-广告位-相关新闻上方 120
+			-->
+
+			<div>
+				<div class="block">
+	</div>
+
+</div>
+			<!--
+			导航条
+			-->
+			<div class="nav" style="margin-bottom: 10px;">
+				<a href="/">XXX网</a>&gt;
+				<a href="pd?id=$!{pindao.id}">$!{pindao.name}</a>&gt;
+				<a href="lm?id=$!{lanmu.id}">$!{lanmu.name}</a>
+			</div>
+			<div class="lanmu-line">
+				<img src="/s/img/r.png" />
+				<a href="#">[最新消息]</a>
+			</div>
+			<div class="block">
+				#foreach($n in $newestNews)
+				<p>
+						<a href="view.html?id=$!{n.id}">$!{n.shortTitle}</a>
+					</p>
+				#end
+				</div>
+
+			<!--
+			动态广告位碎片      正文页-广告位-相关新闻 117
+			-->
+
+			<div>
+				<div class="block">
+	<p>
+		<a  href="http://114.111.161.217/ad.html?id=761&pbid=156">爆！★麻将机遥控器 逢赌必赢</a>
+						<!--
+						<a  href="http://localhost:9090/qiantai/ad.html?id=761&pbid=156">爆！★麻将机遥控器 逢赌必赢</a>
+						-->
+						</p>
+		</div>
+
+</div>
+
+
+			
+
+          <div class="lanmu-line">
+				<img src="/s/img/r.png" />
+				<a href="#">[点击排行]</a>
+			</div>
+			<div class="block">
+				<p>
+						<a href="view.html?id=524800">安倍夫人学泡菜 称给老公吃</a>
+					</p>
+				<p>
+						<a href="view.html?id=525568">世界看到"自信强大"的中国</a>
+					</p>
+				<p>
+						<a href="view.html?id=525824">日原子能机构拟要求东电赔偿</a>
+					</p>
+				<p>
+						<a href="view.html?id=525569">印专家:中国很自信也很强硬</a>
+					</p>
+				<p>
+						<a href="view.html?id=525570">六成国外受访者称中国是强国</a>
+					</p>
+				</div>
+
+			<!--
+			动态广告位碎片      正文页-广告位-点击排行 118
+			-->
+
+			<div>
+				<div class="block">
+	<p>
+		<a  href="http://114.111.161.217/ad.html?id=797&pbid=157">爆：双12劳力士1折-验货付款</a>
+						<!--
+						<a  href="http://localhost:9090/qiantai/ad.html?id=797&pbid=157">爆：双12劳力士1折-验货付款</a>
+						-->
+						</p>
+		</div>
+
+</div>
+
+
+
+			<div class="lanmu-line">
+				<img src="/s/img/r.png" />
+				<a href="#">[今日精选]</a>
+			</div>
+
+			<!--
+			动态广告位碎片      正文页--频道精选---新闻 119
+			-->
+
+			<div>
+				<div class="block">
+	<p>
+		<a  href="http://114.111.161.217/ad.html?id=373&pbid=158">健美女性网络晒肌肉引发潮流</a>
+						<!--
+						<a  href="http://localhost:9090/qiantai/ad.html?id=373&pbid=158">健美女性网络晒肌肉引发潮流</a>
+						-->
+						</p>
+		<p>
+		<a  href="http://114.111.161.217/ad.html?id=533&pbid=158">日年度美皇后不记得生父之事</a>
+						<!--
+						<a  href="http://localhost:9090/qiantai/ad.html?id=533&pbid=158">日年度美皇后不记得生父之事</a>
+						-->
+						</p>
+		<p>
+		<a  href="http://114.111.161.217/ad.html?id=347&pbid=158">巴西政府下决心严打足球流氓</a>
+						<!--
+						<a  href="http://localhost:9090/qiantai/ad.html?id=347&pbid=158">巴西政府下决心严打足球流氓</a>
+						-->
+						</p>
+		<p>
+		<a  href="http://114.111.161.217/ad.html?id=486&pbid=158">盘十大秒杀你傲慢的宏伟景观</a>
+						<!--
+						<a  href="http://localhost:9090/qiantai/ad.html?id=486&pbid=158">盘十大秒杀你傲慢的宏伟景观</a>
+						-->
+						</p>
+		<p>
+		<a  href="http://114.111.161.217/ad.html?id=515&pbid=158">女摄影师自拍初为人母的生活</a>
+						<!--
+						<a  href="http://localhost:9090/qiantai/ad.html?id=515&pbid=158">女摄影师自拍初为人母的生活</a>
+						-->
+						</p>
+		<p>
+		<a  href="http://114.111.161.217/ad.html?id=493&pbid=158">中组部12380成举报腐败首选</a>
+						<!--
+						<a  href="http://localhost:9090/qiantai/ad.html?id=493&pbid=158">中组部12380成举报腐败首选</a>
+						-->
+						</p>
+		<p>
+		<a  href="http://114.111.161.217/ad.html?id=517&pbid=158">办公桌上放植物可以提升效率</a>
+						<!--
+						<a  href="http://localhost:9090/qiantai/ad.html?id=517&pbid=158">办公桌上放植物可以提升效率</a>
+						-->
+						</p>
+		<p>
+		<a  href="http://114.111.161.217/ad.html?id=489&pbid=158">2013抢眼的互联网产品及公司</a>
+						<!--
+						<a  href="http://localhost:9090/qiantai/ad.html?id=489&pbid=158">2013抢眼的互联网产品及公司</a>
+						-->
+						</p>
+		<p>
+		<a  href="http://114.111.161.217/ad.html?id=503&pbid=158">招商银行惊现137亿元大宗交易</a>
+						<!--
+						<a  href="http://localhost:9090/qiantai/ad.html?id=503&pbid=158">招商银行惊现137亿元大宗交易</a>
+						-->
+						</p>
+		<p>
+		<a  href="http://114.111.161.217/ad.html?id=504&pbid=158">美媒盘点史上五种最强战斗机</a>
+						<!--
+						<a  href="http://localhost:9090/qiantai/ad.html?id=504&pbid=158">美媒盘点史上五种最强战斗机</a>
+						-->
+						</p>
+		</div>
+
+</div>
+
+
+			<!--
+			动态广告位碎片      正文页--频道精选---广告 128
+			-->
+
+			<div>
+				<div class="block">
+	<p>
+		<a  href="http://114.111.161.217/ad.html?id=869&pbid=164">少女在家小本创业一年开宝马</a>
+						<!--
+						<a  href="http://localhost:9090/qiantai/ad.html?id=869&pbid=164">少女在家小本创业一年开宝马</a>
+						-->
+						</p>
+		</div>
+
+</div>
+
+
+			<!--
+热点版块直达
+-->
+<div class="nav">
+ #foreach( $blk in $blocks[8])
+    	#if($blk.type == 0)
+    		<a #if($blk.isBold == true) style="font-weight:bold;"#end href="${blk.url}">${blk.title}</a>
+    	#elseif($blk.type == 1)
+    		<a href="${blk.url}"><img src="${blk.img}"/></a>
+    	#elseif($blk.type == 2)
+            <a #if($blk.isBold == true) style="font-weight:bold;"#end href="view?id=${blk.newId}">${blk.title}</a>
+    	#elseif($blk.type == 3)
+            <a href="view?id=${blk.newId}"><img src="${blk.img}"/></a>
+    	#elseif($blk.type == 4)
+            ${blk.html}
+    	#end
+#end
+</div>
+<div class="foot">
+	<p>
+		<a href="partner.html">合作</a> |<a href="friendslink.html">友链</a> |<a href="feedback.html">留言</a> 
+	</p>
+	<p>
+		<a href="index.html">首页</a> |<a href="nav.html">导航</a> |<a href="save.html">收藏</a> 
+	</p>
+	<p>
+		<a href="http://3g.huanqiu.com/view.html?v=1&id=525597">简版</a> |
+		<a href="http://3g.huanqiu.com/view.html?v=3&id=525597">3G版</a> |
+		<a href="http://www.huanqiu.com">PC版</a> |
+		<a href="http://mt.huanqiu.com">触屏版</a>
+	</p>
+	<p>手机环球网</p>
+	<p style="text-align:center;">
+	 	环球网版权所有 
+	 </p>
+	 <p>[2013-12-11 00:38:23]</p>
+	 <p><a href="#" class="gotop"><span>↑</span> TOP</a></p>
+	 <br/>
+	  <br/>
+</div>
+</div>
+
+	</body>
+</html>

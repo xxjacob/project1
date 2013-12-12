@@ -27,6 +27,13 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
             </isNotEmpty>
         </dynamic>
     </sql>
+	<sql id="lanmuList.limit">
+        <dynamic prepend=" LIMIT ">
+            <isGreaterThan  property="pageSize" compareValue="0">
+                #startRow#,#pageSize#
+            </isGreaterThan>
+        </dynamic>
+    </sql>
             <select id="Lanmu.getLanmu" resultMap="lanmu">
             <include refid="lanmu.selector" />
             WHERE id=#id#
@@ -48,29 +55,29 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
         </delete>
                                 <update id="Lanmu.updateLanmusByKeys" parameterClass="Lanmu">
             UPDATE lanmu SET 
-                                                                            <isNotNull prepend="," property="name">
+            				            				                    <isNotNull prepend="," property="name">
                         name = #name#
                     </isNotNull>
-				                                                <isNotNull prepend="," property="pdId">
+                            				                    <isNotNull prepend="," property="pdId">
                         pd_id = #pdId#
                     </isNotNull>
-				                                                <isNotNull prepend="," property="orderNum">
+                            				                    <isNotNull prepend="," property="orderNum">
                         order_num = #orderNum#
                     </isNotNull>
-				                        WHERE id in
+                                        WHERE id in
             <iterate conjunction="," open="(" close=")" property="keys">
                 #keys[]#
             </iterate>
         </update>
         <update id="Lanmu.updateLanmu" parameterClass="Lanmu">
             UPDATE lanmu SET modify_time=UNIX_TIMESTAMP()
-                                                                            <isNotNull prepend="," property="name">
+            				            				                    <isNotNull prepend="," property="name">
                         name = #name#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="pdId">
+                            				                    <isNotNull prepend="," property="pdId">
                         pd_id = #pdId#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="orderNum">
+                            				                    <isNotNull prepend="," property="orderNum">
                         order_num = #orderNum#
                     </isNotNull>
                                         WHERE id = #id#
@@ -79,7 +86,7 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
         <include refid="lanmu.selector" />
         <include refid="lanmuList.where" />
         <include refid="lanmuList.order" />
-        LIMIT #startRow#,#pageSize#
+        <include refid="lanmuList.limit" />
     </select>
     <select id="Lanmu.getLanmuListCount" parameterClass="LanmuQuery" resultClass="int">
         SELECT count(*) FROM lanmu
@@ -89,6 +96,7 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
         <include refid="lanmu.selector" />
         <include refid="lanmuList.where" />
         <include refid="lanmuList.order" />
+		<include refid="lanmuList.limit" />
     </select>
     <!--    <insert id="Lanmu.insertLanmu" parameterClass="Lanmu">
     INSERT INTO lanmu(

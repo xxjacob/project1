@@ -164,6 +164,25 @@ public class CommentQuery extends BaseQuery {
     	this.modifyTime = modifyTime;
     	return this;
     }
+	/** 楼层 **/
+    private Integer floor;
+	/**
+    * 获取属性:floor
+    * 楼层
+    * @return floor
+    */
+	public Integer getFloor () {
+    	return floor;
+   	}
+   	/**
+     * 设置属性:floor
+     * 楼层
+     * @param floor
+     */
+    public CommentQuery setFloor(Integer floor) {
+    	this.floor = floor;
+    	return this;
+    }
 	/**==============================批量查询时的Order条件顺序设置==================================**/
 	public class OrderField{
 		public OrderField(String fieldName, String order) {
@@ -254,6 +273,14 @@ public class CommentQuery extends BaseQuery {
 	 */	
 	public CommentQuery orderbyModifyTime(boolean isAsc){
 		orderFields.add(new OrderField("modify_time",isAsc?"ASC":"DESC"));
+		return this;
+	}
+	/**
+	 * 设置排序按属性：楼层
+	 * @param isAsc 是否升序，否则为降序
+	 */	
+	public CommentQuery orderbyFloor(boolean isAsc){
+		orderFields.add(new OrderField("floor",isAsc?"ASC":"DESC"));
 		return this;
 	}
 }

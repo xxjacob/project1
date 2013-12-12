@@ -34,6 +34,8 @@ public class PindaoService {
     KVStore kvStore;
 
     final String PD_INFO_ALL_KEY = "pd_info_all";
+    final String LANMU_KEY_PREFIX = "lanmu_";
+    final String PINDAO_KEY_PREFIX = "pindao_";
 
     @SuppressWarnings("unchecked")
     public Map<Pindao, List<Lanmu>> getPindaoMap() {
@@ -48,20 +50,54 @@ public class PindaoService {
         return allinfo;
     }
 
-    public Map<Pindao, List<Lanmu>> buildAllInfo() throws SQLException {
+    private Map<Pindao, List<Lanmu>> buildAllInfo() throws SQLException {
         Map<Pindao, List<Lanmu>> allinfo = new LinkedHashMap<Pindao, List<Lanmu>>();
         List<Pindao> pdlist = pindaoDAO.getPindaoList(new PindaoQuery().orderbyOrderNum(true));
         List<Lanmu> lmlist = lanmuDAO.getLanmuList(new LanmuQuery().orderbyOrderNum(true));
         for (Pindao pd : pdlist) {
+            kvStore.put(PINDAO_KEY_PREFIX + pd.getId(), pd);
             List<Lanmu> list = new ArrayList<Lanmu>();
             for (Lanmu lm : lmlist) {
                 if (lm.getPdId() == pd.getId()) {
                     list.add(lm);
+                    kvStore.put(LANMU_KEY_PREFIX + lm.getId(), lm);
                 }
             }
             allinfo.put(pd, list);
         }
         kvStore.put(PD_INFO_ALL_KEY, allinfo);
         return allinfo;
+    }
+
+    public Lanmu getLanmuByKey(int id) {
+        String key = LANMU_KEY_PREFIX + id;
+        Lanmu lm = (Lanmu) kvStore.get(key);
+        if (lm == null)
+            try {
+                lm = lanmuDAO.getLanmubyKey(id);
+                if (lm != null)
+                    kvStore.put(key, lm);
+            } catch (SQLException e) {
+                logger.error("DB", e);
+                throw new IllegalException(EC.EC_DB);
+            }
+        return lm;
+
+    }
+
+    public Pindao getPindaoByKey(int id) {
+        String key = PINDAO_KEY_PREFIX + id;
+        Pindao pd = (Pindao) kvStore.get(key);
+        if (pd == null)
+            try {
+                pd = pindaoDAO.getPindaobyKey(id);
+                if (pd != null)
+                    kvStore.put(key, pd);
+            } catch (SQLException e) {
+                logger.error("DB", e);
+                throw new IllegalException(EC.EC_DB);
+            }
+        return pd;
+
     }
 }

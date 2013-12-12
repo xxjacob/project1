@@ -3,7 +3,6 @@ package com.ideax.project1.service;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -17,7 +16,6 @@ import org.springframework.stereotype.Service;
 
 import com.ideax.common.exception.EC;
 import com.ideax.common.exception.IllegalException;
-import com.ideax.project1.common.Result;
 import com.ideax.project1.dao.BlockDAO;
 import com.ideax.project1.dao.CommentDAO;
 import com.ideax.project1.dao.LanmuDAO;
@@ -41,41 +39,42 @@ public class CommentService {
 
     /**
      * 获取评论及引用评论
+     * 
      * @param newsid
      * @return
      */
-    public List<Comment> getCommentsByNewsid(int newsid, Map<Integer, Comment> requiredRef) {
+    public List<Comment> getCommentsByNewsid(int newsid, int page, int pagesize, Map<Integer, Comment> requiredRef) {
         if (requiredRef == null)
             throw new IllegalException(EC.EC_PARAM);
         try {
-            Result<Comment> rst = commentDAO.getCommentListWithPage(new CommentQuery().setNewsId(newsid).orderbyId(
-                    false));
-            if (!rst.isSuccess() || CollectionUtils.isEmpty(rst.getList()))
+            List<Comment> list = commentDAO.getCommentList((CommentQuery) new CommentQuery().setNewsId(newsid)
+                    .orderbyFloor(false).setPage(page).setPageSize(pagesize));
+            if (CollectionUtils.isEmpty(list))
                 return Collections.emptyList();
-            List<Comment> list = rst.getList();
             for (Comment cmt : list) {
                 String tos = cmt.getReplyTo();
                 if (StringUtils.isNotBlank(tos)) {
                     for (String scid : tos.split(",")) {
                         int cid = Integer.valueOf(scid);
                         Comment old = requiredRef.get(cid);
-                        if (old != null && old.getId() != null)
+                        if (old == null)
                             requiredRef.put(cid, MARK);
                     }
                 }
+                // put if we already find it
                 if (requiredRef.get(cmt.getId()) == MARK) {
                     requiredRef.put(cmt.getId(), cmt);
                 }
             }
             List<Integer> elder = new ArrayList<Integer>();
             for (Entry<Integer, Comment> en : requiredRef.entrySet()) {
-                if (en.getValue() != MARK) {
+                if (en.getValue() == MARK) {
                     elder.add(en.getKey());
                 }
             }
             if (elder.size() > 0) {
                 List<Comment> eldercs = commentDAO.getCommentsByKeys(elder);
-                for (Comment c : eldercs){
+                for (Comment c : eldercs) {
                     requiredRef.put(c.getId(), c);
                 }
             }
@@ -85,6 +84,41 @@ public class CommentService {
             throw new IllegalException(EC.EC_DB);
         }
 
+    }
+
+    /**
+     * submit comment
+     */
+    public int submitComment(Comment newc, int replyTo, int newsId) {
+        try {
+            if (replyTo > 0) {
+                Comment comment = commentDAO.getCommentbyKey(replyTo);
+                if (comment == null)
+                    throw new IllegalException(EC.EC_PARAM, "replied comment dose not exist");
+                String rts = comment.getReplyTo();
+                if (StringUtils.isBlank(rts))
+                    newc.setReplyTo(String.valueOf(replyTo));
+                else
+                    newc.setReplyTo(replyTo + "," + rts);
+                if (comment.getNewsId() != newsId)
+                    throw new IllegalException(EC.EC_PARAM, "replied comment is not belong to news:" + newsId);
+            }
+
+            newc.setNewsId(newsId);
+
+            List<Comment> list = commentDAO.getCommentList((CommentQuery) new CommentQuery().setNewsId(newsId)
+                    .orderbyFloor(false).setPage(1).setPageSize(1));
+            if (list == null || list.size() == 0)
+                newc.setFloor(1);
+            else
+                newc.setFloor(list.get(0).getFloor() + 1);
+
+            return commentDAO.addComment(newc);
+
+        } catch (SQLException e) {
+            logger.error("", e);
+            throw new IllegalException(EC.EC_DB);
+        }
     }
 
 }

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+"http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="Admin">
+    <!-- Alias Map Defined -->
+    <typeAlias alias="AdminQuery" type="com.ideax.project1.query.AdminQuery" />
+    <typeAlias alias="Admin" type="com.ideax.project1.pojo.Admin" />
+    <resultMap id="admin" class="Admin">
+                    <result property="id" column="id" />
+                    <result property="username" column="username" />
+                    <result property="password" column="password" />
+            </resultMap>
+    <!-- Select SQL -->
+    <sql id="admin.selector">
+        SELECT id,username,password FROM admin
+    </sql>
+    <sql id="adminList.where">
+		<dynamic prepend=" WHERE ">
+            <isNotNull property="id" prepend=" AND ">id=#id#</isNotNull><isNotNull property="username" prepend=" AND ">username=#username#</isNotNull><isNotNull property="password" prepend=" AND ">password=#password#</isNotNull>        </dynamic>
+    </sql>
+    <sql id="adminList.order">
+        <dynamic prepend=" ORDER BY ">
+            <isNotEmpty property="orderFields">
+                <iterate property="orderFields" conjunction="," open="" close="">$orderFields[].fieldName$ $orderFields[].order$</iterate>
+            </isNotEmpty>
+        </dynamic>
+    </sql>
+	<sql id="adminList.limit">
+        <dynamic prepend=" LIMIT ">
+            <isGreaterThan  property="pageSize" compareValue="0">
+                #startRow#,#pageSize#
+            </isGreaterThan>
+        </dynamic>
+    </sql>
+            <select id="Admin.getAdmin" resultMap="admin">
+            <include refid="admin.selector" />
+            WHERE id=#id#
+        </select>
+                <select id="Admin.getAdminsByKeys" resultMap="admin">
+            <include refid="admin.selector" />
+            WHERE id in
+            <iterate conjunction="," open="(" close=")" property="keys">#keys[]#</iterate>
+        </select>
+                <delete id="Admin.deleteByKey">
+            DELETE FROM admin WHERE id = #key#
+        </delete>
+                <delete id="Admin.deleteByKeys">
+            DELETE FROM admin
+            WHERE id in
+            <iterate conjunction="," open="(" close=")" property="keys">
+                #keys[]#
+            </iterate>
+        </delete>
+                                <update id="Admin.updateAdminsByKeys" parameterClass="Admin">
+            UPDATE admin SET 
+            				            				                    <isNotNull prepend="," property="username">
+                        username = #username#
+                    </isNotNull>
+                            				                    <isNotNull prepend="," property="password">
+                        password = #password#
+                    </isNotNull>
+                                        WHERE id in
+            <iterate conjunction="," open="(" close=")" property="keys">
+                #keys[]#
+            </iterate>
+        </update>
+        <update id="Admin.updateAdmin" parameterClass="Admin">
+            UPDATE admin SET modify_time=UNIX_TIMESTAMP()
+            				            				                    <isNotNull prepend="," property="username">
+                        username = #username#
+                    </isNotNull>
+                            				                    <isNotNull prepend="," property="password">
+                        password = #password#
+                    </isNotNull>
+                                        WHERE id = #id#
+        </update>
+            <select id="Admin.getAdminListWithPage" parameterClass="AdminQuery" resultMap="admin">
+        <include refid="admin.selector" />
+        <include refid="adminList.where" />
+        <include refid="adminList.order" />
+        <include refid="adminList.limit" />
+    </select>
+    <select id="Admin.getAdminListCount" parameterClass="AdminQuery" resultClass="int">
+        SELECT count(*) FROM admin
+        <include refid="adminList.where" />
+    </select>
+        <select id="Admin.getAdminList" parameterClass="AdminQuery" resultMap="admin">
+        <include refid="admin.selector" />
+        <include refid="adminList.where" />
+        <include refid="adminList.order" />
+		<include refid="adminList.limit" />
+    </select>
+    <!--    <insert id="Admin.insertAdmin" parameterClass="Admin">
+    INSERT INTO admin(
+                    username,
+                password,
+                )
+    VALUES(#username#,#password#,    )
+    <selectKey resultClass="long" type="post" keyProperty="id">
+    SELECT last_insert_id() AS id
+    </selectKey>
+    </insert>
+    -->
+        <insert id="Admin.insertAdmin" parameterClass="Admin">
+        INSERT INTO admin
+        <dynamic prepend="(" close=")">
+                                                                            <isNotEmpty prepend="," property="username">
+                        username
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="password">
+                        password
+                    </isNotEmpty >
+                                    </dynamic>
+        VALUES
+        <dynamic prepend="(" close=")">
+                                                                                                        <isNotEmpty  prepend="," property="username">
+                                #username#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="password">
+                                #password#
+                            </isNotEmpty >
+                                                        </dynamic>
+        <selectKey resultClass="int" type="post" keyProperty="id">
+            SELECT last_insert_id() AS id
+        </selectKey>
+    </insert>
+</sqlMap>

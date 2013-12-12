@@ -44,6 +44,13 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
             </isNotEmpty>
         </dynamic>
     </sql>
+	<sql id="userList.limit">
+        <dynamic prepend=" LIMIT ">
+            <isGreaterThan  property="pageSize" compareValue="0">
+                #startRow#,#pageSize#
+            </isGreaterThan>
+        </dynamic>
+    </sql>
             <select id="User.getUser" resultMap="user">
             <include refid="user.selector" />
             WHERE id=#id#
@@ -65,122 +72,131 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
         </delete>
                                 <update id="User.updateUsersByKeys" parameterClass="User">
             UPDATE user SET 
-                                                                            <isNotNull prepend="," property="openid">
+            				            				                    <isNotNull prepend="," property="openid">
                         openid = #openid#
                     </isNotNull>
-				                                                <isNotNull prepend="," property="nickname">
+                            				                    <isNotNull prepend="," property="nickname">
                         nickname = #nickname#
                     </isNotNull>
-				                                                <isNotNull prepend="," property="gender">
+                            				                    <isNotNull prepend="," property="gender">
                         gender = #gender#
                     </isNotNull>
-				                                                <isNotNull prepend="," property="birthY">
+                            				                    <isNotNull prepend="," property="birthY">
                         birth_y = #birthY#
                     </isNotNull>
-				                                                <isNotNull prepend="," property="birthMd">
+                            				                    <isNotNull prepend="," property="birthMd">
                         birth_md = #birthMd#
                     </isNotNull>
-				                                                <isNotNull prepend="," property="figureurl">
+                            				                    <isNotNull prepend="," property="figureurl">
                         figureurl = #figureurl#
                     </isNotNull>
-				                                                <isNotNull prepend="," property="region">
+                            				                    <isNotNull prepend="," property="region">
                         region = #region#
                     </isNotNull>
-				                                                <isNotNull prepend="," property="introduce">
+                            				                    <isNotNull prepend="," property="introduce">
                         introduce = #introduce#
                     </isNotNull>
-				                                                <isNotNull prepend="," property="loveStatus">
+                            				                    <isNotNull prepend="," property="loveStatus">
                         love_status = #loveStatus#
                     </isNotNull>
-				                                                <isNotNull prepend="," property="height">
+                            				                    <isNotNull prepend="," property="height">
                         height = #height#
                     </isNotNull>
-				                                                <isNotNull prepend="," property="education">
+                            				                    <isNotNull prepend="," property="education">
                         education = #education#
                     </isNotNull>
-				                                                <isNotNull prepend="," property="bloodGroup">
+                            				                    <isNotNull prepend="," property="bloodGroup">
                         blood_group = #bloodGroup#
                     </isNotNull>
-				                                                <isNotNull prepend="," property="earning">
+                            				                    <isNotNull prepend="," property="earning">
                         earning = #earning#
                     </isNotNull>
-				                                                <isNotNull prepend="," property="profession">
+                            				                    <isNotNull prepend="," property="profession">
                         profession = #profession#
                     </isNotNull>
-				                                                <isNotNull prepend="," property="houseStatus">
+                            				                    <isNotNull prepend="," property="houseStatus">
                         house_status = #houseStatus#
                     </isNotNull>
-				                                                <isNotNull prepend="," property="carStatus">
+                            				                    <isNotNull prepend="," property="carStatus">
                         car_status = #carStatus#
                     </isNotNull>
-				                                                <isNotNull prepend="," property="status">
+                            				                    <isNotNull prepend="," property="status">
                         status = #status#
                     </isNotNull>
-				                                                        					<dynamic prepend=",">
+                            				                    <isNotNull prepend="," property="createTime">
+                        create_time = #createTime#
+                    </isNotNull>
+                            									<dynamic prepend=",">
 						modify_time=UNIX_TIMESTAMP()
 					</dynamic>
-                                                                <isNotNull prepend="," property="invitor">
+				            				                    <isNotNull prepend="," property="invitor">
                         invitor = #invitor#
                     </isNotNull>
-				                        WHERE id in
+                                        WHERE id in
             <iterate conjunction="," open="(" close=")" property="keys">
                 #keys[]#
             </iterate>
         </update>
         <update id="User.updateUser" parameterClass="User">
             UPDATE user SET modify_time=UNIX_TIMESTAMP()
-                                                                            <isNotNull prepend="," property="openid">
+            				            				                    <isNotNull prepend="," property="openid">
                         openid = #openid#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="nickname">
+                            				                    <isNotNull prepend="," property="nickname">
                         nickname = #nickname#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="gender">
+                            				                    <isNotNull prepend="," property="gender">
                         gender = #gender#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="birthY">
+                            				                    <isNotNull prepend="," property="birthY">
                         birth_y = #birthY#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="birthMd">
+                            				                    <isNotNull prepend="," property="birthMd">
                         birth_md = #birthMd#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="figureurl">
+                            				                    <isNotNull prepend="," property="figureurl">
                         figureurl = #figureurl#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="region">
+                            				                    <isNotNull prepend="," property="region">
                         region = #region#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="introduce">
+                            				                    <isNotNull prepend="," property="introduce">
                         introduce = #introduce#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="loveStatus">
+                            				                    <isNotNull prepend="," property="loveStatus">
                         love_status = #loveStatus#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="height">
+                            				                    <isNotNull prepend="," property="height">
                         height = #height#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="education">
+                            				                    <isNotNull prepend="," property="education">
                         education = #education#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="bloodGroup">
+                            				                    <isNotNull prepend="," property="bloodGroup">
                         blood_group = #bloodGroup#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="earning">
+                            				                    <isNotNull prepend="," property="earning">
                         earning = #earning#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="profession">
+                            				                    <isNotNull prepend="," property="profession">
                         profession = #profession#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="houseStatus">
+                            				                    <isNotNull prepend="," property="houseStatus">
                         house_status = #houseStatus#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="carStatus">
+                            				                    <isNotNull prepend="," property="carStatus">
                         car_status = #carStatus#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="status">
+                            				                    <isNotNull prepend="," property="status">
                         status = #status#
                     </isNotNull>
-                                                                                                                        <isNotNull prepend="," property="invitor">
+                            				                    <isNotNull prepend="," property="createTime">
+                        create_time = #createTime#
+                    </isNotNull>
+                            									<dynamic prepend=",">
+						modify_time=UNIX_TIMESTAMP()
+					</dynamic>
+				            				                    <isNotNull prepend="," property="invitor">
                         invitor = #invitor#
                     </isNotNull>
                                         WHERE id = #id#
@@ -189,7 +205,7 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
         <include refid="user.selector" />
         <include refid="userList.where" />
         <include refid="userList.order" />
-        LIMIT #startRow#,#pageSize#
+        <include refid="userList.limit" />
     </select>
     <select id="User.getUserListCount" parameterClass="UserQuery" resultClass="int">
         SELECT count(*) FROM user
@@ -199,6 +215,7 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
         <include refid="user.selector" />
         <include refid="userList.where" />
         <include refid="userList.order" />
+		<include refid="userList.limit" />
     </select>
     <!--    <insert id="User.insertUser" parameterClass="User">
     INSERT INTO user(

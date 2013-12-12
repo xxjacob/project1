@@ -14,12 +14,12 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ideax.project1.pojo.User;
+import com.ideax.project1.pojo.Admin;
 
 public class AdminLoginFilter implements Filter {
 
     // local store session
-    Map<String, User> localSessions = new HashMap<String, User>();
+    Map<String, Admin> localSessions = new HashMap<String, Admin>();
 
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -33,9 +33,9 @@ public class AdminLoginFilter implements Filter {
             for (Cookie c : cs) {
                 if ("sessionid".equals(c.getName())) {
                     String sessionid = c.getValue();
-                    User user = localSessions.get(sessionid);
+                    Admin user = localSessions.get(sessionid);
                     if (user == null) {
-                        ((HttpServletResponse) response).sendRedirect("/asdf/login");
+                        ((HttpServletResponse) response).sendRedirect("/asdf");
                         return;
                     }
                     request.setAttribute("sessionid", sessionid);
@@ -45,7 +45,7 @@ public class AdminLoginFilter implements Filter {
                 }
             }
         }
-        ((HttpServletResponse) response).sendRedirect("/asdf/login");
+        ((HttpServletResponse) response).sendRedirect("/asdf");
         return;
     }
 
