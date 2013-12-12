@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author xuxin03
+ * @author 王永玲
  */
 public class Pindao implements Serializable{
 

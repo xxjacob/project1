@@ -1,0 +1,73 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+<meta name="keywords"
+            content="环球新闻网,新闻，环球，军事，新闻网，环球网，环球时报，娱乐，国内新闻，图片新闻网" />
+        <meta name="description" content="评论" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="Cache-Control" content="no-cache" />
+        <meta name="viewport"
+            content="width=device-width, minimum-scale=1.0, maximum-scale=2.0" />
+        <title>手机环球网</title>
+        <link rel="stylesheet" href="/s/css/style.css" type="text/css" />
+</head>
+    <body>
+<div class="main">
+            <div>
+    </div>
+<div class="loginline">
+    <a href="nav.html" style="font-weight:bold;float:left;">导航</a>
+</div>
+
+<div class="logoline">
+    <div style="float:left;">
+        <a href="index.html"><img src="/s/img/wapLogo.png" alt="logo" style="width:100%;"/></a>
+    </div>
+</div> 
+<div style="clear:both;">
+</div>
+<!--
+            导航条
+            -->
+            <div class="nav">
+                <a href="/">XXX网</a>&gt;
+                <a href="pd?id=$!{pindao.id}">$!{pindao.name}</a>&gt;
+                <a href="lm?id=$!{lanmu.id}">$!{lanmu.name}</a>
+            </div>
+            回复跟贴：
+            <div class="search">
+                <form action="/comment/submit" method="post">
+                    <p>
+                        <input type="hidden" name="nid" value="$!{news.id}" />
+                        <input type="hidden" name="rid" value="$!{rcomment.id}" />
+                        <input type="text" name="content" value="" class="searchKey" />
+                        <input type="submit" value="发言(70字)" class="searchBtn" />
+                    </p>
+                </form>
+            </div>
+            正在回复以下跟贴:
+            <div class="block">
+                <p>$!{rcomment.content}
+                            $!{rcomment.device}</p>
+            </div>
+            <div>
+                <a href="commentlist?nid=$!{news.id}">返回跟贴列表</a>
+            </div>
+            <div style="clear: both;">
+                <p>
+                    <a href="view?id=$!{news.id}"> &lt;&lt;返回上级</a>
+                </p>
+            </div>
+            <!--
+热点版块直达
+-->
+<div class="nav">
+    #parse("frag/menu.vm")
+</div>
+#include( "frag/foot.htm" ) 
+</div>
+
+    </body>
+</html>

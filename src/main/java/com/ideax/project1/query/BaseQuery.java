@@ -1,7 +1,7 @@
 package com.ideax.project1.query;
 
 /**
- * @author xuxin03
+ * @author 王永玲
  */
 public class BaseQuery {
 	protected Integer pageSize;

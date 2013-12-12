@@ -1,3 +1,16 @@
+#define( $link )
+    #if($blk.type == 0)
+        <a #if($blk.isBold == true) style="font-weight:bold;"#end href="${blk.url}">${blk.title}</a>
+    #elseif($blk.type == 1)
+        <a href="${blk.url}"><img src="${blk.img}"/></a>
+    #elseif($blk.type == 2)
+        <a #if($blk.isBold == true) style="font-weight:bold;"#end href="view?id=${blk.newId}">${blk.title}</a>
+    #elseif($blk.type == 3)
+        <a href="view?id=${blk.newId}"><img src="${blk.img}"/></a>
+    #elseif($blk.type == 4)
+        ${blk.html}
+    #end
+#end
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -30,26 +43,13 @@
     顶部栏目导航
     -->
     <div class="nav">
-#foreach ($pd in $pdmap.keySet())
-    <a href="pd?id=${pd.id}">${pd.name}</a>
-#if($foreach.count % 5 == 0) <br /> #end
-#end
+        #parse("frag/menu.vm")
             </div>
 </div>
 <div class="block">
 	#foreach( $blk in $blocks[1])
 		<p>
-			#if($blk.type == 0)
-				<a #if($blk.isBold == true) style="font-weight:bold;"#end href="${blk.url}">${blk.title}</a>
-			#elseif($blk.type == 1)
-				<a href="${blk.url}"><img src="${blk.img}"/></a>
-			#elseif($blk.type == 2)
-                <a #if($blk.isBold == true) style="font-weight:bold;"#end href="view?id=${blk.newId}">${blk.title}</a>
-			#elseif($blk.type == 3)
-                <a href="view?id=${blk.newId}"><img src="${blk.img}"/></a>
-			#elseif($blk.type == 4)
-                ${blk.html}
-			#end
+			$link
 		</p>
 	#end
 </div>
@@ -64,17 +64,7 @@
 <div class="block">
     #foreach( $blk in $blocks[2])
 <p>
-	#if($blk.type == 0)
-		<a #if($blk.isBold == true) style="font-weight:bold;"#end href="${blk.url}">${blk.title}</a>
-	#elseif($blk.type == 1)
-		<a href="${blk.url}"><img src="${blk.img}"/></a>
-	#elseif($blk.type == 2)
-        <a #if($blk.isBold == true) style="font-weight:bold;"#end href="view?id=${blk.newId}">${blk.title}</a>
-	#elseif($blk.type == 3)
-        <a href="view?id=${blk.newId}"><img src="${blk.img}"/></a>
-	#elseif($blk.type == 4)
-        ${blk.html}
-	#end
+	$link
 </p>
 	#end
 </div>
@@ -89,17 +79,7 @@
 <div class="block">
    #foreach( $blk in $blocks[3])
     <p>
-    	#if($blk.type == 0)
-    		<a #if($blk.isBold == true) style="font-weight:bold;"#end href="${blk.url}">${blk.title}</a>
-    	#elseif($blk.type == 1)
-    		<a href="${blk.url}"><img src="${blk.img}"/></a>
-    	#elseif($blk.type == 2)
-            <a #if($blk.isBold == true) style="font-weight:bold;"#end href="view?id=${blk.newId}">${blk.title}</a>
-    	#elseif($blk.type == 3)
-            <a href="view?id=${blk.newId}"><img src="${blk.img}"/></a>
-    	#elseif($blk.type == 4)
-            ${blk.html}
-    	#end
+    	$link
     </p>
    #end
 </div>
@@ -114,17 +94,7 @@
 <div class="block">
  #foreach( $blk in $blocks[4])
 <p>
-    	#if($blk.type == 0)
-    		<a #if($blk.isBold == true) style="font-weight:bold;"#end href="${blk.url}">${blk.title}</a>
-    	#elseif($blk.type == 1)
-    		<a href="${blk.url}"><img src="${blk.img}"/></a>
-    	#elseif($blk.type == 2)
-            <a #if($blk.isBold == true) style="font-weight:bold;"#end href="view?id=${blk.newId}">${blk.title}</a>
-    	#elseif($blk.type == 3)
-            <a href="view?id=${blk.newId}"><img src="${blk.img}"/></a>
-    	#elseif($blk.type == 4)
-            ${blk.html}
-    	#end
+    	$link
 </p>
 #end
 </div>
@@ -139,17 +109,7 @@
 <div class="block">
  #foreach( $blk in $blocks[5])
 <p>
-    	#if($blk.type == 0)
-    		<a #if($blk.isBold == true) style="font-weight:bold;"#end href="${blk.url}">${blk.title}</a>
-    	#elseif($blk.type == 1)
-    		<a href="${blk.url}"><img src="${blk.img}"/></a>
-    	#elseif($blk.type == 2)
-            <a #if($blk.isBold == true) style="font-weight:bold;"#end href="view?id=${blk.newId}">${blk.title}</a>
-    	#elseif($blk.type == 3)
-            <a href="view?id=${blk.newId}"><img src="${blk.img}"/></a>
-    	#elseif($blk.type == 4)
-            ${blk.html}
-    	#end
+    	$link
 </p>
 #end
 </div>
@@ -164,17 +124,7 @@
 <div class="block">
  #foreach( $blk in $blocks[6])
 <p>
-    	#if($blk.type == 0)
-    		<a #if($blk.isBold == true) style="font-weight:bold;"#end href="${blk.url}">${blk.title}</a>
-    	#elseif($blk.type == 1)
-    		<a href="${blk.url}"><img src="${blk.img}"/></a>
-    	#elseif($blk.type == 2)
-            <a #if($blk.isBold == true) style="font-weight:bold;"#end href="view?id=${blk.newId}">${blk.title}</a>
-    	#elseif($blk.type == 3)
-            <a href="view?id=${blk.newId}"><img src="${blk.img}"/></a>
-    	#elseif($blk.type == 4)
-            ${blk.html}
-    	#end
+    	$link
 </p>
 #end
 </div>
@@ -189,17 +139,7 @@
 <div class="block">
  #foreach( $blk in $blocks[7])
 <p>
-    	#if($blk.type == 0)
-    		<a #if($blk.isBold == true) style="font-weight:bold;"#end href="${blk.url}">${blk.title}</a>
-    	#elseif($blk.type == 1)
-    		<a href="${blk.url}"><img src="${blk.img}"/></a>
-    	#elseif($blk.type == 2)
-            <a #if($blk.isBold == true) style="font-weight:bold;"#end href="view?id=${blk.newId}">${blk.title}</a>
-    	#elseif($blk.type == 3)
-            <a href="view?id=${blk.newId}"><img src="${blk.img}"/></a>
-    	#elseif($blk.type == 4)
-            ${blk.html}
-    	#end
+    	$link
 </p>
 #end
 </div>
@@ -214,58 +154,15 @@
 <div class="block">
  #foreach( $blk in $blocks[8])
 <p>
-    	#if($blk.type == 0)
-    		<a #if($blk.isBold == true) style="font-weight:bold;"#end href="${blk.url}">${blk.title}</a>
-    	#elseif($blk.type == 1)
-    		<a href="${blk.url}"><img src="${blk.img}"/></a>
-    	#elseif($blk.type == 2)
-            <a #if($blk.isBold == true) style="font-weight:bold;"#end href="view?id=${blk.newId}">${blk.title}</a>
-    	#elseif($blk.type == 3)
-            <a href="view?id=${blk.newId}"><img src="${blk.img}"/></a>
-    	#elseif($blk.type == 4)
-            ${blk.html}
-    	#end
+    	$link
 </p>
 #end
 </div>
         <div>
             <div class="nav">
-#foreach ($pd in $pdmap.keySet())
-    <a href="pd?id=${pd.id}">${pd.name}</a>
-#if($foreach.count % 5 == 0) <br /> #end
-#end
+#parse("frag/menu.vm")
             </div>
-            <div class="foot">
-                <p>
-                    <a href="partner.html">合作</a>
-                    |<a href="friendslink.html">友链</a>
-                    |<a href="feedback.html">留言</a>
-                </p>
-                <p>
-                    <a href="index.html">首页</a>
-                    |<a href="nav.html">导航</a>
-                    |<a href="save.html">收藏</a>
-                </p>
-                <p>
-                    <a href="http://wap.huanqiu.com/?v=1&amp;a=1">简版</a>
-                    | <a href="http://wap.huanqiu.com/?v=3&amp;a=1">3G版</a>
-                    | <a href="http://www.huanqiu.com">PC版</a>
-                    |
-                    <a href="http://mt.huanqiu.com">触屏版</a>
-                </p>
-                <p>
-                    手机环球网</p>
-                    <p style="text-align: center">
-                        环球网版权所有</p>
-                        <p>
-                            [2013-08-10 18:46:16]</p>
-                            <p>
-                                <a class="gotop" href="#">
-                                    <span>&uarr;</span>
-                                    TOP</a>
-                            </p>
-                            <br />
-                            &nbsp;</div>
+#include( "frag/foot.htm" )         
         </div>
     </div>
 </body>

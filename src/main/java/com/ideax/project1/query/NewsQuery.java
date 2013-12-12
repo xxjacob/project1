@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  *
- * @author xuxin03
+ * @author 王永玲
  */
 public class NewsQuery extends BaseQuery {
 	

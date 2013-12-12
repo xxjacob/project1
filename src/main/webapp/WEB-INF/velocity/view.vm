@@ -1,3 +1,16 @@
+#define( $link )
+    #if($blk.type == 0)
+        <a #if($blk.isBold == true) style="font-weight:bold;"#end href="${blk.url}">${blk.title}</a>
+    #elseif($blk.type == 1)
+        <a href="${blk.url}"><img src="${blk.img}"/></a>
+    #elseif($blk.type == 2)
+        <a #if($blk.isBold == true) style="font-weight:bold;"#end href="view?id=${blk.newId}">${blk.title}</a>
+    #elseif($blk.type == 3)
+        <a href="view?id=${blk.newId}"><img src="${blk.img}"/></a>
+    #elseif($blk.type == 4)
+        ${blk.html}
+    #end
+#end
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -9,7 +22,7 @@
 		<meta http-equiv="Cache-Control" content="no-cache" />
 		<meta name="viewport"
 			content="width=device-width, minimum-scale=1.0, maximum-scale=2.0" />
-		<title>世界正看到"自信强大"的中国_手机环球网</title>
+		<title>$!{pindao.title}</title>
 		<link rel="stylesheet" href="/s/css/style.css" type="text/css" />
 </head>
 	<body>
@@ -35,19 +48,8 @@
 
 			<div>
 				<div class="block">
-	<p>
-		#set($blk = $blocks[9][0])
-		#if($blk.type == 0)
-    		<a #if($blk.isBold == true) style="font-weight:bold;"#end href="${blk.url}">${blk.title}</a>
-    	#elseif($blk.type == 1)
-    		<a href="${blk.url}"><img src="${blk.img}"/></a>
-    	#elseif($blk.type == 2)
-            <a #if($blk.isBold == true) style="font-weight:bold;"#end href="view?id=${blk.newId}">${blk.title}</a>
-    	#elseif($blk.type == 3)
-            <a href="view?id=${blk.newId}"><img src="${blk.img}"/></a>
-    	#elseif($blk.type == 4)
-            ${blk.html}
-    	#end</p>
+        #set($blk = $blocks[9][0])
+		<p>$link</p>
 		</div>
 
 </div>
@@ -58,7 +60,8 @@
 				<p class="newstitle">
 					$!{news.title}</p>
 				<p class="newstime">
-					#set($s = $date.format("MM-dd HH:mm",$news.sendTime))
+                    #set($millsecond = $news.sendTime * 1000)
+					#set($s = $date.format("MM-dd HH:mm",$millsecond))
 					$!{s}
 					来源:$!{news.source}</p>
 				<div class="newscont">
@@ -89,17 +92,7 @@
 				<div class="block">
 	<p>
 		#set($blk = $blocks[10][0])
-		#if($blk.type == 0)
-    		<a #if($blk.isBold == true) style="font-weight:bold;"#end href="${blk.url}">${blk.title}</a>
-    	#elseif($blk.type == 1)
-    		<a href="${blk.url}"><img src="${blk.img}"/></a>
-    	#elseif($blk.type == 2)
-            <a #if($blk.isBold == true) style="font-weight:bold;"#end href="view?id=${blk.newId}">${blk.title}</a>
-    	#elseif($blk.type == 3)
-            <a href="view?id=${blk.newId}"><img src="${blk.img}"/></a>
-    	#elseif($blk.type == 4)
-            ${blk.html}
-    	#end
+		$link
 </p>
 		</div>
 
@@ -111,24 +104,24 @@
 			<div  class="biaoqing" > 
 					<ul>
 						<li> 
-								<a href="javascript:toupiao(1,525597,'喜',273);" >
+								<a href="javascript:toupiao('lv1',${news.id},'喜',$!{news.cmtNumLv1});" >
 									<img src="/s/img/biaoqing1.jpg" /> 
-									<span id="1">喜&nbsp;(${news.cmtNumLv1})</span> </a>
+									<span id="lv1">喜&nbsp;($!{news.cmtNumLv1})</span> </a>
 							</li>
 						<li> 
-								<a href="javascript:toupiao(2,525597,'怒',39);" >
+								<a href="javascript:toupiao('lv2',${news.id},'怒',$!{news.cmtNumLv2}));" >
 									<img src="/s/img/biaoqing2.jpg" /> 
-									<span id="2">怒&nbsp;(${news.cmtNumLv2})</span> </a>
+									<span id="lv2">怒&nbsp;($!{news.cmtNumLv2})</span> </a>
 							</li>
 						<li> 
-								<a href="javascript:toupiao(3,525597,'哀',65);" >
+								<a href="javascript:toupiao('lv3',${news.id},'哀',$!{news.cmtNumLv3}));" >
 									<img src="/s/img/biaoqing3.jpg" /> 
-									<span id="3">哀&nbsp;(${news.cmtNumLv4})</span> </a>
+									<span id="lv3">哀&nbsp;(${news.cmtNumLv4})</span> </a>
 							</li>
 						<li> 
-								<a href="javascript:toupiao(4,525597,'怨',85);" >
+								<a href="javascript:toupiao('lv4',${news.id},'怨',$!{news.cmtNumLv4}));" >
 									<img src="/s/img/biaoqing4.jpg" /> 
-									<span id="4">怨&nbsp;(${news.cmtNumLv4})</span> </a>
+									<span id="lv4">怨&nbsp;(${news.cmtNumLv4})</span> </a>
 							</li>
 						</ul>
 				</div>
@@ -178,7 +171,7 @@ toupiaoflag=true;
  
 }    
 }    
-xmlHttp.open("GET","http://114.111.161.216/toupiao.html?id="+id+"&ctype=1&eid="+eid+"&t="+Math.random(),true); 
+xmlHttp.open("GET","/vote?nid="+id+"&cmt_num="+eid+"&t="+Math.random(),true); 
 xmlHttp.send(null);
 }  
 	
@@ -213,13 +206,12 @@ xmlHttp.send(null);
 	}
 </script>
 				<div class="search"  >
-					<form action="comment.html" id="commentForm" method="post">
+					<form action="/comment/submit" id="commentForm" method="post">
 						<p>
 <div style="float:left">
 <input type="hidden" id="ctype" name="ctype" value="" />
-							<input type="hidden" name="act" value="comment" />
-							<input type="hidden" name="id" value="525597" />
-							<input type="text" name="cont" id="cont" value=""
+							<input type="hidden" name="nid" value="$!{news.id}" />
+							<input type="text" name="content" id="cont" value=""
 								style="display: none" />
 							<input type="text" value="" style="height: 50px; " class="searchKey" id="wenben" />
 							<select class="searchKey" id="xiala" style="display: none;height: 50px;">
@@ -263,9 +255,10 @@ xmlHttp.send(null);
 				</div>
 				<div style="padding: 5px;">
 					#foreach($comment in $comments)
-						<p><a href="comment_index?cid=${comment.id}">[回复]</a>
+						<p><a href="replypage?rid=$!{comment.id}&nid=$!{news.id}">[回复]</a>
     					$!{comment.floor}楼 : $!{comment.content}
-						#set($s = $date.format("MM-dd HH:mm",$comment.createTime))[$!{s} ] 
+                        #set($millsecond = $comment.createTime * 1000)
+						#set($s = $date.format("MM-dd HH:mm",$millsecond))[$!{s} ] 
 							$!{$comment.device}</p>
 						#foreach($refid in $refIds[$foreach.index])
 							#set($cc = $refComments[$refid])
@@ -289,30 +282,10 @@ xmlHttp.send(null);
 	<p>
 		
 		#set($blk = $blocks[11][0])
-		#if($blk.type == 0)
-    		<a #if($blk.isBold == true) style="font-weight:bold;"#end href="${blk.url}">${blk.title}</a>
-    	#elseif($blk.type == 1)
-    		<a href="${blk.url}"><img src="${blk.img}"/></a>
-    	#elseif($blk.type == 2)
-            <a #if($blk.isBold == true) style="font-weight:bold;"#end href="view?id=${blk.newId}">${blk.title}</a>
-    	#elseif($blk.type == 3)
-            <a href="view?id=${blk.newId}"><img src="${blk.img}"/></a>
-    	#elseif($blk.type == 4)
-            ${blk.html}
-    	#end</p>
+		$link</p>
 		<p>
 		#set($blk = $blocks[11][1])
-		#if($blk.type == 0)
-    		<a #if($blk.isBold == true) style="font-weight:bold;"#end href="${blk.url}">${blk.title}</a>
-    	#elseif($blk.type == 1)
-    		<a href="${blk.url}"><img src="${blk.img}"/></a>
-    	#elseif($blk.type == 2)
-            <a #if($blk.isBold == true) style="font-weight:bold;"#end href="view?id=${blk.newId}">${blk.title}</a>
-    	#elseif($blk.type == 3)
-            <a href="view?id=${blk.newId}"><img src="${blk.img}"/></a>
-    	#elseif($blk.type == 4)
-            ${blk.html}
-    	#end</p>
+		$link</p>
 		</div>
 
 </div>
@@ -361,19 +334,10 @@ xmlHttp.send(null);
 
 			<div>
 				<div class="block">
-	<p>
-		<a  href="http://114.111.161.217/ad.html?id=761&pbid=156">爆！★麻将机遥控器 逢赌必赢</a>
-						<!--
-						<a  href="http://localhost:9090/qiantai/ad.html?id=761&pbid=156">爆！★麻将机遥控器 逢赌必赢</a>
-						-->
-						</p>
+	<p>#set($blk = $blocks[12][0])
+        $link</p>
 		</div>
-
 </div>
-
-
-			
-
           <div class="lanmu-line">
 				<img src="/s/img/r.png" />
 				<a href="#">[点击排行]</a>
@@ -402,12 +366,8 @@ xmlHttp.send(null);
 
 			<div>
 				<div class="block">
-	<p>
-		<a  href="http://114.111.161.217/ad.html?id=797&pbid=157">爆：双12劳力士1折-验货付款</a>
-						<!--
-						<a  href="http://localhost:9090/qiantai/ad.html?id=797&pbid=157">爆：双12劳力士1折-验货付款</a>
-						-->
-						</p>
+	<p>#set($blk = $blocks[13][0])
+        $link</p>
 		</div>
 
 </div>
@@ -425,129 +385,18 @@ xmlHttp.send(null);
 
 			<div>
 				<div class="block">
-	<p>
-		<a  href="http://114.111.161.217/ad.html?id=373&pbid=158">健美女性网络晒肌肉引发潮流</a>
-						<!--
-						<a  href="http://localhost:9090/qiantai/ad.html?id=373&pbid=158">健美女性网络晒肌肉引发潮流</a>
-						-->
-						</p>
-		<p>
-		<a  href="http://114.111.161.217/ad.html?id=533&pbid=158">日年度美皇后不记得生父之事</a>
-						<!--
-						<a  href="http://localhost:9090/qiantai/ad.html?id=533&pbid=158">日年度美皇后不记得生父之事</a>
-						-->
-						</p>
-		<p>
-		<a  href="http://114.111.161.217/ad.html?id=347&pbid=158">巴西政府下决心严打足球流氓</a>
-						<!--
-						<a  href="http://localhost:9090/qiantai/ad.html?id=347&pbid=158">巴西政府下决心严打足球流氓</a>
-						-->
-						</p>
-		<p>
-		<a  href="http://114.111.161.217/ad.html?id=486&pbid=158">盘十大秒杀你傲慢的宏伟景观</a>
-						<!--
-						<a  href="http://localhost:9090/qiantai/ad.html?id=486&pbid=158">盘十大秒杀你傲慢的宏伟景观</a>
-						-->
-						</p>
-		<p>
-		<a  href="http://114.111.161.217/ad.html?id=515&pbid=158">女摄影师自拍初为人母的生活</a>
-						<!--
-						<a  href="http://localhost:9090/qiantai/ad.html?id=515&pbid=158">女摄影师自拍初为人母的生活</a>
-						-->
-						</p>
-		<p>
-		<a  href="http://114.111.161.217/ad.html?id=493&pbid=158">中组部12380成举报腐败首选</a>
-						<!--
-						<a  href="http://localhost:9090/qiantai/ad.html?id=493&pbid=158">中组部12380成举报腐败首选</a>
-						-->
-						</p>
-		<p>
-		<a  href="http://114.111.161.217/ad.html?id=517&pbid=158">办公桌上放植物可以提升效率</a>
-						<!--
-						<a  href="http://localhost:9090/qiantai/ad.html?id=517&pbid=158">办公桌上放植物可以提升效率</a>
-						-->
-						</p>
-		<p>
-		<a  href="http://114.111.161.217/ad.html?id=489&pbid=158">2013抢眼的互联网产品及公司</a>
-						<!--
-						<a  href="http://localhost:9090/qiantai/ad.html?id=489&pbid=158">2013抢眼的互联网产品及公司</a>
-						-->
-						</p>
-		<p>
-		<a  href="http://114.111.161.217/ad.html?id=503&pbid=158">招商银行惊现137亿元大宗交易</a>
-						<!--
-						<a  href="http://localhost:9090/qiantai/ad.html?id=503&pbid=158">招商银行惊现137亿元大宗交易</a>
-						-->
-						</p>
-		<p>
-		<a  href="http://114.111.161.217/ad.html?id=504&pbid=158">美媒盘点史上五种最强战斗机</a>
-						<!--
-						<a  href="http://localhost:9090/qiantai/ad.html?id=504&pbid=158">美媒盘点史上五种最强战斗机</a>
-						-->
-						</p>
+	#foreach( $blk in $blocks[14])
+        <p>
+            $link
+        </p>
+    #end
 		</div>
 
 </div>
-
-
-			<!--
-			动态广告位碎片      正文页--频道精选---广告 128
-			-->
-
-			<div>
-				<div class="block">
-	<p>
-		<a  href="http://114.111.161.217/ad.html?id=869&pbid=164">少女在家小本创业一年开宝马</a>
-						<!--
-						<a  href="http://localhost:9090/qiantai/ad.html?id=869&pbid=164">少女在家小本创业一年开宝马</a>
-						-->
-						</p>
-		</div>
-
-</div>
-
-
-			<!--
-热点版块直达
--->
 <div class="nav">
- #foreach( $blk in $blocks[8])
-    	#if($blk.type == 0)
-    		<a #if($blk.isBold == true) style="font-weight:bold;"#end href="${blk.url}">${blk.title}</a>
-    	#elseif($blk.type == 1)
-    		<a href="${blk.url}"><img src="${blk.img}"/></a>
-    	#elseif($blk.type == 2)
-            <a #if($blk.isBold == true) style="font-weight:bold;"#end href="view?id=${blk.newId}">${blk.title}</a>
-    	#elseif($blk.type == 3)
-            <a href="view?id=${blk.newId}"><img src="${blk.img}"/></a>
-    	#elseif($blk.type == 4)
-            ${blk.html}
-    	#end
-#end
+#parse("frag/menu.vm")
 </div>
-<div class="foot">
-	<p>
-		<a href="partner.html">合作</a> |<a href="friendslink.html">友链</a> |<a href="feedback.html">留言</a> 
-	</p>
-	<p>
-		<a href="index.html">首页</a> |<a href="nav.html">导航</a> |<a href="save.html">收藏</a> 
-	</p>
-	<p>
-		<a href="http://3g.huanqiu.com/view.html?v=1&id=525597">简版</a> |
-		<a href="http://3g.huanqiu.com/view.html?v=3&id=525597">3G版</a> |
-		<a href="http://www.huanqiu.com">PC版</a> |
-		<a href="http://mt.huanqiu.com">触屏版</a>
-	</p>
-	<p>手机环球网</p>
-	<p style="text-align:center;">
-	 	环球网版权所有 
-	 </p>
-	 <p>[2013-12-11 00:38:23]</p>
-	 <p><a href="#" class="gotop"><span>↑</span> TOP</a></p>
-	 <br/>
-	  <br/>
+#include( "frag/foot.htm" ) 
 </div>
-</div>
-
 	</body>
 </html>

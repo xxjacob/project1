@@ -8,7 +8,7 @@ import java.util.Collections;
 
 /**
  * 
- * @author xuxin03
+ * @author 王永玲
  */
 public class Result<T> implements Serializable {
 	/**

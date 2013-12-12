@@ -1,0 +1,4 @@
+#foreach ($pd in $pdmap.keySet())
+    <a href="pd?id=${pd.id}">${pd.name}</a>
+#if($foreach.count % 5 == 0) <br /> #end
+#end

@@ -15,7 +15,7 @@ import java.util.Collections;
 import com.ideax.project1.common.Result;
 import com.ideax.project1.query.BlockQuery;
 /**
- * @author xuxin03
+ * @author 王永玲
  */
 @Repository
 public class BlockDAO {
