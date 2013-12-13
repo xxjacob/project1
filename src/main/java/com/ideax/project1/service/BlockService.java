@@ -63,6 +63,18 @@ public class BlockService implements InitializingBean {
         }
     }
 
+    public List<Block> getAllBlocks() {
+        try {
+            List<Block> list = blockDAO.getBlockList(null);
+            if (list == null)
+                return Collections.emptyList();
+            return list;
+        } catch (SQLException e) {
+            logger.error("", e);
+            throw new IllegalException(EC.EC_DB);
+        }
+    }
+
     public int updateBlock(Block block) {
         try {
             return blockDAO.updateBlock(block);

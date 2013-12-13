@@ -2,11 +2,14 @@ package com.ideax.project1.controller;
 
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -21,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ideax.common.Util;
 import com.ideax.common.exception.IllegalException;
+import com.ideax.project1.filter.AdminLoginFilter;
 import com.ideax.project1.pojo.Admin;
 import com.ideax.project1.pojo.Block;
 import com.ideax.project1.pojo.News;
@@ -36,7 +40,8 @@ public class AdminC {
 
     @Autowired
     BlockService blockService;
-
+    @Autowired
+    AdminLoginFilter sessionFilter;
     @Autowired
     NewsService newsService;
     @Autowired
@@ -44,23 +49,34 @@ public class AdminC {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String loginpage() {
-        
         return "admin/login";
     }
 
     @RequestMapping(value = "dologin", method = RequestMethod.POST)
-    public String dologin(@RequestParam String username, @RequestParam String password, Model model) {
+    public String dologin(@RequestParam String username, @RequestParam String password,
+            @RequestParam(defaultValue = "0") int remember, HttpServletResponse response, Model model) {
         String passwordmd5 = Util.md5Encoding(password);
         Admin admin = adminService.verifyUser(username, passwordmd5);
         if (admin != null) {
-            
+            sessionFilter.login(admin, response, remember == 1);
+            return "redirect:/asdf/main";
+        } else {
+            model.addAttribute("error", "wrong username/password");
+            return "admin/login";
         }
-        return "redirect:/asdf/main";
     }
 
     @RequestMapping("main")
-    public String mainpage(@RequestParam int blockgroup, HttpServletRequest req, Model model) {
-        return "admin/login";
+    public String mainpage(HttpServletRequest req, Model model) {
+        List<Block> list = blockService.getAllBlocks();
+        Map<Integer, Block> page2Blockgroup = new HashMap<Integer, Block>();
+        for (Block blk : list) {
+            if (page2Blockgroup.get(blk).getPageId() != null) {
+                blk.setBlockName(blk.getBlockName().substring(0, blk.getBlockName().lastIndexOf("-")));
+                page2Blockgroup.put(blk.getPageId(), blk);
+            }
+        }
+        return "admin/main";
     }
 
     @RequestMapping("block/setting")

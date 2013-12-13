@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>设置新闻链接</title>
+        <title>index</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="http://libs.baidu.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
@@ -97,10 +97,8 @@
                         </div>
 						<div class="control-group">
 							<div class="controls controls-row">
-								<div class="input-append">
                                 <input class="span2" type="text" id="news_id_${block.id}" name="news_id_${block.id}" placeholder="新闻id" #if($block.newsId gt 0) value="${block.newsId}" #end/>
 								<input type="button"  class="span2 btn btn-info" id="getNews${block.id}" value="获取" />
-                                </div>
                                 <select class="span2" id='type_${block.id}' name='type_${block.id}' class="span2">
                                     <option value='2' #if($block.type == 2) selected #end>本站新闻链接</option>
                                     <option value='3' #if($block.type == 3) selected #end>本站图片新闻链接</option>

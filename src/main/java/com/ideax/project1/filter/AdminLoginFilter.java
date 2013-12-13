@@ -14,15 +14,28 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.RandomStringUtils;
+import org.springframework.stereotype.Component;
+
 import com.ideax.project1.pojo.Admin;
 
+@Component("sessionFilter")
 public class AdminLoginFilter implements Filter {
 
     // local store session
-    Map<String, Admin> localSessions = new HashMap<String, Admin>();
+    private Map<String, Admin> loginAdmins = new HashMap<String, Admin>();
 
     public void init(FilterConfig filterConfig) throws ServletException {
+    }
 
+    public void login(Admin admin, HttpServletResponse response, boolean remember) {
+        String sessionid = RandomStringUtils.random(32, true, true);
+        loginAdmins.put(sessionid, admin);
+        Cookie cookie = new Cookie("sessionid", sessionid);
+        cookie.setPath("/asdf");
+        if (remember)
+            cookie.setMaxAge(3600 * 30);
+        response.addCookie(cookie);
     }
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException,
@@ -33,12 +46,11 @@ public class AdminLoginFilter implements Filter {
             for (Cookie c : cs) {
                 if ("sessionid".equals(c.getName())) {
                     String sessionid = c.getValue();
-                    Admin user = localSessions.get(sessionid);
+                    Admin user = loginAdmins.get(sessionid);
                     if (user == null) {
                         ((HttpServletResponse) response).sendRedirect("/asdf");
                         return;
                     }
-                    request.setAttribute("sessionid", sessionid);
                     request.setAttribute("sessioninfo", user);
                     chain.doFilter(request, response);
                     return;
