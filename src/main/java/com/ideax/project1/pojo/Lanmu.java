@@ -20,6 +20,8 @@ public class Lanmu implements Serializable{
     private Integer pdId;
 	/** order_num **/
     private Integer orderNum;
+	/** page_id **/
+    private Integer pageId;
 
 	
    /**
@@ -88,6 +90,23 @@ public class Lanmu implements Serializable{
     */
    public void setOrderNum(Integer orderNum) {
        this.orderNum = orderNum;
+   }
+	
+   /**
+    * 获取属性:pageId
+    * page_id
+    * @return pageId
+    */
+   public Integer getPageId() {
+       return pageId;
+   }
+   /**
+    * 设置属性:pageId
+    * page_id
+    * @param pageId
+    */
+   public void setPageId(Integer pageId) {
+       this.pageId = pageId;
    }
 
 	/**

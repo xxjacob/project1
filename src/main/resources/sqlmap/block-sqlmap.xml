@@ -11,6 +11,8 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
                     <result property="blockGroup" column="block_group" />
                     <result property="orderNum" column="order_num" />
                     <result property="pageId" column="page_id" />
+                    <result property="pindaoId" column="pindao_id" />
+                    <result property="lanmuId" column="lanmu_id" />
                     <result property="blockName" column="block_name" />
                     <result property="url" column="url" />
                     <result property="title" column="title" />
@@ -25,11 +27,11 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
             </resultMap>
     <!-- Select SQL -->
     <sql id="block.selector">
-        SELECT id,block_group,order_num,page_id,block_name,url,title,html,template,type,is_bold,news_id,img,create_time,modify_time FROM block
+        SELECT id,block_group,order_num,page_id,pindao_id,lanmu_id,block_name,url,title,html,template,type,is_bold,news_id,img,create_time,modify_time FROM block
     </sql>
     <sql id="blockList.where">
 		<dynamic prepend=" WHERE ">
-            <isNotNull property="id" prepend=" AND ">id=#id#</isNotNull><isNotNull property="blockGroup" prepend=" AND ">block_group=#blockGroup#</isNotNull><isNotNull property="orderNum" prepend=" AND ">order_num=#orderNum#</isNotNull><isNotNull property="pageId" prepend=" AND ">page_id=#pageId#</isNotNull><isNotNull property="blockName" prepend=" AND ">block_name=#blockName#</isNotNull><isNotNull property="url" prepend=" AND ">url=#url#</isNotNull><isNotNull property="title" prepend=" AND ">title=#title#</isNotNull><isNotNull property="html" prepend=" AND ">html=#html#</isNotNull><isNotNull property="template" prepend=" AND ">template=#template#</isNotNull><isNotNull property="newsId" prepend=" AND ">news_id=#newsId#</isNotNull><isNotNull property="img" prepend=" AND ">img=#img#</isNotNull><isNotNull property="createTime" prepend=" AND ">create_time=#createTime#</isNotNull><isNotNull property="modifyTime" prepend=" AND ">modify_time=#modifyTime#</isNotNull>        </dynamic>
+            <isNotNull property="id" prepend=" AND ">id=#id#</isNotNull><isNotNull property="blockGroup" prepend=" AND ">block_group=#blockGroup#</isNotNull><isNotNull property="orderNum" prepend=" AND ">order_num=#orderNum#</isNotNull><isNotNull property="pageId" prepend=" AND ">page_id=#pageId#</isNotNull><isNotNull property="pindaoId" prepend=" AND ">pindao_id=#pindaoId#</isNotNull><isNotNull property="lanmuId" prepend=" AND ">lanmu_id=#lanmuId#</isNotNull><isNotNull property="blockName" prepend=" AND ">block_name=#blockName#</isNotNull><isNotNull property="url" prepend=" AND ">url=#url#</isNotNull><isNotNull property="title" prepend=" AND ">title=#title#</isNotNull><isNotNull property="html" prepend=" AND ">html=#html#</isNotNull><isNotNull property="template" prepend=" AND ">template=#template#</isNotNull><isNotNull property="newsId" prepend=" AND ">news_id=#newsId#</isNotNull><isNotNull property="img" prepend=" AND ">img=#img#</isNotNull><isNotNull property="createTime" prepend=" AND ">create_time=#createTime#</isNotNull><isNotNull property="modifyTime" prepend=" AND ">modify_time=#modifyTime#</isNotNull>        </dynamic>
     </sql>
     <sql id="blockList.order">
         <dynamic prepend=" ORDER BY ">
@@ -75,6 +77,12 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
                     </isNotNull>
                                                                 <isNotNull prepend="," property="pageId">
                         page_id = #pageId#
+                    </isNotNull>
+                                                                <isNotNull prepend="," property="pindaoId">
+                        pindao_id = #pindaoId#
+                    </isNotNull>
+                                                                <isNotNull prepend="," property="lanmuId">
+                        lanmu_id = #lanmuId#
                     </isNotNull>
                                                                 <isNotNull prepend="," property="blockName">
                         block_name = #blockName#
@@ -125,6 +133,12 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
                     </isNotNull>
                                                                 <isNotNull prepend="," property="pageId">
                         page_id = #pageId#
+                    </isNotNull>
+                                                                <isNotNull prepend="," property="pindaoId">
+                        pindao_id = #pindaoId#
+                    </isNotNull>
+                                                                <isNotNull prepend="," property="lanmuId">
+                        lanmu_id = #lanmuId#
                     </isNotNull>
                                                                 <isNotNull prepend="," property="blockName">
                         block_name = #blockName#
@@ -182,6 +196,8 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
                     block_group,
                 order_num,
                 page_id,
+                pindao_id,
+                lanmu_id,
                 block_name,
                 url,
                 title,
@@ -192,7 +208,7 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
                 news_id,
                 img,
                             create_time    ,modify_time)
-    VALUES(#blockGroup#,#orderNum#,#pageId#,#blockName#,#url#,#title#,#html#,#template#,#type#,#isBold#,#newsId#,#img#,    now(),now())
+    VALUES(#blockGroup#,#orderNum#,#pageId#,#pindaoId#,#lanmuId#,#blockName#,#url#,#title#,#html#,#template#,#type#,#isBold#,#newsId#,#img#,    now(),now())
     <selectKey resultClass="long" type="post" keyProperty="id">
     SELECT last_insert_id() AS id
     </selectKey>
@@ -204,6 +220,8 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
                                                                             <isNotEmpty prepend="," property="blockGroup">block_group</isNotEmpty>
                                                                 <isNotEmpty prepend="," property="orderNum">order_num</isNotEmpty>
                                                                 <isNotEmpty prepend="," property="pageId">page_id</isNotEmpty>
+                                                                <isNotEmpty prepend="," property="pindaoId">pindao_id</isNotEmpty>
+                                                                <isNotEmpty prepend="," property="lanmuId">lanmu_id</isNotEmpty>
                                                                 <isNotEmpty prepend="," property="blockName">block_name</isNotEmpty>
                                                                 <isNotEmpty prepend="," property="url">url</isNotEmpty>
                                                                 <isNotEmpty prepend="," property="title">title</isNotEmpty>
@@ -221,6 +239,8 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
                                                                                                     <isNotEmpty  prepend="," property="blockGroup">#blockGroup#</isNotEmpty>
                                                                                                             <isNotEmpty  prepend="," property="orderNum">#orderNum#</isNotEmpty>
                                                                                                             <isNotEmpty  prepend="," property="pageId">#pageId#</isNotEmpty>
+                                                                                                            <isNotEmpty  prepend="," property="pindaoId">#pindaoId#</isNotEmpty>
+                                                                                                            <isNotEmpty  prepend="," property="lanmuId">#lanmuId#</isNotEmpty>
                                                                                                             <isNotEmpty  prepend="," property="blockName">#blockName#</isNotEmpty>
                                                                                                             <isNotEmpty  prepend="," property="url">#url#</isNotEmpty>
                                                                                                             <isNotEmpty  prepend="," property="title">#title#</isNotEmpty>

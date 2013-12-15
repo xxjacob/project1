@@ -10,14 +10,18 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
                     <result property="id" column="id" />
                     <result property="name" column="name" />
                     <result property="orderNum" column="order_num" />
+                    <result property="logo" column="logo" />
+                    <result property="color" column="color" />
+                    <result property="cssStyle" column="css_style" />
+                    <result property="pageId" column="page_id" />
             </resultMap>
     <!-- Select SQL -->
     <sql id="pindao.selector">
-        SELECT id,name,order_num FROM pindao
+        SELECT id,name,order_num,logo,color,css_style,page_id FROM pindao
     </sql>
     <sql id="pindaoList.where">
 		<dynamic prepend=" WHERE ">
-            <isNotNull property="id" prepend=" AND ">id=#id#</isNotNull><isNotNull property="name" prepend=" AND ">name=#name#</isNotNull><isNotNull property="orderNum" prepend=" AND ">order_num=#orderNum#</isNotNull>        </dynamic>
+            <isNotNull property="id" prepend=" AND ">id=#id#</isNotNull><isNotNull property="name" prepend=" AND ">name=#name#</isNotNull><isNotNull property="orderNum" prepend=" AND ">order_num=#orderNum#</isNotNull><isNotNull property="logo" prepend=" AND ">logo=#logo#</isNotNull><isNotNull property="color" prepend=" AND ">color=#color#</isNotNull><isNotNull property="cssStyle" prepend=" AND ">css_style=#cssStyle#</isNotNull><isNotNull property="pageId" prepend=" AND ">page_id=#pageId#</isNotNull>        </dynamic>
     </sql>
     <sql id="pindaoList.order">
         <dynamic prepend=" ORDER BY ">
@@ -61,6 +65,18 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
                                                                 <isNotNull prepend="," property="orderNum">
                         order_num = #orderNum#
                     </isNotNull>
+                                                                <isNotNull prepend="," property="logo">
+                        logo = #logo#
+                    </isNotNull>
+                                                                <isNotNull prepend="," property="color">
+                        color = #color#
+                    </isNotNull>
+                                                                <isNotNull prepend="," property="cssStyle">
+                        css_style = #cssStyle#
+                    </isNotNull>
+                                                                <isNotNull prepend="," property="pageId">
+                        page_id = #pageId#
+                    </isNotNull>
                                         </dynamic>
             WHERE id in
             <iterate conjunction="," open="(" close=")" property="keys">
@@ -75,6 +91,18 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
                     </isNotNull>
                                                                 <isNotNull prepend="," property="orderNum">
                         order_num = #orderNum#
+                    </isNotNull>
+                                                                <isNotNull prepend="," property="logo">
+                        logo = #logo#
+                    </isNotNull>
+                                                                <isNotNull prepend="," property="color">
+                        color = #color#
+                    </isNotNull>
+                                                                <isNotNull prepend="," property="cssStyle">
+                        css_style = #cssStyle#
+                    </isNotNull>
+                                                                <isNotNull prepend="," property="pageId">
+                        page_id = #pageId#
                     </isNotNull>
                                         </dynamic>
             WHERE id = #id#
@@ -99,8 +127,12 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
     INSERT INTO pindao(
                     name,
                 order_num,
+                logo,
+                color,
+                css_style,
+                page_id,
                 )
-    VALUES(#name#,#orderNum#,    )
+    VALUES(#name#,#orderNum#,#logo#,#color#,#cssStyle#,#pageId#,    )
     <selectKey resultClass="long" type="post" keyProperty="id">
     SELECT last_insert_id() AS id
     </selectKey>
@@ -111,11 +143,19 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
         <dynamic prepend="(" close=")">
                                                                             <isNotEmpty prepend="," property="name">name</isNotEmpty>
                                                                 <isNotEmpty prepend="," property="orderNum">order_num</isNotEmpty>
+                                                                <isNotEmpty prepend="," property="logo">logo</isNotEmpty>
+                                                                <isNotEmpty prepend="," property="color">color</isNotEmpty>
+                                                                <isNotEmpty prepend="," property="cssStyle">css_style</isNotEmpty>
+                                                                <isNotEmpty prepend="," property="pageId">page_id</isNotEmpty>
                                     </dynamic>
         VALUES
         <dynamic prepend="(" close=")">
                                                                                                     <isNotEmpty  prepend="," property="name">#name#</isNotEmpty>
                                                                                                             <isNotEmpty  prepend="," property="orderNum">#orderNum#</isNotEmpty>
+                                                                                                            <isNotEmpty  prepend="," property="logo">#logo#</isNotEmpty>
+                                                                                                            <isNotEmpty  prepend="," property="color">#color#</isNotEmpty>
+                                                                                                            <isNotEmpty  prepend="," property="cssStyle">#cssStyle#</isNotEmpty>
+                                                                                                            <isNotEmpty  prepend="," property="pageId">#pageId#</isNotEmpty>
                                                         </dynamic>
         <selectKey resultClass="int" type="post" keyProperty="id">
             SELECT last_insert_id() AS id

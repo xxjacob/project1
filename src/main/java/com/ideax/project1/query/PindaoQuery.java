@@ -69,6 +69,82 @@ public class PindaoQuery extends BaseQuery {
     	this.orderNum = orderNum;
     	return this;
     }
+	/** logo **/
+    private String logo;
+	/**
+    * 获取属性:logo
+    * logo
+    * @return logo
+    */
+	public String getLogo () {
+    	return logo;
+   	}
+   	/**
+     * 设置属性:logo
+     * logo
+     * @param logo
+     */
+    public PindaoQuery setLogo(String logo) {
+    	this.logo = logo;
+    	return this;
+    }
+	/** color **/
+    private String color;
+	/**
+    * 获取属性:color
+    * color
+    * @return color
+    */
+	public String getColor () {
+    	return color;
+   	}
+   	/**
+     * 设置属性:color
+     * color
+     * @param color
+     */
+    public PindaoQuery setColor(String color) {
+    	this.color = color;
+    	return this;
+    }
+	/** css_style **/
+    private String cssStyle;
+	/**
+    * 获取属性:cssStyle
+    * css_style
+    * @return cssStyle
+    */
+	public String getCssStyle () {
+    	return cssStyle;
+   	}
+   	/**
+     * 设置属性:cssStyle
+     * css_style
+     * @param cssStyle
+     */
+    public PindaoQuery setCssStyle(String cssStyle) {
+    	this.cssStyle = cssStyle;
+    	return this;
+    }
+	/** page_id **/
+    private Integer pageId;
+	/**
+    * 获取属性:pageId
+    * page_id
+    * @return pageId
+    */
+	public Integer getPageId () {
+    	return pageId;
+   	}
+   	/**
+     * 设置属性:pageId
+     * page_id
+     * @param pageId
+     */
+    public PindaoQuery setPageId(Integer pageId) {
+    	this.pageId = pageId;
+    	return this;
+    }
 	/**==============================批量查询时的Order条件顺序设置==================================**/
 	public class OrderField{
 		public OrderField(String fieldName, String order) {
@@ -119,6 +195,38 @@ public class PindaoQuery extends BaseQuery {
 	 */	
 	public PindaoQuery orderbyOrderNum(boolean isAsc){
 		orderFields.add(new OrderField("order_num",isAsc?"ASC":"DESC"));
+		return this;
+	}
+	/**
+	 * 设置排序按属性：logo
+	 * @param isAsc 是否升序，否则为降序
+	 */	
+	public PindaoQuery orderbyLogo(boolean isAsc){
+		orderFields.add(new OrderField("logo",isAsc?"ASC":"DESC"));
+		return this;
+	}
+	/**
+	 * 设置排序按属性：color
+	 * @param isAsc 是否升序，否则为降序
+	 */	
+	public PindaoQuery orderbyColor(boolean isAsc){
+		orderFields.add(new OrderField("color",isAsc?"ASC":"DESC"));
+		return this;
+	}
+	/**
+	 * 设置排序按属性：css_style
+	 * @param isAsc 是否升序，否则为降序
+	 */	
+	public PindaoQuery orderbyCssStyle(boolean isAsc){
+		orderFields.add(new OrderField("css_style",isAsc?"ASC":"DESC"));
+		return this;
+	}
+	/**
+	 * 设置排序按属性：page_id
+	 * @param isAsc 是否升序，否则为降序
+	 */	
+	public PindaoQuery orderbyPageId(boolean isAsc){
+		orderFields.add(new OrderField("page_id",isAsc?"ASC":"DESC"));
 		return this;
 	}
 }

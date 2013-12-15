@@ -28,14 +28,15 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
                     <result property="cmtNumLv2" column="cmt_num_lv2" />
                     <result property="cmtNumLv1" column="cmt_num_lv1" />
                     <result property="cmtNum" column="cmt_num" />
+                    <result property="viewCount" column="view_count" />
             </resultMap>
     <!-- Select SQL -->
     <sql id="news.selector">
-        SELECT id,short_title,title,content,pd_id,lm_id,source,cover_img,show_cover,images,show_comment,show_bold,modify_time,create_time,send_time,cmt_num_lv5,cmt_num_lv4,cmt_num_lv3,cmt_num_lv2,cmt_num_lv1,cmt_num FROM news
+        SELECT id,short_title,title,content,pd_id,lm_id,source,cover_img,show_cover,images,show_comment,show_bold,modify_time,create_time,send_time,cmt_num_lv5,cmt_num_lv4,cmt_num_lv3,cmt_num_lv2,cmt_num_lv1,cmt_num,view_count FROM news
     </sql>
     <sql id="newsList.where">
 		<dynamic prepend=" WHERE ">
-            <isNotNull property="id" prepend=" AND ">id=#id#</isNotNull><isNotNull property="shortTitle" prepend=" AND ">short_title=#shortTitle#</isNotNull><isNotNull property="title" prepend=" AND ">title=#title#</isNotNull><isNotNull property="content" prepend=" AND ">content=#content#</isNotNull><isNotNull property="pdId" prepend=" AND ">pd_id=#pdId#</isNotNull><isNotNull property="lmId" prepend=" AND ">lm_id=#lmId#</isNotNull><isNotNull property="source" prepend=" AND ">source=#source#</isNotNull><isNotNull property="coverImg" prepend=" AND ">cover_img=#coverImg#</isNotNull><isNotNull property="images" prepend=" AND ">images=#images#</isNotNull><isNotNull property="modifyTime" prepend=" AND ">modify_time=#modifyTime#</isNotNull><isNotNull property="createTime" prepend=" AND ">create_time=#createTime#</isNotNull><isNotNull property="sendTime" prepend=" AND ">send_time=#sendTime#</isNotNull><isNotNull property="cmtNumLv5" prepend=" AND ">cmt_num_lv5=#cmtNumLv5#</isNotNull><isNotNull property="cmtNumLv4" prepend=" AND ">cmt_num_lv4=#cmtNumLv4#</isNotNull><isNotNull property="cmtNumLv3" prepend=" AND ">cmt_num_lv3=#cmtNumLv3#</isNotNull><isNotNull property="cmtNumLv2" prepend=" AND ">cmt_num_lv2=#cmtNumLv2#</isNotNull><isNotNull property="cmtNumLv1" prepend=" AND ">cmt_num_lv1=#cmtNumLv1#</isNotNull><isNotNull property="cmtNum" prepend=" AND ">cmt_num=#cmtNum#</isNotNull>        </dynamic>
+            <isNotNull property="id" prepend=" AND ">id=#id#</isNotNull><isNotNull property="shortTitle" prepend=" AND ">short_title=#shortTitle#</isNotNull><isNotNull property="title" prepend=" AND ">title=#title#</isNotNull><isNotNull property="content" prepend=" AND ">content=#content#</isNotNull><isNotNull property="pdId" prepend=" AND ">pd_id=#pdId#</isNotNull><isNotNull property="lmId" prepend=" AND ">lm_id=#lmId#</isNotNull><isNotNull property="source" prepend=" AND ">source=#source#</isNotNull><isNotNull property="coverImg" prepend=" AND ">cover_img=#coverImg#</isNotNull><isNotNull property="images" prepend=" AND ">images=#images#</isNotNull><isNotNull property="modifyTime" prepend=" AND ">modify_time=#modifyTime#</isNotNull><isNotNull property="createTime" prepend=" AND ">create_time=#createTime#</isNotNull><isNotNull property="sendTime" prepend=" AND ">send_time=#sendTime#</isNotNull><isNotNull property="cmtNumLv5" prepend=" AND ">cmt_num_lv5=#cmtNumLv5#</isNotNull><isNotNull property="cmtNumLv4" prepend=" AND ">cmt_num_lv4=#cmtNumLv4#</isNotNull><isNotNull property="cmtNumLv3" prepend=" AND ">cmt_num_lv3=#cmtNumLv3#</isNotNull><isNotNull property="cmtNumLv2" prepend=" AND ">cmt_num_lv2=#cmtNumLv2#</isNotNull><isNotNull property="cmtNumLv1" prepend=" AND ">cmt_num_lv1=#cmtNumLv1#</isNotNull><isNotNull property="cmtNum" prepend=" AND ">cmt_num=#cmtNum#</isNotNull><isNotNull property="viewCount" prepend=" AND ">view_count=#viewCount#</isNotNull>        </dynamic>
     </sql>
     <sql id="newsList.order">
         <dynamic prepend=" ORDER BY ">
@@ -132,6 +133,9 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
                                                                 <isNotNull prepend="," property="cmtNum">
                         cmt_num = #cmtNum#
                     </isNotNull>
+                                                                <isNotNull prepend="," property="viewCount">
+                        view_count = #viewCount#
+                    </isNotNull>
                                         </dynamic>
             WHERE id in
             <iterate conjunction="," open="(" close=")" property="keys">
@@ -200,6 +204,9 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
                                                                 <isNotNull prepend="," property="cmtNum">
                         cmt_num = #cmtNum#
                     </isNotNull>
+                                                                <isNotNull prepend="," property="viewCount">
+                        view_count = #viewCount#
+                    </isNotNull>
                                         </dynamic>
             WHERE id = #id#
         </update>
@@ -239,8 +246,9 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
                 cmt_num_lv2,
                 cmt_num_lv1,
                 cmt_num,
+                view_count,
             create_time    ,modify_time)
-    VALUES(#shortTitle#,#title#,#content#,#pdId#,#lmId#,#source#,#coverImg#,#showCover#,#images#,#showComment#,#showBold#,#sendTime#,#cmtNumLv5#,#cmtNumLv4#,#cmtNumLv3#,#cmtNumLv2#,#cmtNumLv1#,#cmtNum#,    now(),now())
+    VALUES(#shortTitle#,#title#,#content#,#pdId#,#lmId#,#source#,#coverImg#,#showCover#,#images#,#showComment#,#showBold#,#sendTime#,#cmtNumLv5#,#cmtNumLv4#,#cmtNumLv3#,#cmtNumLv2#,#cmtNumLv1#,#cmtNum#,#viewCount#,    now(),now())
     <selectKey resultClass="long" type="post" keyProperty="id">
     SELECT last_insert_id() AS id
     </selectKey>
@@ -269,6 +277,7 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
                                                                 <isNotEmpty prepend="," property="cmtNumLv2">cmt_num_lv2</isNotEmpty>
                                                                 <isNotEmpty prepend="," property="cmtNumLv1">cmt_num_lv1</isNotEmpty>
                                                                 <isNotEmpty prepend="," property="cmtNum">cmt_num</isNotEmpty>
+                                                                <isNotEmpty prepend="," property="viewCount">view_count</isNotEmpty>
                                     </dynamic>
         VALUES
         <dynamic prepend="(" close=")">
@@ -292,6 +301,7 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
                                                                                                             <isNotEmpty  prepend="," property="cmtNumLv2">#cmtNumLv2#</isNotEmpty>
                                                                                                             <isNotEmpty  prepend="," property="cmtNumLv1">#cmtNumLv1#</isNotEmpty>
                                                                                                             <isNotEmpty  prepend="," property="cmtNum">#cmtNum#</isNotEmpty>
+                                                                                                            <isNotEmpty  prepend="," property="viewCount">#viewCount#</isNotEmpty>
                                                         </dynamic>
         <selectKey resultClass="int" type="post" keyProperty="id">
             SELECT last_insert_id() AS id

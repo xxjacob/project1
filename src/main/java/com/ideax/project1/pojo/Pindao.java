@@ -18,6 +18,14 @@ public class Pindao implements Serializable{
     private String name;
 	/** order_num **/
     private Integer orderNum;
+	/** logo **/
+    private String logo;
+	/** color **/
+    private String color;
+	/** css_style **/
+    private String cssStyle;
+	/** page_id **/
+    private Integer pageId;
 
 	
    /**
@@ -69,6 +77,74 @@ public class Pindao implements Serializable{
     */
    public void setOrderNum(Integer orderNum) {
        this.orderNum = orderNum;
+   }
+	
+   /**
+    * 获取属性:logo
+    * logo
+    * @return logo
+    */
+   public String getLogo() {
+       return logo;
+   }
+   /**
+    * 设置属性:logo
+    * logo
+    * @param logo
+    */
+   public void setLogo(String logo) {
+       this.logo = logo;
+   }
+	
+   /**
+    * 获取属性:color
+    * color
+    * @return color
+    */
+   public String getColor() {
+       return color;
+   }
+   /**
+    * 设置属性:color
+    * color
+    * @param color
+    */
+   public void setColor(String color) {
+       this.color = color;
+   }
+	
+   /**
+    * 获取属性:cssStyle
+    * css_style
+    * @return cssStyle
+    */
+   public String getCssStyle() {
+       return cssStyle;
+   }
+   /**
+    * 设置属性:cssStyle
+    * css_style
+    * @param cssStyle
+    */
+   public void setCssStyle(String cssStyle) {
+       this.cssStyle = cssStyle;
+   }
+	
+   /**
+    * 获取属性:pageId
+    * page_id
+    * @return pageId
+    */
+   public Integer getPageId() {
+       return pageId;
+   }
+   /**
+    * 设置属性:pageId
+    * page_id
+    * @param pageId
+    */
+   public void setPageId(Integer pageId) {
+       this.pageId = pageId;
    }
 
 	/**

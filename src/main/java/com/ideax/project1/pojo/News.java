@@ -54,6 +54,8 @@ public class News implements Serializable{
     private Integer cmtNumLv1;
 	/** cmt_num **/
     private Integer cmtNum;
+	/** 访问量 **/
+    private Integer viewCount;
 
 	
    /**
@@ -411,6 +413,23 @@ public class News implements Serializable{
     */
    public void setCmtNum(Integer cmtNum) {
        this.cmtNum = cmtNum;
+   }
+	
+   /**
+    * 获取属性:viewCount
+    * 访问量
+    * @return viewCount
+    */
+   public Integer getViewCount() {
+       return viewCount;
+   }
+   /**
+    * 设置属性:viewCount
+    * 访问量
+    * @param viewCount
+    */
+   public void setViewCount(Integer viewCount) {
+       this.viewCount = viewCount;
    }
 
 	/**

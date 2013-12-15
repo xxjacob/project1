@@ -354,6 +354,25 @@ public class NewsQuery extends BaseQuery {
     	this.cmtNum = cmtNum;
     	return this;
     }
+	/** 访问量 **/
+    private Integer viewCount;
+	/**
+    * 获取属性:viewCount
+    * 访问量
+    * @return viewCount
+    */
+	public Integer getViewCount () {
+    	return viewCount;
+   	}
+   	/**
+     * 设置属性:viewCount
+     * 访问量
+     * @param viewCount
+     */
+    public NewsQuery setViewCount(Integer viewCount) {
+    	this.viewCount = viewCount;
+    	return this;
+    }
 	/**==============================批量查询时的Order条件顺序设置==================================**/
 	public class OrderField{
 		public OrderField(String fieldName, String order) {
@@ -548,6 +567,14 @@ public class NewsQuery extends BaseQuery {
 	 */	
 	public NewsQuery orderbyCmtNum(boolean isAsc){
 		orderFields.add(new OrderField("cmt_num",isAsc?"ASC":"DESC"));
+		return this;
+	}
+	/**
+	 * 设置排序按属性：访问量
+	 * @param isAsc 是否升序，否则为降序
+	 */	
+	public NewsQuery orderbyViewCount(boolean isAsc){
+		orderFields.add(new OrderField("view_count",isAsc?"ASC":"DESC"));
 		return this;
 	}
 }

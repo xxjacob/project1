@@ -16,4 +16,5 @@
     <sqlMap resource="sqlmap/news-sqlmap.xml" />
     <sqlMap resource="sqlmap/pindao-sqlmap.xml" />
     <sqlMap resource="sqlmap/user-sqlmap.xml" />
+    <sqlMap resource="sqlmap/admin-sqlmap.xml" />
 </sqlMapConfig>

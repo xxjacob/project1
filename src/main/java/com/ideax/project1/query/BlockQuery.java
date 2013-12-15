@@ -88,6 +88,44 @@ public class BlockQuery extends BaseQuery {
     	this.pageId = pageId;
     	return this;
     }
+	/** pindao_id **/
+    private Integer pindaoId;
+	/**
+    * 获取属性:pindaoId
+    * pindao_id
+    * @return pindaoId
+    */
+	public Integer getPindaoId () {
+    	return pindaoId;
+   	}
+   	/**
+     * 设置属性:pindaoId
+     * pindao_id
+     * @param pindaoId
+     */
+    public BlockQuery setPindaoId(Integer pindaoId) {
+    	this.pindaoId = pindaoId;
+    	return this;
+    }
+	/** lanmu_id **/
+    private Integer lanmuId;
+	/**
+    * 获取属性:lanmuId
+    * lanmu_id
+    * @return lanmuId
+    */
+	public Integer getLanmuId () {
+    	return lanmuId;
+   	}
+   	/**
+     * 设置属性:lanmuId
+     * lanmu_id
+     * @param lanmuId
+     */
+    public BlockQuery setLanmuId(Integer lanmuId) {
+    	this.lanmuId = lanmuId;
+    	return this;
+    }
 	/** block_name **/
     private String blockName;
 	/**
@@ -317,6 +355,22 @@ public class BlockQuery extends BaseQuery {
 	 */	
 	public BlockQuery orderbyPageId(boolean isAsc){
 		orderFields.add(new OrderField("page_id",isAsc?"ASC":"DESC"));
+		return this;
+	}
+	/**
+	 * 设置排序按属性：pindao_id
+	 * @param isAsc 是否升序，否则为降序
+	 */	
+	public BlockQuery orderbyPindaoId(boolean isAsc){
+		orderFields.add(new OrderField("pindao_id",isAsc?"ASC":"DESC"));
+		return this;
+	}
+	/**
+	 * 设置排序按属性：lanmu_id
+	 * @param isAsc 是否升序，否则为降序
+	 */	
+	public BlockQuery orderbyLanmuId(boolean isAsc){
+		orderFields.add(new OrderField("lanmu_id",isAsc?"ASC":"DESC"));
 		return this;
 	}
 	/**

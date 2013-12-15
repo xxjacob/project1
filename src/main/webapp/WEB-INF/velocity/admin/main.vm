@@ -81,46 +81,37 @@
 					<input type="hidden" id="blockgroup" name="blockgroup" value="$!{blockgroup[0].blockGroup}">
                     <fieldset>
                         <div id="legend" class="">
-                            <legend class="">设置</legend>
+                            <legend class=""><a href="/asdf/news/list">文章修改查看</a>&nbsp;<a href="/asdf/news/updatepage">添加</a></legend>
                         </div>
-						#foreach($block in $blockgroup)
-                        <div class="control-group">
-                            <label class="control-label">${block.blockName}</label>
-                            <div class="controls controls-row">
-								<input class="span3" type="text" id="title_${block.id}" name="title_${block.id}" placeholder="标题" value="${block.title}" />
-                                <input class="span3" type="text" id="url_${block.id}" name="url_${block.id}" placeholder="链接" value="${block.url}" />
-								<select id='is_bold_${block.id}' name='is_bold_${block.id}' class="span2">
-                                    <option value='0' #if($block.isBold == 0) selected #end>标题不加粗</option>
-                                    <option value='1' #if($block.isBold == 1) selected #end>标题加粗</option>
-                                </select>
-                            </div>
+                        <div id="legend" class="">
+                            <legend class="">首页、正文页、栏目页(所有栏目页通用一套配置) 静态链接设置</legend>
                         </div>
-						<div class="control-group">
-							<div class="controls controls-row">
-                                <input class="span2" type="text" id="news_id_${block.id}" name="news_id_${block.id}" placeholder="新闻id" #if($block.newsId gt 0) value="${block.newsId}" #end/>
-								<input type="button"  class="span2 btn btn-info" id="getNews${block.id}" value="获取" />
-                                <select class="span2" id='type_${block.id}' name='type_${block.id}' class="span2">
-                                    <option value='2' #if($block.type == 2) selected #end>本站新闻链接</option>
-                                    <option value='3' #if($block.type == 3) selected #end>本站图片新闻链接</option>
-									<option value='0' #if($block.type == 0) selected #end>外站文字链接</option>
-                                    <option value='1' #if($block.type == 1) selected #end>外站图片新闻链接</option>
-                                    <!--<option value='4' #if($block.isBold == 4) selected #end>静态块</option>-->
-                                </select>
-								<input class="span3" type="text" id="img_${block.id}" name="img_${block.id}" placeholder="图片地址" value="${block.img}"/>
-                            </div>
+                        <dl class="dl-horizontal">
+                        #foreach($bg in $blockgroups.entrySet())
+                            #if($bg.key != 3)
+                            #foreach($bgg in $bg.value.entrySet())
+                          <dt>$bg.key</dt>
+                          <dd><a href="/asdf/block/setting?blockgroup=$!{bgg.key}">$!{bgg.value.blockName} 等</a></dd>
+                            #end
+                            #end
+                        #end
+                        </dl>
+                        
+                        <div id="legend" class="">
+                            <legend class="">各个频道页静态链接设置</legend>
                         </div>
-						<div class="control-group">
-							<div class="controls controls-row">
-    							<input id="file_upload${block.id}" type="button" multiple="false">
-							</div>
-                        </div>
-						#end
-						<div class="control-group">
-                            <label class="control-label"></label>
-                            <div class="controls">
-                              <button id="submitBtn" type="submit" class="btn btn-primary" data-loading-text="提交...">提交</button>
-                            </div>
-                        </div>
+                        <dl class="dl-horizontal">
+                        #foreach($bg in $blockgroups.entrySet())
+                            #if($bg.key == 3)
+                            #foreach($bgg in $bg.value.entrySet())
+                            #set($pindao = $pindaoMap[$bgg.value.pindaoId])
+                          <dt>$bg.key</dt>
+                          <dd><a href="/asdf/block/setting?blockgroup=$!{bgg.key}">$!{pindao.name}-$!{bgg.value.blockName} 等</a></dd>
+                            #end
+                            #end
+                        #end
+                        </dl>
+                        
                     </fieldset>
                 </form>
             </div>

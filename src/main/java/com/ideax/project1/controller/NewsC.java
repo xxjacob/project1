@@ -88,9 +88,18 @@ public class NewsC {
 		model.addAttribute("refIds", refIds);
 		model.addAttribute("refComments", requiredRef);
 		// 最新消息
-		model.addAttribute("newestNews", newsService.getNewsList(lmid, 1, 6));
+		model.addAttribute("newestNews", newsService.getNewsList(1, 6));
 		// 导航栏
 		model.addAttribute("pdmap", pindaoService.getPindaoMap());
+
+		// 点击排名
+		model.addAttribute("hot", newsService.getNewsListByViewcount(0, 1, 5));
+
+		// 增加访问量
+		News update = new News();
+		update.setId(news.getId());
+		update.setViewCount(news.getViewCount() + 1);
+		newsService.updateNewsById(update);
 		return "view";
 	}
 

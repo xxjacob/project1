@@ -11,14 +11,15 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
                     <result property="name" column="name" />
                     <result property="pdId" column="pd_id" />
                     <result property="orderNum" column="order_num" />
+                    <result property="pageId" column="page_id" />
             </resultMap>
     <!-- Select SQL -->
     <sql id="lanmu.selector">
-        SELECT id,name,pd_id,order_num FROM lanmu
+        SELECT id,name,pd_id,order_num,page_id FROM lanmu
     </sql>
     <sql id="lanmuList.where">
 		<dynamic prepend=" WHERE ">
-            <isNotNull property="id" prepend=" AND ">id=#id#</isNotNull><isNotNull property="name" prepend=" AND ">name=#name#</isNotNull><isNotNull property="pdId" prepend=" AND ">pd_id=#pdId#</isNotNull><isNotNull property="orderNum" prepend=" AND ">order_num=#orderNum#</isNotNull>        </dynamic>
+            <isNotNull property="id" prepend=" AND ">id=#id#</isNotNull><isNotNull property="name" prepend=" AND ">name=#name#</isNotNull><isNotNull property="pdId" prepend=" AND ">pd_id=#pdId#</isNotNull><isNotNull property="orderNum" prepend=" AND ">order_num=#orderNum#</isNotNull><isNotNull property="pageId" prepend=" AND ">page_id=#pageId#</isNotNull>        </dynamic>
     </sql>
     <sql id="lanmuList.order">
         <dynamic prepend=" ORDER BY ">
@@ -65,6 +66,9 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
                                                                 <isNotNull prepend="," property="orderNum">
                         order_num = #orderNum#
                     </isNotNull>
+                                                                <isNotNull prepend="," property="pageId">
+                        page_id = #pageId#
+                    </isNotNull>
                                         </dynamic>
             WHERE id in
             <iterate conjunction="," open="(" close=")" property="keys">
@@ -82,6 +86,9 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
                     </isNotNull>
                                                                 <isNotNull prepend="," property="orderNum">
                         order_num = #orderNum#
+                    </isNotNull>
+                                                                <isNotNull prepend="," property="pageId">
+                        page_id = #pageId#
                     </isNotNull>
                                         </dynamic>
             WHERE id = #id#
@@ -107,8 +114,9 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
                     name,
                 pd_id,
                 order_num,
+                page_id,
                 )
-    VALUES(#name#,#pdId#,#orderNum#,    )
+    VALUES(#name#,#pdId#,#orderNum#,#pageId#,    )
     <selectKey resultClass="long" type="post" keyProperty="id">
     SELECT last_insert_id() AS id
     </selectKey>
@@ -120,12 +128,14 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
                                                                             <isNotEmpty prepend="," property="name">name</isNotEmpty>
                                                                 <isNotEmpty prepend="," property="pdId">pd_id</isNotEmpty>
                                                                 <isNotEmpty prepend="," property="orderNum">order_num</isNotEmpty>
+                                                                <isNotEmpty prepend="," property="pageId">page_id</isNotEmpty>
                                     </dynamic>
         VALUES
         <dynamic prepend="(" close=")">
                                                                                                     <isNotEmpty  prepend="," property="name">#name#</isNotEmpty>
                                                                                                             <isNotEmpty  prepend="," property="pdId">#pdId#</isNotEmpty>
                                                                                                             <isNotEmpty  prepend="," property="orderNum">#orderNum#</isNotEmpty>
+                                                                                                            <isNotEmpty  prepend="," property="pageId">#pageId#</isNotEmpty>
                                                         </dynamic>
         <selectKey resultClass="int" type="post" keyProperty="id">
             SELECT last_insert_id() AS id

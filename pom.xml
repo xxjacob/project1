@@ -12,6 +12,11 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.1</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-collections4</artifactId>
+			<version>4.0</version>
+		</dependency>
 
 		<!-- spring -->
 		<dependency>
@@ -125,7 +130,7 @@
 			<artifactId>tomcat-jdbc</artifactId>
 			<version>7.0.47</version>
 		</dependency>
-		<!--  -->
+		<!-- -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
@@ -169,8 +174,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
 					<encoding>UTF-8</encoding>
-					<source>${java-version}</source>
-					<target>${java-version}</target>
+					<source>1.6</source>
+					<target>1.6</target>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -218,9 +223,11 @@
 		<profile>
 			<id>prod</id>
 			<properties>
-				<app.jdbc.url>jdbc\:mysql\://10.46.7.20\:6014,10.42.8.18\:6014/schema?useUnicode\=true&amp;characterEncoding\=UTF8</app.jdbc.url>
-				<app.jdbc.username>developer_w</app.jdbc.username>
-				<app.jdbc.password>v60KOStx8cMQrv60</app.jdbc.password>
+				<log.base>/data/3g/logs</log.base>
+				<img.upload.path>/data/www/3g.zhanguojs.com/static/upload/</img.upload.path>
+				<app.jdbc.url>jdbc\:mysql\://42.96.158.199\:6610/schema?useUnicode\=true&amp;characterEncoding\=UTF8</app.jdbc.url>
+				<app.jdbc.username>zgjs_db_admin</app.jdbc.username>
+				<app.jdbc.password>zgjsmeihaoadmin</app.jdbc.password>
 			</properties>
 		</profile>
 	</profiles>

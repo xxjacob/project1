@@ -88,6 +88,25 @@ public class LanmuQuery extends BaseQuery {
     	this.orderNum = orderNum;
     	return this;
     }
+	/** page_id **/
+    private Integer pageId;
+	/**
+    * 获取属性:pageId
+    * page_id
+    * @return pageId
+    */
+	public Integer getPageId () {
+    	return pageId;
+   	}
+   	/**
+     * 设置属性:pageId
+     * page_id
+     * @param pageId
+     */
+    public LanmuQuery setPageId(Integer pageId) {
+    	this.pageId = pageId;
+    	return this;
+    }
 	/**==============================批量查询时的Order条件顺序设置==================================**/
 	public class OrderField{
 		public OrderField(String fieldName, String order) {
@@ -146,6 +165,14 @@ public class LanmuQuery extends BaseQuery {
 	 */	
 	public LanmuQuery orderbyOrderNum(boolean isAsc){
 		orderFields.add(new OrderField("order_num",isAsc?"ASC":"DESC"));
+		return this;
+	}
+	/**
+	 * 设置排序按属性：page_id
+	 * @param isAsc 是否升序，否则为降序
+	 */	
+	public LanmuQuery orderbyPageId(boolean isAsc){
+		orderFields.add(new OrderField("page_id",isAsc?"ASC":"DESC"));
 		return this;
 	}
 }

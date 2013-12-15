@@ -20,6 +20,10 @@ public class Block implements Serializable{
     private Integer orderNum;
 	/** 1首页 **/
     private Integer pageId;
+	/** pindao_id **/
+    private Integer pindaoId;
+	/** lanmu_id **/
+    private Integer lanmuId;
 	/** block_name **/
     private String blockName;
 	/** url **/
@@ -110,6 +114,40 @@ public class Block implements Serializable{
     */
    public void setPageId(Integer pageId) {
        this.pageId = pageId;
+   }
+	
+   /**
+    * 获取属性:pindaoId
+    * pindao_id
+    * @return pindaoId
+    */
+   public Integer getPindaoId() {
+       return pindaoId;
+   }
+   /**
+    * 设置属性:pindaoId
+    * pindao_id
+    * @param pindaoId
+    */
+   public void setPindaoId(Integer pindaoId) {
+       this.pindaoId = pindaoId;
+   }
+	
+   /**
+    * 获取属性:lanmuId
+    * lanmu_id
+    * @return lanmuId
+    */
+   public Integer getLanmuId() {
+       return lanmuId;
+   }
+   /**
+    * 设置属性:lanmuId
+    * lanmu_id
+    * @param lanmuId
+    */
+   public void setLanmuId(Integer lanmuId) {
+       this.lanmuId = lanmuId;
    }
 	
    /**

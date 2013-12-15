@@ -20,6 +20,9 @@
 		#end
         <div class="row">
             <div class="span12">
+                <div id="legend" class="">
+                            <legend class="">登录</legend>
+                        </div>
                 <form class="form-horizontal" action="/asdf/dologin" method="post">
                   <div class="control-group">
                     <label class="control-label" for="username">用户名</label>

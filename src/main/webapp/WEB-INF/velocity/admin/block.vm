@@ -97,9 +97,9 @@
                         </div>
 						<div class="control-group">
 							<div class="controls controls-row">
-								<div class="input-append">
-                                <input class="span2" type="text" id="news_id_${block.id}" name="news_id_${block.id}" placeholder="新闻id" #if($block.newsId gt 0) value="${block.newsId}" #end/>
-								<input type="button"  class="span2 btn btn-info" id="getNews${block.id}" value="获取" />
+								<div class="input-append span4">
+                                <input  type="text" id="news_id_${block.id}" name="news_id_${block.id}" placeholder="新闻id" #if($block.newsId gt 0) value="${block.newsId}" #end/>
+								<input type="button"  class="btn btn-info" id="getNews${block.id}" value="获取" />
                                 </div>
                                 <select class="span2" id='type_${block.id}' name='type_${block.id}' class="span2">
                                     <option value='2' #if($block.type == 2) selected #end>本站新闻链接</option>

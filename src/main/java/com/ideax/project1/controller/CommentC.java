@@ -85,9 +85,17 @@ public class CommentC {
 	@RequestMapping("/comments")
 	public String commentlist(@RequestParam int nid, @RequestParam(required = false, defaultValue = "1") int page,
 			HttpServletRequest request, ModelMap model) {
+		News news = newsService.getNewsById(nid);
+		model.addAttribute("news", news);
+		// pindao
+		int lmid = news.getLmId();
+		Lanmu lm = pindaoService.getLanmuByKey(lmid);
+		model.addAttribute("lanmu", lm);
+		if (lm != null)
+			model.addAttribute("pindao", pindaoService.getPindaoByKey(lm.getPdId()));
 		// 评论
 		Map<Integer, Comment> requiredRef = new HashMap<Integer, Comment>();
-		Result<Comment> rst = commentService.getCommentPageByNewsid(nid, 1, 10, requiredRef);
+		Result<Comment> rst = commentService.getCommentPageByNewsid(nid, page, 10, requiredRef);
 		List<Comment> comments = rst.getList();
 		model.addAttribute("comments", comments);
 		List<int[]> refIds = new ArrayList<int[]>(comments.size());
@@ -102,8 +110,13 @@ public class CommentC {
 				refIds.add(iss);
 			}
 		}
+		model.addAttribute("refIds", refIds);
+		model.addAttribute("refComments", requiredRef);
 		model.addAttribute("total", rst.getCount() / 10 + (rst.getCount() % 10 > 0 ? 1 : 0));
 		model.addAttribute("page", page);
+		model.addAttribute("count", rst.getCount());
+		// 导航栏
+		model.addAttribute("pdmap", pindaoService.getPindaoMap());
 		return "commentlist";
 	}
 }

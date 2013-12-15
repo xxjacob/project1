@@ -4,9 +4,9 @@
     #elseif($blk.type == 1)
         <a href="${blk.url}"><img src="${blk.img}"/></a>
     #elseif($blk.type == 2)
-        <a #if($blk.isBold == true) style="font-weight:bold;"#end href="view?id=${blk.newId}">${blk.title}</a>
+        <a #if($blk.isBold == true) style="font-weight:bold;"#end href="view?id=${blk.newsId}">${blk.title}</a>
     #elseif($blk.type == 3)
-        <a href="view?id=${blk.newId}"><img src="${blk.img}"/></a>
+        <a href="view?id=${blk.newsId}"><img src="${blk.img}"/></a>
     #elseif($blk.type == 4)
         ${blk.html}
     #end

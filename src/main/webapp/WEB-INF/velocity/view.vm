@@ -4,9 +4,9 @@
     #elseif($blk.type == 1)
         <a href="${blk.url}"><img src="${blk.img}"/></a>
     #elseif($blk.type == 2)
-        <a #if($blk.isBold == true) style="font-weight:bold;"#end href="view?id=${blk.newId}">${blk.title}</a>
+        <a #if($blk.isBold == true) style="font-weight:bold;"#end href="view?id=$!{blk.newsId}">${blk.title}</a>
     #elseif($blk.type == 3)
-        <a href="view?id=${blk.newId}"><img src="${blk.img}"/></a>
+        <a href="view?id=$!{blk.newsId}"><img src="${blk.img}"/></a>
     #elseif($blk.type == 4)
         ${blk.html}
     #end
@@ -109,17 +109,17 @@
 									<span id="lv1">喜&nbsp;($!{news.cmtNumLv1})</span> </a>
 							</li>
 						<li> 
-								<a href="javascript:toupiao('lv2',${news.id},'怒',$!{news.cmtNumLv2}));" >
+								<a href="javascript:toupiao('lv2',${news.id},'怒',$!{news.cmtNumLv2});" >
 									<img src="/s/img/biaoqing2.jpg" /> 
 									<span id="lv2">怒&nbsp;($!{news.cmtNumLv2})</span> </a>
 							</li>
 						<li> 
-								<a href="javascript:toupiao('lv3',${news.id},'哀',$!{news.cmtNumLv3}));" >
+								<a href="javascript:toupiao('lv3',${news.id},'哀',$!{news.cmtNumLv3});" >
 									<img src="/s/img/biaoqing3.jpg" /> 
 									<span id="lv3">哀&nbsp;(${news.cmtNumLv4})</span> </a>
 							</li>
 						<li> 
-								<a href="javascript:toupiao('lv4',${news.id},'怨',$!{news.cmtNumLv4}));" >
+								<a href="javascript:toupiao('lv4',${news.id},'怨',$!{news.cmtNumLv4});" >
 									<img src="/s/img/biaoqing4.jpg" /> 
 									<span id="lv4">怨&nbsp;(${news.cmtNumLv4})</span> </a>
 							</li>
@@ -269,7 +269,7 @@ xmlHttp.send(null);
 				</div>
 				<div>
 					<p>
-						<a href="comments?id=$!{news.id}">&gt;&gt;全部评论</a>
+						<a href="comments?nid=$!{news.id}">&gt;&gt;全部评论</a>
 					</p>
 				</div>
  
@@ -291,14 +291,14 @@ xmlHttp.send(null);
 </div>
 
 
-			<div style="clear: both;">
+			<!--<div style="clear: both;">
 				<p>
 							<a href="view.html?id=525580">上一条：外媒猜测金正恩牢牢掌控局势</a>
 						</p>
 					<p>
 							<a href="view.html?id=525598">下一条：俄2013年因腐败损失近40亿元</a>
 						</p>
-					</div>
+					</div>-->
 			<!--
 			动态广告位碎片      正文页-广告位-相关新闻上方 120
 			-->
@@ -343,21 +343,11 @@ xmlHttp.send(null);
 				<a href="#">[点击排行]</a>
 			</div>
 			<div class="block">
-				<p>
-						<a href="view.html?id=524800">安倍夫人学泡菜 称给老公吃</a>
-					</p>
-				<p>
-						<a href="view.html?id=525568">世界看到"自信强大"的中国</a>
-					</p>
-				<p>
-						<a href="view.html?id=525824">日原子能机构拟要求东电赔偿</a>
-					</p>
-				<p>
-						<a href="view.html?id=525569">印专家:中国很自信也很强硬</a>
-					</p>
-				<p>
-						<a href="view.html?id=525570">六成国外受访者称中国是强国</a>
-					</p>
+#foreach($n in $hot)
+<p>
+    <a href="view.html?id=$!{n.id}">$!{n.shortTitle}</a>
+</p>
+#end
 				</div>
 
 			<!--
