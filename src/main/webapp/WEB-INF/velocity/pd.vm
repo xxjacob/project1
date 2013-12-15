@@ -1,0 +1,100 @@
+#define( $link )
+    #if($blk.type == 0)
+        <a #if($blk.isBold == true) style="font-weight:bold;"#end href="${blk.url}">${blk.title}</a>
+    #elseif($blk.type == 1)
+        <a href="${blk.url}"><img src="${blk.img}"/></a>
+    #elseif($blk.type == 2)
+        <a #if($blk.isBold == true) style="font-weight:bold;"#end href="view?id=$!{blk.newsId}">${blk.title}</a>
+    #elseif($blk.type == 3)
+        <a href="view?id=$!{blk.newsId}"><img src="${blk.img}"/></a>
+    #elseif($blk.type == 4)
+        ${blk.html}
+    #end
+#end
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="keywords" content="环球新闻网,新闻，环球，军事，新闻网，环球网，环球时报，娱乐，国内新闻，图片新闻网" />
+<meta name="description" content="频道页" />            
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="viewport"
+    content="width=device-width, minimum-scale=1.0, maximum-scale=2.0" />
+<title>国际_手机环球网</title>
+<link rel="stylesheet" href="/s/css/style.css" type="text/css" />
+</head>
+
+<body>
+<div class="main">
+        <div>
+    </div>
+<div class="loginline">
+    <a href="nav.html" style="font-weight:bold;float:left;">导航</a>
+</div>
+<!-- <div class="logoline">  -->
+<div>
+    <div style="float:left;">
+        <a href="/"><img src="/s/img/$!{pindao.logo}" alt="logo" style="width:100%;"/></a>
+    </div>
+    
+</div>
+<div style="clear:both;">
+</div>
+<!--
+            频道子栏目导航
+            -->
+        <div class="$!{pindao.cssStyle}">
+            <div style="clear: both;"></div>
+            #foreach($lm in $lanmus)
+            <p style="float:left;margin-left:3px;width:90px;">
+                    <a href="lm?id=$!{lm.id}">$!{lm.name}</a>
+                </p>
+            #end
+            <div style="clear: both;"></div>
+        </div>
+
+        <!-- 静态碎片 -->
+        <div class="lanmu-line">
+            <img src="/s/img/r.png" /> <a href="">[热点]</a> <a
+                href="gd.html?id=31">滚动</a> 
+        </div>
+        <!-- 动态碎片推荐位     热点推荐 -->
+        <div>
+            <div class="block">
+   #foreach( $blk in $blocks)
+    <p>
+        $link
+    </p>
+#end
+        </div>
+
+</div>
+
+
+        <!--  循环显示子频道 -->
+#foreach($lm in $lanmus)
+<div class="lanmu-line">
+    <img src="/s/img/r.png" /> <a
+        href="lm?id=$!{lm.ld}">[$!{lm.name}]</a>
+</div>
+<div class="block">
+#set($newss = $newsss[$foreach.index])
+#foreach($n in $newss)
+<p>
+    <a href="view.html?id=$!{n.id}">$!{n.shortTitle}</a>
+</p>
+#end
+</div>
+#end
+        <!--
+热点版块直达
+-->
+<div class="$!{pindao.cssStyle}">
+#parse("frag/menu.vm")
+</div>
+#include( "frag/foot.htm" ) 
+</div>
+
+</body>
+</html>

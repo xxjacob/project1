@@ -1,0 +1,180 @@
+#define( $link )
+    #if($blk.type == 0)
+        <a #if($blk.isBold == true) style="font-weight:bold;"#end href="${blk.url}">${blk.title}</a>
+    #elseif($blk.type == 1)
+        <a href="${blk.url}"><img src="${blk.img}"/></a>
+    #elseif($blk.type == 2)
+        <a #if($blk.isBold == true) style="font-weight:bold;"#end href="view?id=$!{blk.newsId}">${blk.title}</a>
+    #elseif($blk.type == 3)
+        <a href="view?id=$!{blk.newsId}"><img src="${blk.img}"/></a>
+    #elseif($blk.type == 4)
+        ${blk.html}
+    #end
+#end
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="keywords" content="环球新闻网,新闻，环球，军事，新闻网，环球网，环球时报，娱乐，国内新闻，图片新闻网" />
+<meta name="description" content="栏目页" />     
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="Cache-Control" content="no-cache"/>
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=2.0"/>
+        <title>中国军事_军事_手机环球网</title>
+        <link rel="stylesheet" href="/s/css/style.css" type="text/css" />
+</head>
+    <body> 
+<div class="main">
+            <div>
+    </div>
+<div class="loginline">
+    <a href="nav.html" style="font-weight:bold;float:left;">导航</a>
+</div>
+<!-- <div class="logoline">  -->
+<div>
+    <div style="float:left;">
+        <a href="index.html"><img src="/s/img/$!{pindao.logo}" alt="logo" style="width:100%;"/></a>
+    </div>
+     
+</div>
+<div style="clear:both;">
+</div>
+<!--
+            导航条
+            -->
+            <div class="$!{pindao.cssStyle}">
+                <a href="/">XXX网</a>&gt;
+                <a href="pd?id=$!{pindao.id}">$!{pindao.name}</a>&gt;
+                <a href="lm?id=$!{lanmu.id}">$!{lanmu.name}</a>
+            </div>
+<!--
+            动态广告位碎片      栏目页-广告位-新闻列表上部 125
+            -->
+        
+            <div>
+                    <div class="block">
+    </div>
+
+</div>
+
+
+            <!--
+            栏目页-新闻列表
+            -->
+            <div class="block">
+#foreach($n in $newss)
+<p>
+    <a href="view.html?id=$!{n.id}">$!{n.shortTitle}</a>
+</p>
+#end
+                </div>
+            <div style="text-align:center;">
+                                                             第 <font color='red'>$page</font>/$total 页 
+                    <a href="/lm?id=$!{lanmu.id}&page=1">首页</a>
+                    #set($v = $page - 1)
+                    #if($page > 1)<a href="/lm?id=$!{lanmu.id}&page=$v">|上一页 </a>#end 
+                    #set($v = $page + 1)
+                    #if($page < $total) <a href="/lm?id=$!{news.id}&page=$v">|下一页</a>#end
+                    <a href="/lm?id=$!{lanmu.id}&page=$total">|尾页</a></div>
+
+ 
+        <!--
+            动态广告位碎片      栏目页-广告位-新闻列表下部 126
+            -->
+        
+            <div>
+                    <div class="block">
+    </div>
+
+</div>
+
+
+
+            <div class="lanmu-line">
+                <img src="/s/img/r.png"/>
+                <a href="#">[军事点击排行]</a>
+            </div>
+            <div class="block">
+                <p>
+                        <a href="view.html?id=526336">又有大批女新兵入伍北海舰队</a>
+                    </p>
+                <p>
+                        <a href="view.html?id=529664">我海军登陆舰女兵生活区曝光</a>
+                    </p>
+                <p>
+                        <a href="view.html?id=525313">世界各国空军女飞行员的英姿</a>
+                    </p>
+                <p>
+                        <a href="view.html?id=527873">日媒：美在纵容中国设识别区</a>
+                    </p>
+                <p>
+                        <a href="view.html?id=525826">港媒：中国加强演习对外警告</a>
+                    </p>
+                </div>
+            <div class="lanmu-line">
+                <img src="/s/img/r.png"/>
+                [频道精选]
+            </div>
+
+
+        <!--
+            动态广告位碎片      栏目---频道精选---新闻 127
+            -->
+        
+            <div>
+                    <div class="block">
+    </div>
+
+    <div class="block">
+#foreach( $blk in $blocks[15])
+    <p>
+        $link
+    </p>
+#end
+        </div>
+
+</div>
+            
+            <!--
+            动态广告位碎片      栏目---频道精选---广告 133
+            -->
+        
+            <div>
+                    <div class="block">
+    </div>
+
+</div>              
+
+<!--
+热点版块直达
+-->
+<div class="$!{pindao.cssStyle}">
+    #parse("frag/menu.vm")
+</div>
+
+<div class="foot">
+    <p>
+        <a href="partner.html">合作</a> |<a href="friendslink.html">友链</a> |<a href="feedback.html">留言</a> 
+    </p>
+    <p>
+        <a href="index.html">首页</a> |<a href="nav.html">导航</a> |<a href="save.html">收藏</a> 
+    </p>
+    <p>
+        <a href="http://3g.huanqiu.com/lm.html?v=1&id=40">简版</a> |
+        <a href="http://3g.huanqiu.com/lm.html?v=3&id=40">彩版</a> |
+        <a href="http://www.huanqiu.com">PC版</a> |
+        <a href="http://mt.huanqiu.com">触屏版</a>
+    </p>
+    <p>手机环球网</p>
+    <p style="text-align:center;">
+        环球网版权所有 
+     </p>
+     <p>[2013-12-15 15:28:26]</p>
+     <p><a href="#" class="gotop"><span>↑</span> TOP</a></p>
+     <br/>
+      <br/>
+</div>
+</div>
+
+    </body>
+</html>

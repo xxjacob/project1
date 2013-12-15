@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>index</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://libs.baidu.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <link href="http://libs.baidu.com/bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="/s/js/jquery.uploadify.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/s/css/uploadify.css">
+        <script>
+        var initUploadBtn = function(id){
+            $(id).uploadify({
+                    height        : 25,
+                    swf           : '/s/swf/uploadify.swf',
+                    uploader      : '/upload',
+                    width         : 60,
+                    fileTypeExts:'*.gif; *.jpg; *.png',
+                    'fileTypeDesc' : '图片',
+                    buttonText:'传图',
+                    preventCaching:false,
+                    multi:false,
+                    'onUploadSuccess' : function(file, data, response) {
+                        var json = eval('('+data+')');
+                        if (json.filename)
+                            $('#coverImg').val('/img/upload/'+json.filename);
+                        else
+                            alert('上传图片出错!'+data);
+                    },
+                    'onUploadError' : function(file, errorCode, errorMsg, errorString) {
+                        alert('上传图片出错!');
+                    }
+                });
+        }
+        
+        var pdlm = {
+        #foreach( $foo in $pdmap.entrySet() )
+            $!{foo.key.id}:[#foreach($bar in $foo.value) {'id':$bar.id,'name':'$bar.name'},  #end],
+        #end
+        };
+        
+        $(function(){
+            initUploadBtn("#file_upload_cover");
+            $("#file_upload_content").uploadify({
+                    height        : 25,
+                    swf           : '/s/swf/uploadify.swf',
+                    uploader      : '/upload',
+                    width         : 60,
+                    fileTypeExts:'*.gif; *.jpg; *.png',
+                    'fileTypeDesc' : '图片',
+                    buttonText:'内容插图',
+                    preventCaching:false,
+                    multi:false,
+                    'onUploadSuccess' : function(file, data, response) {
+                        var json = eval('('+data+')');
+                        if (json.filename)
+                            tinymce.activeEditor.execCommand('mceInsertContent', false, "<img src='/img/upload/"+json.filename+"' />");
+                        else
+                            alert('上传图片出错!'+data);
+                    },
+                    'onUploadError' : function(file, errorCode, errorMsg, errorString) {
+                        alert('上传图片出错!');
+                    }
+                });
+            
+            tinymce.init({
+                selector: "textarea",
+                width: 700,
+                height: 500,
+                language : 'zh_CN',
+                menubar : false,
+                plugins: [
+                 "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+                 "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+                 "save table contextmenu directionality emoticons template paste textcolor"
+               ],
+               toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link | print preview media fullpage | forecolor backcolor emoticons", 
+             });
+             
+             $('#pdId').change(function(){
+                var v = $(this).val();
+                var lms = pdlm[v];
+                var options = [];
+                for (var lm in lms){
+                    options.push("<option value="+lm.id+">lm.name</option>>");
+                }
+                $('#lmId').html(options.join());
+             })
+        })
+
+        </script>
+ </head>
+<body>
+    <div class="container-fluid">
+		#if($info)
+            <div class="alert alert-success">${info}</div>
+		#end
+        <div class="row">
+            <div class="span12">
+                <form action="/asdf/news/update" method="POST" class="form-horizontal">
+                    <input type="hidden" id="id" name="id"value="$!{news.id}">
+                    <fieldset>
+                        <div id="legend" class="">
+                            <legend class="">发布新闻</legend>
+                        </div>
+						<div class="control-group">
+                            <label class="control-label"><em style="color:red;">* </em>短标题</label>
+                            <div class="controls">
+								<input type="text" id="shortTitle" name="shortTitle" placeholder="短标题" value="$!{news.shortTitle}">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"><em style="color:red;">* </em>标题</label>
+                            <div class="controls">
+                                <input type="text" id="title" name="title" placeholder="标题" value="$!{news.title}">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"><em style="color:red;">* </em>来源</label>
+                            <div class="controls">
+                                <input type="text" id="source" name="source" placeholder="来源" value="$!{news.source}">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"><em style="color:red;">* </em>封面图片</label>
+                            <div class="controls  controls-row"">
+                                <input class="span4" type="text" id="coverImg" name="coverImg" placeholder="封面图片" value="$!{news.coverImg}">
+                            </div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label class="control-label">上传封面图片</label>
+                            <div class="controls  controls-row"">
+                                <input class="span2" id="file_upload_cover" type="button" multiple="false">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"><em style="color:red;">* </em>发布时间,默认当前时间,格式(2013-12-15 12:43:10)</label>
+                            <div class="controls">
+                                #set($millsecond = $news.sendTime * 1000)
+                                #set($s = $date.format("yyyy-MM-dd HH:mm:ss",$millsecond))
+                                <input class="span4" type="text" id="formatSendTime" name="formatSendTime" placeholder="发布时间" value="$!{s}">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                                <!-- Select Basic -->
+                            <label class="control-label"><em style="color:red;">* </em>频道/栏目</label>
+                            <div class="controls controls-row">
+                                <select id='pdId' name='pdId' class="span2" style="width:90px">
+                                    #foreach( $foo in $pdmap.keySet() ) #if($foreach.index == 0) #set($pd = $foo) #end <option value='$!{foo.id}' #if($foo.id == $news.pdId) #set($pd = $foo) selected #end>$!{foo.name}</option>
+                                    #end
+                                </select>
+                                <select id='lmId' name='lmId' class="span2"  style="width:90px" >
+                                    #foreach( $foo in $pdmap[$pd] )<option value='$!{foo.id}' #if($foo.id == $news.lmId) selected #end>$!{foo.name}</option>
+                                    #end
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">内容中插入</label>
+                            <div class="controls  controls-row"">
+                                <input id="file_upload_content" type="button" multiple="false">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"><em style="color:red;">* </em>内容编辑</label>
+                            <textarea name="content" id="textarea">$!{news.content}</textarea>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"></label>
+                            <div class="controls">
+                              <button id="submitBtn" type="submit" class="btn btn-primary" data-loading-text="提交...">提交</button>
+                            </div>
+                        </div>
+</fieldset>
+</form>
+                </div>
+            </div>
+        </div>
+</body>
+<!-- special  -->
+<script src="/s/js/tinymce/tinymce.min.js"></script>
+</html>
