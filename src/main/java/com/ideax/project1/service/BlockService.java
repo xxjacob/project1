@@ -2,8 +2,11 @@ package com.ideax.project1.service;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -120,15 +123,19 @@ public class BlockService implements InitializingBean {
 			Map<Integer, List<Block>> blocks = getAllBlocksByPageid(pageId);
 
 			VelocityEngine engine = velocityConfig.getVelocityEngine();
-			Template tpl = engine.getTemplate("index.vm");
+			Template tpl = engine.getTemplate("index.vm", "UTF-8");
 			System.out.println(tpl.getName());
+			tpl.setEncoding("UTF-8");
 			VelocityContext ctx = new VelocityContext();
 			ctx.put("blocks", blocks);
 			ctx.put("pdmap", pindaoService.getPindaoMap());
-			BufferedWriter writer = new BufferedWriter(new FileWriter(staticPath + Const.page_files.get(pageId)));
-			tpl.merge(ctx, writer);
-			writer.flush();
-			writer.close();
+			// BufferedWriter writer = new BufferedWriter(new
+			// FileWriter(staticPath + Const.page_files.get(pageId)));
+			OutputStreamWriter pw = new OutputStreamWriter(new FileOutputStream(
+					(staticPath + Const.page_files.get(pageId))), "UTF-8");
+			tpl.merge(ctx, pw);
+			pw.flush();
+			pw.close();
 			return;
 		} catch (ResourceNotFoundException e) {
 			logger.error("", e);

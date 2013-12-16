@@ -108,7 +108,7 @@ public class NewsC {
 		// header pindao
 		model.addAttribute("pdmap", pindaoService.getPindaoMap());
 		// block info
-		model.addAttribute("blocks", blockService.getBlockByBlockGroup(Const.PAGE_INDEX));
+		model.addAttribute("blocks", blockService.getAllBlocksByPageid(Const.PAGE_INDEX));
 		return "index";
 	}
 
