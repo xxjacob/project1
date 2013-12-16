@@ -7,6 +7,26 @@
     <script src="http://libs.baidu.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
     <link href="http://libs.baidu.com/bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script>
+        var pdlm = {
+        #foreach( $foo in $pdmap.entrySet() )
+            $!{foo.key.id}:[#foreach($bar in $foo.value) {'id':$bar.id,'name':'$bar.name'},  #end],
+        #end
+        };
+        
+        $(function(){
+             $('#pdId').change(function(){
+                var v = $(this).val();
+                var lms = pdlm[v];
+                var options = ["<option value=0>全部</option>"];
+                for (var lm in lms){
+                    options.push("<option value="+lms[lm].id+">"+lms[lm].name+"</option>");
+                }
+                $('#lmId').html(options.join());
+             })
+        })
+
+        </script>
  </head>
 <body>
     <div class="container-fluid">
@@ -15,6 +35,29 @@
 		#end
         <div class="row">
             <div class="span12">
+                
+                <div id="legend" class="">
+                        <legend class="">新闻列表 &nbsp;<a href="/asdf/main">回首页</a></legend>
+                </div>
+                <form action="">
+                <div class="control-group">
+                        <!-- Select Basic -->
+                    <label class="control-label"><em style="color:red;">* </em>频道/栏目</label>
+                    <div class="controls controls-row">
+                        <select id='pdId' name='pdId' class="span2" style="width:90px">
+                            <option value=0>全部</option>
+                            #foreach( $foo in $pdmap.keySet() ) #if($foreach.index == 0) #set($pd = $foo) #end <option value='$!{foo.id}' #if($foo.id == $pdId) #set($pd = $foo) selected #end>$!{foo.name}</option>
+                            #end
+                        </select>
+                        <select id='lmId' name='lmId' class="span2"  style="width:90px" >
+                            <option value=0>全部</option>
+                            #foreach( $foo in $pdmap[$pd] )<option value='$!{foo.id}' #if($foo.id == $lmId) selected #end>$!{foo.name}</option>
+                            #end
+                        </select>
+                        <input class="btn" type="submit"/>
+                    </div>
+                </div>
+                </form>
                 <table class="table table-bordered">
                     <thead>
                         <td>id</td>
@@ -24,7 +67,7 @@
                     #foreach( $news in $newslist )
                     <tr>
                         <td>$!{news.id}</td>
-                        <td><a href="/asdf/news/updatepage?id=$!{news.id}">$!{news.title}</a></td>
+                        <td><a href="/asdf/news/updatepage?id=$!{news.id}&pdId=$!{pdId}&lmId=$!{lmId}">$!{news.title}</a></td>
                     #set($millsecond = $news.sendTime * 1000)
                     #set($s = $date.format("yyyy-MM-dd HH:mm:ss",$millsecond))
                         <td>$s</td>

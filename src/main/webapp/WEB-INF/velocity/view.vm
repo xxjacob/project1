@@ -66,13 +66,13 @@
 					来源:$!{news.source}</p>
 				<div class="newscont">
 					$!{news.content}</div>
-				#if($total > 1 && $r != 1)
+				#if($total > 1 && $r != 2)
 				<p style="text-align: center;">
 					#if($page < $total)<a href="view?id=$!{news.id}&page=$!{page}&r=2">余下全文</a>#end
 					第 <font color='red'>$page</font>/$total 页 
 					#set($v = $page - 1)
 					#if($page > 1)<a href="/view?id=$!{news.id}&page=$v"> 上一页 </a>#end 
-					#foreach($p in [1..$total])<a href="view?id=525597&amp;page=2&amp;pagePerSize=1">2.</a>#end
+					#foreach($p in [1..$total])<a href="view?id=$!{news.id}&page=$p">$p.</a>#end
 					#set($v = $page + 1)
 					#if($page < $total) <a href="/view?id=$!{news.id}&page=$v">下一页</a>#end
 				<p>

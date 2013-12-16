@@ -57,14 +57,13 @@ public class AdminC {
 	public String loginpage() {
 		return "admin/login";
 	}
-	
+
 	@RequestMapping(value = "clean", method = RequestMethod.GET)
 	@ResponseBody
 	public String clean() {
 		AdminLoginFilter.loginAdmins.clear();
 		return "OK";
 	}
-
 
 	@RequestMapping(value = "dologin", method = RequestMethod.POST)
 	public String dologin(@RequestParam String username, @RequestParam String password,
@@ -167,12 +166,16 @@ public class AdminC {
 	}
 
 	@RequestMapping("news/updatepage")
-	public String updatepage(@RequestParam(defaultValue = "0") int id, HttpServletRequest req, Model model) {
+	public String updatepage(@RequestParam(defaultValue = "0") int id, HttpServletRequest req,
+			@RequestParam(defaultValue = "") String info, Model model) {
 		Map<Pindao, List<Lanmu>> s = pindaoService.getPindaoMap();
 		model.addAttribute("pdmap", s);
 		if (id > 0) {
 			News n = newsService.getNewsById(id);
 			model.addAttribute("news", n);
+		}
+		if ("success".equals(info)) {
+			model.addAttribute("info", "编辑成功");
 		}
 
 		return "admin/news";
@@ -195,16 +198,22 @@ public class AdminC {
 			id = news.getId();
 		} else
 			id = newsService.insertNews(news);
-		return "redirect:/asdf/news/updatepage?id=" + id;
+		return "redirect:/asdf/news/updatepage?info=success&id=" + id;
 	}
+
+	final int NESLISTSIZE = 20;
 
 	@RequestMapping("news/list")
 	public String list(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "0") int pdId,
 			@RequestParam(defaultValue = "0") int lmId, Model model) {
-		Result<News> rst = newsService.getLanmuNewsListWithPage(pdId, lmId, page, 10);
-		model.addAttribute("total", rst.getCount() / 10 + (rst.getCount() % 10 == 0 ? 0 : 1));
+		Result<News> rst = newsService.getLanmuNewsListWithPage(pdId, lmId, page, NESLISTSIZE);
+		model.addAttribute("total", rst.getCount() / NESLISTSIZE + (rst.getCount() % NESLISTSIZE == 0 ? 0 : 1));
 		model.addAttribute("page", page);
 		model.addAttribute("newslist", rst.getList());
+		Map<Pindao, List<Lanmu>> s = pindaoService.getPindaoMap();
+		model.addAttribute("pdmap", s);
+		model.addAttribute("pdId", pdId);
+		model.addAttribute("lmId", lmId);
 		return "admin/newslist";
 	}
 }

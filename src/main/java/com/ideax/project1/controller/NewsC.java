@@ -42,6 +42,8 @@ public class NewsC {
 
 	static final int charPerPage = 1000;
 
+	static final String breakline = "<p>--------------------------------分页符--------------------------------</p>";
+
 	/**
 	 * 文章详情
 	 */
@@ -49,16 +51,36 @@ public class NewsC {
 	public String view(@RequestParam int id, @RequestParam(required = false, defaultValue = "1") int page,
 			@RequestParam(required = false, defaultValue = "1") int r, ModelMap model) {
 		News news = newsService.getNewsById(id);
-		int len = news.getContent().length();
-		int totalPage = len / charPerPage + 1;
-		if (page > totalPage)
-			page = totalPage;
-		if (r == 2)
-			news.setContent(news.getContent().substring((page - 1) * 1000));
-		else if (totalPage > 1)
-			news.setContent(news.getContent().substring((page - 1) * 1000, Math.max(len, page * 1000)));
+		int currentPage = 0;
+		int pagefrom = 0, pageto = 0;
+		StringBuilder realContent = new StringBuilder();
+		String content = news.getContent();
+		do {
+			currentPage += 1;
+			pagefrom = pageto == 0 ? 0 : (pageto + breakline.length());
+			int pos = content.indexOf(breakline, pagefrom);
+			System.out.println(pos);
+			if (pos != -1) {
+				pageto = pos;
+			} else {
+				pageto = content.length();
+			}
+			if (r == 2) {
+				if (currentPage > page)
+					realContent.append(content.substring(pagefrom, pageto));
+			} else if (currentPage == page)
+				realContent.append(content.substring(pagefrom, pageto));
+
+			if (pos == -1)
+				break;
+
+		} while (true);
+
+		if (page > currentPage)
+			realContent.append(content.substring(pagefrom, pageto));
+		news.setContent(realContent.toString());
 		model.addAttribute("news", news);
-		model.addAttribute("total", totalPage);
+		model.addAttribute("total", currentPage);
 		model.addAttribute("page", page);
 		model.addAttribute("r", r);
 		// pindao

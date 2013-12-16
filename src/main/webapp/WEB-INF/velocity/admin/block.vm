@@ -81,7 +81,7 @@
 					<input type="hidden" id="blockgroup" name="blockgroup" value="$!{blockgroup[0].blockGroup}">
                     <fieldset>
                         <div id="legend" class="">
-                            <legend class="">设置</legend>
+                            <legend class="">设置&nbsp;<a href="/asdf/main">回首页</a></legend>
                         </div>
 						#foreach($block in $blockgroup)
                         <div class="control-group">
