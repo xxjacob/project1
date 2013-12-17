@@ -15,12 +15,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta name="keywords" content="环球新闻网,新闻，环球，军事，新闻网，环球网，环球时报，娱乐，国内新闻，图片新闻网" />
+<meta name="keywords" content="战国军事网,国际军事,中国军事,军事视角,图说军事,社会趣闻,美女爱秀" />
 <meta name="description" content="栏目页" />     
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="Cache-Control" content="no-cache"/>
         <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=2.0"/>
-        <title>中国军事_军事_手机环球网</title>
+        <title>$!{pindao.name}_$!{lanmu.name}_手机环球网</title>
         <link rel="stylesheet" href="/s/css/style.css" type="text/css" />
 </head>
     <body> 
@@ -33,7 +33,7 @@
 <!-- <div class="logoline">  -->
 <div>
     <div style="float:left;">
-        <a href="index.html"><img src="/s/img/$!{pindao.logo}" alt="logo" style="width:100%;"/></a>
+        <a href="/"><img src="/s/img/$!{pindao.logo}" alt="logo" style="width:100%;"/></a>
     </div>
      
 </div>
@@ -43,7 +43,7 @@
             导航条
             -->
             <div class="$!{pindao.cssStyle}">
-                <a href="/">XXX网</a>&gt;
+                <a href="/">战国军事网</a>&gt;
                 <a href="pd?id=$!{pindao.id}">$!{pindao.name}</a>&gt;
                 <a href="lm?id=$!{lanmu.id}">$!{lanmu.name}</a>
             </div>
@@ -92,24 +92,14 @@
 
             <div class="lanmu-line">
                 <img src="/s/img/r.png"/>
-                <a href="#">[军事点击排行]</a>
+                <a href="#">[$!{pindao.name}点击排行]</a>
             </div>
             <div class="block">
-                <p>
-                        <a href="view.html?id=526336">又有大批女新兵入伍北海舰队</a>
-                    </p>
-                <p>
-                        <a href="view.html?id=529664">我海军登陆舰女兵生活区曝光</a>
-                    </p>
-                <p>
-                        <a href="view.html?id=525313">世界各国空军女飞行员的英姿</a>
-                    </p>
-                <p>
-                        <a href="view.html?id=527873">日媒：美在纵容中国设识别区</a>
-                    </p>
-                <p>
-                        <a href="view.html?id=525826">港媒：中国加强演习对外警告</a>
-                    </p>
+                #foreach($n in $hotlist)
+<p>
+    <a href="view.html?id=$!{n.id}">$!{n.shortTitle}</a>
+</p>
+#end
                 </div>
             <div class="lanmu-line">
                 <img src="/s/img/r.png"/>
@@ -152,28 +142,7 @@
     #parse("frag/menu.vm")
 </div>
 
-<div class="foot">
-    <p>
-        <a href="partner.html">合作</a> |<a href="friendslink.html">友链</a> |<a href="feedback.html">留言</a> 
-    </p>
-    <p>
-        <a href="index.html">首页</a> |<a href="nav.html">导航</a> |<a href="save.html">收藏</a> 
-    </p>
-    <p>
-        <a href="http://3g.huanqiu.com/lm.html?v=1&id=40">简版</a> |
-        <a href="http://3g.huanqiu.com/lm.html?v=3&id=40">彩版</a> |
-        <a href="http://www.huanqiu.com">PC版</a> |
-        <a href="http://mt.huanqiu.com">触屏版</a>
-    </p>
-    <p>手机环球网</p>
-    <p style="text-align:center;">
-        环球网版权所有 
-     </p>
-     <p>[2013-12-15 15:28:26]</p>
-     <p><a href="#" class="gotop"><span>↑</span> TOP</a></p>
-     <br/>
-      <br/>
-</div>
+#include( "frag/foot.htm" )
 </div>
 
     </body>

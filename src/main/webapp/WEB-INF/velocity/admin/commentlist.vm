@@ -37,22 +37,17 @@
             <div class="span12">
                 
                 <div id="legend" class="">
-                        <legend class="">新闻列表 &nbsp;<a href="/asdf/main">回首页</a></legend>
+                        <legend class="">评论列表 &nbsp;<a href="/asdf/main">回首页</a></legend>
                 </div>
                 <form action="">
                 <div class="control-group">
                         <!-- Select Basic -->
-                    <label class="control-label"><em style="color:red;">* </em>频道/栏目</label>
+                    <label class="control-label"><em style="color:red;">* </em>审核状态</label>
                     <div class="controls controls-row">
-                        <select id='pdId' name='pdId' class="span2" style="width:90px">
-                            <option value=0>全部</option>
-                            #foreach( $foo in $pdmap.keySet() ) #if($foreach.index == 0) #set($pd = $foo) #end <option value='$!{foo.id}' #if($foo.id == $pdId) #set($pd = $foo) selected #end>$!{foo.name}</option>
-                            #end
-                        </select>
-                        <select id='lmId' name='lmId' class="span2"  style="width:90px" >
-                            <option value=0>全部</option>
-                            #foreach( $foo in $pdmap[$pd] )<option value='$!{foo.id}' #if($foo.id == $lmId) selected #end>$!{foo.name}</option>
-                            #end
+                        <select id='auditStatus' name='auditStatus' class="span2" style="width:90px">
+                            <option value='-1'>全部</option>
+                            <option value='0' #if(0 == $auditStatus) selected #end>正常</option>
+                            <option value='1' #if(1 == $auditStatus) selected #end>审核不通过</option>
                         </select>
                         <input class="btn" type="submit"/>
                     </div>
@@ -61,24 +56,32 @@
                 <table class="table table-bordered">
                     <thead>
                         <td>id</td>
-                        <td>标题</td>
-                        <td>时间</td>
-                        <td>删除</td>
+                        <td>新闻id</td>
+                        <td>楼层</td>
+                        <td>内容</td>
+                        <td>发布时间</td>
+                        <td>IP</td>
+                        <td>审核状态</td>
+                        <td>操作</td>
                     <thead>
-                    #foreach( $news in $newslist )
+                    #foreach( $comment in $commentslist )
                     <tr>
-                        <td>$!{news.id}</td>
-                        <td><a href="/asdf/news/updatepage?id=$!{news.id}&pdId=$!{pdId}&lmId=$!{lmId}">$!{news.title}</a></td>
-                    #set($millsecond = $news.sendTime * 1000)
-                    #set($s = $date.format("yyyy-MM-dd HH:mm:ss",$millsecond))
+                        <td>$!{comment.id}</td>
+                        <td>$!{comment.newsId}</td>
+                        <td>$!{comment.floor}</td>
+                        <td>$!{comment.content}</td>
+                        #set($millsecond = $comment.createTime * 1000)
+                        #set($s = $date.format("yyyy-MM-dd HH:mm:ss",$millsecond))
                         <td>$s</td>
-                        <td><a href="/asdf/news/delete?id=$!{news.id}"  onclick="javascript:var r=confirm('确认删除？');if(!r){return false;}">删除</a></td>
+                        <td>$!{comment.ip}</td>
+                        <td>#if(0 == $comment.auditStatus)正常#elseif(1 == $comment.auditStatus)审核不通过 #end</td>
+                        <td><a href="/asdf/comment/audit?id=$!{comment.id}&audit=1&page=$!{page}&auditStatus=$!{auditStatus}">审核不通过</a></td>
                       </tr>
                       #end
                 </table>
                 <div class="pagination">
                   <ul>
-                    #foreach($p in [1..$total])<li class="#if($p==$page)disabled#elseactive#end"><a href="list?id=$!{news.id}&page=$p">$p</a></li>#end
+                    #foreach($p in [1..$total])<li class="#if($p==$page)disabled#elseactive#end"><a href="/asdf/comment/list?auditStatus=$!{auditStatus}&page=$p">$p</a></li>#end
                   </ul>
                 </div>
             </div>

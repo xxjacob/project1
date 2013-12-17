@@ -47,7 +47,7 @@
 					if(json && json.id){
 						$("#title_"+id).val(json.shortTitle);
 						$("#url_"+id).val('/pd?id='+newsid);
-						$("#img_"+id).val(json.coverImg);
+						//$("#img_"+id).val(json.coverImg);
 					}else {
 						alert('新闻不存在!');
 					}

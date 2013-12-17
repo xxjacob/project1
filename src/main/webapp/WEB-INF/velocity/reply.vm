@@ -4,13 +4,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
 <meta name="keywords"
-            content="环球新闻网,新闻，环球，军事，新闻网，环球网，环球时报，娱乐，国内新闻，图片新闻网" />
+            content="战国军事网,国际军事,中国军事,军事视角,图说军事,社会趣闻,美女爱秀" />
         <meta name="description" content="评论" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="Cache-Control" content="no-cache" />
         <meta name="viewport"
             content="width=device-width, minimum-scale=1.0, maximum-scale=2.0" />
-        <title>手机环球网</title>
+        <title>战国军事网</title>
         <link rel="stylesheet" href="/s/css/style.css" type="text/css" />
 </head>
     <body>
@@ -23,7 +23,7 @@
 
 <div class="logoline">
     <div style="float:left;">
-        <a href="index.html"><img src="/s/img/wapLogo.png" alt="logo" style="width:100%;"/></a>
+        <a href="/"><img src="/s/img/wapLogo.png" alt="logo" style="width:100%;"/></a>
     </div>
 </div> 
 <div style="clear:both;">
@@ -32,7 +32,7 @@
             导航条
             -->
             <div class="nav">
-                <a href="/">XXX网</a>&gt;
+                <a href="/">战国军事网</a>&gt;
                 <a href="pd?id=$!{pindao.id}">$!{pindao.name}</a>&gt;
                 <a href="lm?id=$!{lanmu.id}">$!{lanmu.name}</a>
             </div>
@@ -49,7 +49,7 @@
             </div>
             正在回复以下跟贴:
             <div class="block">
-                <p>$!{rcomment.content}
+                <p>#if($rcomment.auditStatus == 0)$!{rcomment.content}#else该楼已删除#end
                             $!{rcomment.device}</p>
             </div>
             <div>

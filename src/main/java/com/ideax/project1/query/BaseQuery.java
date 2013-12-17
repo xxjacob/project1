@@ -4,7 +4,7 @@ package com.ideax.project1.query;
  * @author xxjacob
  */
 public class BaseQuery {
-	protected Integer pageSize;
+	protected Integer pageSize = 0;
 	protected Integer startRow = 0;//起始行
 	protected Integer endRow;//结束行(闭合)
 	protected Integer page;

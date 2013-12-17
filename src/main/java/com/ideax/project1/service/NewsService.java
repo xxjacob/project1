@@ -107,4 +107,13 @@ public class NewsService {
 		}
 
 	}
+
+	public int deleteById(int id) {
+		try {
+			return newsDAO.deleteByKey(id);
+		} catch (SQLException e) {
+			logger.error("", e);
+			throw new IllegalException(EC.EC_DB);
+		}
+	}
 }

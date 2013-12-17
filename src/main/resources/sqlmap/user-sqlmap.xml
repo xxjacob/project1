@@ -35,7 +35,7 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
     </sql>
     <sql id="userList.where">
 		<dynamic prepend=" WHERE ">
-            <isNotNull property="id" prepend=" AND ">id=#id#</isNotNull><isNotNull property="openid" prepend=" AND ">openid=#openid#</isNotNull><isNotNull property="nickname" prepend=" AND ">nickname=#nickname#</isNotNull><isNotNull property="birthY" prepend=" AND ">birth_y=#birthY#</isNotNull><isNotNull property="birthMd" prepend=" AND ">birth_md=#birthMd#</isNotNull><isNotNull property="figureurl" prepend=" AND ">figureurl=#figureurl#</isNotNull><isNotNull property="region" prepend=" AND ">region=#region#</isNotNull><isNotNull property="introduce" prepend=" AND ">introduce=#introduce#</isNotNull><isNotNull property="height" prepend=" AND ">height=#height#</isNotNull><isNotNull property="createTime" prepend=" AND ">create_time=#createTime#</isNotNull><isNotNull property="modifyTime" prepend=" AND ">modify_time=#modifyTime#</isNotNull><isNotNull property="invitor" prepend=" AND ">invitor=#invitor#</isNotNull>        </dynamic>
+            <isNotNull property="id" prepend=" AND ">id=#id#</isNotNull><isNotNull property="openid" prepend=" AND ">openid=#openid#</isNotNull><isNotNull property="nickname" prepend=" AND ">nickname=#nickname#</isNotNull><isNotNull property="gender" prepend=" AND ">gender=#gender#</isNotNull><isNotNull property="birthY" prepend=" AND ">birth_y=#birthY#</isNotNull><isNotNull property="birthMd" prepend=" AND ">birth_md=#birthMd#</isNotNull><isNotNull property="figureurl" prepend=" AND ">figureurl=#figureurl#</isNotNull><isNotNull property="region" prepend=" AND ">region=#region#</isNotNull><isNotNull property="introduce" prepend=" AND ">introduce=#introduce#</isNotNull><isNotNull property="loveStatus" prepend=" AND ">love_status=#loveStatus#</isNotNull><isNotNull property="height" prepend=" AND ">height=#height#</isNotNull><isNotNull property="education" prepend=" AND ">education=#education#</isNotNull><isNotNull property="bloodGroup" prepend=" AND ">blood_group=#bloodGroup#</isNotNull><isNotNull property="earning" prepend=" AND ">earning=#earning#</isNotNull><isNotNull property="profession" prepend=" AND ">profession=#profession#</isNotNull><isNotNull property="houseStatus" prepend=" AND ">house_status=#houseStatus#</isNotNull><isNotNull property="carStatus" prepend=" AND ">car_status=#carStatus#</isNotNull><isNotNull property="status" prepend=" AND ">status=#status#</isNotNull><isNotNull property="createTime" prepend=" AND ">create_time=#createTime#</isNotNull><isNotNull property="modifyTime" prepend=" AND ">modify_time=#modifyTime#</isNotNull><isNotNull property="invitor" prepend=" AND ">invitor=#invitor#</isNotNull>        </dynamic>
     </sql>
     <sql id="userList.order">
         <dynamic prepend=" ORDER BY ">
@@ -71,135 +71,137 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
             </iterate>
         </delete>
                                 <update id="User.updateUsersByKeys" parameterClass="User">
-            UPDATE user SET 
-            				            				                    <isNotNull prepend="," property="openid">
+            UPDATE user 
+            <dynamic prepend="SET">
+                                                                           <isNotNull prepend="," property="openid">
                         openid = #openid#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="nickname">
+                                                                <isNotNull prepend="," property="nickname">
                         nickname = #nickname#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="gender">
+                                                                <isNotNull prepend="," property="gender">
                         gender = #gender#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="birthY">
+                                                                <isNotNull prepend="," property="birthY">
                         birth_y = #birthY#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="birthMd">
+                                                                <isNotNull prepend="," property="birthMd">
                         birth_md = #birthMd#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="figureurl">
+                                                                <isNotNull prepend="," property="figureurl">
                         figureurl = #figureurl#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="region">
+                                                                <isNotNull prepend="," property="region">
                         region = #region#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="introduce">
+                                                                <isNotNull prepend="," property="introduce">
                         introduce = #introduce#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="loveStatus">
+                                                                <isNotNull prepend="," property="loveStatus">
                         love_status = #loveStatus#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="height">
+                                                                <isNotNull prepend="," property="height">
                         height = #height#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="education">
+                                                                <isNotNull prepend="," property="education">
                         education = #education#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="bloodGroup">
+                                                                <isNotNull prepend="," property="bloodGroup">
                         blood_group = #bloodGroup#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="earning">
+                                                                <isNotNull prepend="," property="earning">
                         earning = #earning#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="profession">
+                                                                <isNotNull prepend="," property="profession">
                         profession = #profession#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="houseStatus">
+                                                                <isNotNull prepend="," property="houseStatus">
                         house_status = #houseStatus#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="carStatus">
+                                                                <isNotNull prepend="," property="carStatus">
                         car_status = #carStatus#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="status">
+                                                                <isNotNull prepend="," property="status">
                         status = #status#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="createTime">
+                                                                <isNotNull prepend="," property="createTime">
                         create_time = #createTime#
                     </isNotNull>
-                            									<dynamic prepend=",">
-						modify_time=UNIX_TIMESTAMP()
-					</dynamic>
-				            				                    <isNotNull prepend="," property="invitor">
+                                                                <isNull prepend="," property="modifyTime" >modify_time=UNIX_TIMESTAMP()</isNull>
+                    <isNotNull prepend="," property="modifyTime" >modify_time=#modifyTime#</isNotNull>
+                                                                <isNotNull prepend="," property="invitor">
                         invitor = #invitor#
                     </isNotNull>
-                                        WHERE id in
+                                        </dynamic>
+            WHERE id in
             <iterate conjunction="," open="(" close=")" property="keys">
                 #keys[]#
             </iterate>
         </update>
         <update id="User.updateUser" parameterClass="User">
-            UPDATE user SET modify_time=UNIX_TIMESTAMP()
-            				            				                    <isNotNull prepend="," property="openid">
+            UPDATE user 
+            <dynamic prepend="SET">
+                                                                           <isNotNull prepend="," property="openid">
                         openid = #openid#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="nickname">
+                                                                <isNotNull prepend="," property="nickname">
                         nickname = #nickname#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="gender">
+                                                                <isNotNull prepend="," property="gender">
                         gender = #gender#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="birthY">
+                                                                <isNotNull prepend="," property="birthY">
                         birth_y = #birthY#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="birthMd">
+                                                                <isNotNull prepend="," property="birthMd">
                         birth_md = #birthMd#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="figureurl">
+                                                                <isNotNull prepend="," property="figureurl">
                         figureurl = #figureurl#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="region">
+                                                                <isNotNull prepend="," property="region">
                         region = #region#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="introduce">
+                                                                <isNotNull prepend="," property="introduce">
                         introduce = #introduce#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="loveStatus">
+                                                                <isNotNull prepend="," property="loveStatus">
                         love_status = #loveStatus#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="height">
+                                                                <isNotNull prepend="," property="height">
                         height = #height#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="education">
+                                                                <isNotNull prepend="," property="education">
                         education = #education#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="bloodGroup">
+                                                                <isNotNull prepend="," property="bloodGroup">
                         blood_group = #bloodGroup#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="earning">
+                                                                <isNotNull prepend="," property="earning">
                         earning = #earning#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="profession">
+                                                                <isNotNull prepend="," property="profession">
                         profession = #profession#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="houseStatus">
+                                                                <isNotNull prepend="," property="houseStatus">
                         house_status = #houseStatus#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="carStatus">
+                                                                <isNotNull prepend="," property="carStatus">
                         car_status = #carStatus#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="status">
+                                                                <isNotNull prepend="," property="status">
                         status = #status#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="createTime">
+                                                                <isNotNull prepend="," property="createTime">
                         create_time = #createTime#
                     </isNotNull>
-                            									<dynamic prepend=",">
-						modify_time=UNIX_TIMESTAMP()
-					</dynamic>
-				            				                    <isNotNull prepend="," property="invitor">
+                                                                <isNull prepend="," property="modifyTime" >modify_time=UNIX_TIMESTAMP()</isNull>
+                    <isNotNull prepend="," property="modifyTime" >modify_time=#modifyTime#</isNotNull>
+                                                                <isNotNull prepend="," property="invitor">
                         invitor = #invitor#
                     </isNotNull>
-                                        WHERE id = #id#
+                                        </dynamic>
+            WHERE id = #id#
         </update>
             <select id="User.getUserListWithPage" parameterClass="UserQuery" resultMap="user">
         <include refid="user.selector" />
@@ -247,129 +249,49 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
         <insert id="User.insertUser" parameterClass="User">
         INSERT INTO user
         <dynamic prepend="(" close=")">
-                                                                            <isNotEmpty prepend="," property="openid">
-                        openid
-                    </isNotEmpty >
-                                                                <isNotEmpty prepend="," property="nickname">
-                        nickname
-                    </isNotEmpty >
-                                                                <isNotEmpty prepend="," property="gender">
-                        gender
-                    </isNotEmpty >
-                                                                <isNotEmpty prepend="," property="birthY">
-                        birth_y
-                    </isNotEmpty >
-                                                                <isNotEmpty prepend="," property="birthMd">
-                        birth_md
-                    </isNotEmpty >
-                                                                <isNotEmpty prepend="," property="figureurl">
-                        figureurl
-                    </isNotEmpty >
-                                                                <isNotEmpty prepend="," property="region">
-                        region
-                    </isNotEmpty >
-                                                                <isNotEmpty prepend="," property="introduce">
-                        introduce
-                    </isNotEmpty >
-                                                                <isNotEmpty prepend="," property="loveStatus">
-                        love_status
-                    </isNotEmpty >
-                                                                <isNotEmpty prepend="," property="height">
-                        height
-                    </isNotEmpty >
-                                                                <isNotEmpty prepend="," property="education">
-                        education
-                    </isNotEmpty >
-                                                                <isNotEmpty prepend="," property="bloodGroup">
-                        blood_group
-                    </isNotEmpty >
-                                                                <isNotEmpty prepend="," property="earning">
-                        earning
-                    </isNotEmpty >
-                                                                <isNotEmpty prepend="," property="profession">
-                        profession
-                    </isNotEmpty >
-                                                                <isNotEmpty prepend="," property="houseStatus">
-                        house_status
-                    </isNotEmpty >
-                                                                <isNotEmpty prepend="," property="carStatus">
-                        car_status
-                    </isNotEmpty >
-                                                                <isNotEmpty prepend="," property="status">
-                        status
-                    </isNotEmpty >
-                                                                <isNotEmpty prepend="," property="createTime">
-                        create_time
-                    </isNotEmpty >
-                                                                <isNotEmpty prepend="," property="modifyTime">
-                        modify_time
-                    </isNotEmpty >
-                                                                <isNotEmpty prepend="," property="invitor">
-                        invitor
-                    </isNotEmpty >
+                                                                            <isNotEmpty prepend="," property="openid">openid</isNotEmpty>
+                                                                <isNotEmpty prepend="," property="nickname">nickname</isNotEmpty>
+                                                                <isNotEmpty prepend="," property="gender">gender</isNotEmpty>
+                                                                <isNotEmpty prepend="," property="birthY">birth_y</isNotEmpty>
+                                                                <isNotEmpty prepend="," property="birthMd">birth_md</isNotEmpty>
+                                                                <isNotEmpty prepend="," property="figureurl">figureurl</isNotEmpty>
+                                                                <isNotEmpty prepend="," property="region">region</isNotEmpty>
+                                                                <isNotEmpty prepend="," property="introduce">introduce</isNotEmpty>
+                                                                <isNotEmpty prepend="," property="loveStatus">love_status</isNotEmpty>
+                                                                <isNotEmpty prepend="," property="height">height</isNotEmpty>
+                                                                <isNotEmpty prepend="," property="education">education</isNotEmpty>
+                                                                <isNotEmpty prepend="," property="bloodGroup">blood_group</isNotEmpty>
+                                                                <isNotEmpty prepend="," property="earning">earning</isNotEmpty>
+                                                                <isNotEmpty prepend="," property="profession">profession</isNotEmpty>
+                                                                <isNotEmpty prepend="," property="houseStatus">house_status</isNotEmpty>
+                                                                <isNotEmpty prepend="," property="carStatus">car_status</isNotEmpty>
+                                                                <isNotEmpty prepend="," property="status">status</isNotEmpty>
+                                                                ,create_time
+                                                                ,modify_time
+                                                                <isNotEmpty prepend="," property="invitor">invitor</isNotEmpty>
                                     </dynamic>
         VALUES
         <dynamic prepend="(" close=")">
-                                                                                                        <isNotEmpty  prepend="," property="openid">
-                                #openid#
-                            </isNotEmpty >
-                                                                                                                <isNotEmpty  prepend="," property="nickname">
-                                #nickname#
-                            </isNotEmpty >
-                                                                                                                <isNotEmpty  prepend="," property="gender">
-                                #gender#
-                            </isNotEmpty >
-                                                                                                                <isNotEmpty  prepend="," property="birthY">
-                                #birthY#
-                            </isNotEmpty >
-                                                                                                                <isNotEmpty  prepend="," property="birthMd">
-                                #birthMd#
-                            </isNotEmpty >
-                                                                                                                <isNotEmpty  prepend="," property="figureurl">
-                                #figureurl#
-                            </isNotEmpty >
-                                                                                                                <isNotEmpty  prepend="," property="region">
-                                #region#
-                            </isNotEmpty >
-                                                                                                                <isNotEmpty  prepend="," property="introduce">
-                                #introduce#
-                            </isNotEmpty >
-                                                                                                                <isNotEmpty  prepend="," property="loveStatus">
-                                #loveStatus#
-                            </isNotEmpty >
-                                                                                                                <isNotEmpty  prepend="," property="height">
-                                #height#
-                            </isNotEmpty >
-                                                                                                                <isNotEmpty  prepend="," property="education">
-                                #education#
-                            </isNotEmpty >
-                                                                                                                <isNotEmpty  prepend="," property="bloodGroup">
-                                #bloodGroup#
-                            </isNotEmpty >
-                                                                                                                <isNotEmpty  prepend="," property="earning">
-                                #earning#
-                            </isNotEmpty >
-                                                                                                                <isNotEmpty  prepend="," property="profession">
-                                #profession#
-                            </isNotEmpty >
-                                                                                                                <isNotEmpty  prepend="," property="houseStatus">
-                                #houseStatus#
-                            </isNotEmpty >
-                                                                                                                <isNotEmpty  prepend="," property="carStatus">
-                                #carStatus#
-                            </isNotEmpty >
-                                                                                                                <isNotEmpty  prepend="," property="status">
-                                #status#
-                            </isNotEmpty >
-                                                                                                            <isNotEmpty  prepend="," property="createTime">
-                            ,UNIX_TIMESTAMP()
-                        </isNotEmpty >
-                                                                                                                <isNotEmpty  prepend="," property="modifyTime">
-                            ,UNIX_TIMESTAMP()
-                        </isNotEmpty >
-                                                                                                                    <isNotEmpty  prepend="," property="invitor">
-                                #invitor#
-                            </isNotEmpty >
+                                                                                                    <isNotEmpty  prepend="," property="openid">#openid#</isNotEmpty>
+                                                                                                            <isNotEmpty  prepend="," property="nickname">#nickname#</isNotEmpty>
+                                                                                                            <isNotEmpty  prepend="," property="gender">#gender#</isNotEmpty>
+                                                                                                            <isNotEmpty  prepend="," property="birthY">#birthY#</isNotEmpty>
+                                                                                                            <isNotEmpty  prepend="," property="birthMd">#birthMd#</isNotEmpty>
+                                                                                                            <isNotEmpty  prepend="," property="figureurl">#figureurl#</isNotEmpty>
+                                                                                                            <isNotEmpty  prepend="," property="region">#region#</isNotEmpty>
+                                                                                                            <isNotEmpty  prepend="," property="introduce">#introduce#</isNotEmpty>
+                                                                                                            <isNotEmpty  prepend="," property="loveStatus">#loveStatus#</isNotEmpty>
+                                                                                                            <isNotEmpty  prepend="," property="height">#height#</isNotEmpty>
+                                                                                                            <isNotEmpty  prepend="," property="education">#education#</isNotEmpty>
+                                                                                                            <isNotEmpty  prepend="," property="bloodGroup">#bloodGroup#</isNotEmpty>
+                                                                                                            <isNotEmpty  prepend="," property="earning">#earning#</isNotEmpty>
+                                                                                                            <isNotEmpty  prepend="," property="profession">#profession#</isNotEmpty>
+                                                                                                            <isNotEmpty  prepend="," property="houseStatus">#houseStatus#</isNotEmpty>
+                                                                                                            <isNotEmpty  prepend="," property="carStatus">#carStatus#</isNotEmpty>
+                                                                                                            <isNotEmpty  prepend="," property="status">#status#</isNotEmpty>
+                                                                                    ,UNIX_TIMESTAMP()
+                                                                                    ,UNIX_TIMESTAMP()
+                                                                                                            <isNotEmpty  prepend="," property="invitor">#invitor#</isNotEmpty>
                                                         </dynamic>
         <selectKey resultClass="int" type="post" keyProperty="id">
             SELECT last_insert_id() AS id

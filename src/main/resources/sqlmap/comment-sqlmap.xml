@@ -24,7 +24,7 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
     </sql>
     <sql id="commentList.where">
 		<dynamic prepend=" WHERE ">
-            <isNotNull property="id" prepend=" AND ">id=#id#</isNotNull><isNotNull property="newsId" prepend=" AND ">news_id=#newsId#</isNotNull><isNotNull property="content" prepend=" AND ">content=#content#</isNotNull><isNotNull property="createTime" prepend=" AND ">create_time=#createTime#</isNotNull><isNotNull property="replyTo" prepend=" AND ">reply_to=#replyTo#</isNotNull><isNotNull property="device" prepend=" AND ">device=#device#</isNotNull><isNotNull property="ip" prepend=" AND ">ip=#ip#</isNotNull><isNotNull property="modifyTime" prepend=" AND ">modify_time=#modifyTime#</isNotNull><isNotNull property="floor" prepend=" AND ">floor=#floor#</isNotNull>        </dynamic>
+            <isNotNull property="id" prepend=" AND ">id=#id#</isNotNull><isNotNull property="newsId" prepend=" AND ">news_id=#newsId#</isNotNull><isNotNull property="content" prepend=" AND ">content=#content#</isNotNull><isNotNull property="createTime" prepend=" AND ">create_time=#createTime#</isNotNull><isNotNull property="replyTo" prepend=" AND ">reply_to=#replyTo#</isNotNull><isNotNull property="device" prepend=" AND ">device=#device#</isNotNull><isNotNull property="ip" prepend=" AND ">ip=#ip#</isNotNull><isNotNull property="modifyTime" prepend=" AND ">modify_time=#modifyTime#</isNotNull><isNotNull property="floor" prepend=" AND ">floor=#floor#</isNotNull><isNotNull property="auditStatus" prepend=" AND ">audit_status=#auditStatus#</isNotNull>        </dynamic>
     </sql>
     <sql id="commentList.order">
         <dynamic prepend=" ORDER BY ">
@@ -60,69 +60,71 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
             </iterate>
         </delete>
                                 <update id="Comment.updateCommentsByKeys" parameterClass="Comment">
-            UPDATE comment SET 
-            				            				                    <isNotNull prepend="," property="newsId">
+            UPDATE comment 
+            <dynamic prepend="SET">
+                                                                           <isNotNull prepend="," property="newsId">
                         news_id = #newsId#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="content">
+                                                                <isNotNull prepend="," property="content">
                         content = #content#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="createTime">
+                                                                <isNotNull prepend="," property="createTime">
                         create_time = #createTime#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="replyTo">
+                                                                <isNotNull prepend="," property="replyTo">
                         reply_to = #replyTo#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="device">
+                                                                <isNotNull prepend="," property="device">
                         device = #device#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="ip">
+                                                                <isNotNull prepend="," property="ip">
                         ip = #ip#
                     </isNotNull>
-                            									<dynamic prepend=",">
-						modify_time=UNIX_TIMESTAMP()
-					</dynamic>
-				            				                    <isNotNull prepend="," property="floor">
+                                                                <isNull prepend="," property="modifyTime" >modify_time=UNIX_TIMESTAMP()</isNull>
+                    <isNotNull prepend="," property="modifyTime" >modify_time=#modifyTime#</isNotNull>
+                                                                <isNotNull prepend="," property="floor">
                         floor = #floor#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="auditStatus">
+                                                                <isNotNull prepend="," property="auditStatus">
                         audit_status = #auditStatus#
                     </isNotNull>
-                                        WHERE id in
+                                        </dynamic>
+            WHERE id in
             <iterate conjunction="," open="(" close=")" property="keys">
                 #keys[]#
             </iterate>
         </update>
         <update id="Comment.updateComment" parameterClass="Comment">
-            UPDATE comment SET modify_time=UNIX_TIMESTAMP()
-            				            				                    <isNotNull prepend="," property="newsId">
+            UPDATE comment 
+            <dynamic prepend="SET">
+                                                                           <isNotNull prepend="," property="newsId">
                         news_id = #newsId#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="content">
+                                                                <isNotNull prepend="," property="content">
                         content = #content#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="createTime">
+                                                                <isNotNull prepend="," property="createTime">
                         create_time = #createTime#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="replyTo">
+                                                                <isNotNull prepend="," property="replyTo">
                         reply_to = #replyTo#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="device">
+                                                                <isNotNull prepend="," property="device">
                         device = #device#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="ip">
+                                                                <isNotNull prepend="," property="ip">
                         ip = #ip#
                     </isNotNull>
-                            									<dynamic prepend=",">
-						modify_time=UNIX_TIMESTAMP()
-					</dynamic>
-				            				                    <isNotNull prepend="," property="floor">
+                                                                <isNull prepend="," property="modifyTime" >modify_time=UNIX_TIMESTAMP()</isNull>
+                    <isNotNull prepend="," property="modifyTime" >modify_time=#modifyTime#</isNotNull>
+                                                                <isNotNull prepend="," property="floor">
                         floor = #floor#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="auditStatus">
+                                                                <isNotNull prepend="," property="auditStatus">
                         audit_status = #auditStatus#
                     </isNotNull>
-                                        WHERE id = #id#
+                                        </dynamic>
+            WHERE id = #id#
         </update>
             <select id="Comment.getCommentListWithPage" parameterClass="CommentQuery" resultMap="comment">
         <include refid="comment.selector" />
@@ -159,63 +161,27 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
         <insert id="Comment.insertComment" parameterClass="Comment">
         INSERT INTO comment
         <dynamic prepend="(" close=")">
-                                                                            <isNotEmpty prepend="," property="newsId">
-                        news_id
-                    </isNotEmpty >
-                                                                <isNotEmpty prepend="," property="content">
-                        content
-                    </isNotEmpty >
-                                                                <isNotEmpty prepend="," property="createTime">
-                        create_time
-                    </isNotEmpty >
-                                                                <isNotEmpty prepend="," property="replyTo">
-                        reply_to
-                    </isNotEmpty >
-                                                                <isNotEmpty prepend="," property="device">
-                        device
-                    </isNotEmpty >
-                                                                <isNotEmpty prepend="," property="ip">
-                        ip
-                    </isNotEmpty >
-                                                                <isNotEmpty prepend="," property="modifyTime">
-                        modify_time
-                    </isNotEmpty >
-                                                                <isNotEmpty prepend="," property="floor">
-                        floor
-                    </isNotEmpty >
-                                                                <isNotEmpty prepend="," property="auditStatus">
-                        audit_status
-                    </isNotEmpty >
+                                                                            <isNotEmpty prepend="," property="newsId">news_id</isNotEmpty>
+                                                                <isNotEmpty prepend="," property="content">content</isNotEmpty>
+                                                                ,create_time
+                                                                <isNotEmpty prepend="," property="replyTo">reply_to</isNotEmpty>
+                                                                <isNotEmpty prepend="," property="device">device</isNotEmpty>
+                                                                <isNotEmpty prepend="," property="ip">ip</isNotEmpty>
+                                                                ,modify_time
+                                                                <isNotEmpty prepend="," property="floor">floor</isNotEmpty>
+                                                                <isNotEmpty prepend="," property="auditStatus">audit_status</isNotEmpty>
                                     </dynamic>
         VALUES
         <dynamic prepend="(" close=")">
-                                                                                                        <isNotEmpty  prepend="," property="newsId">
-                                #newsId#
-                            </isNotEmpty >
-                                                                                                                <isNotEmpty  prepend="," property="content">
-                                #content#
-                            </isNotEmpty >
-                                                                                                            <isNotEmpty  prepend="," property="createTime">
-                            ,UNIX_TIMESTAMP()
-                        </isNotEmpty >
-                                                                                                                    <isNotEmpty  prepend="," property="replyTo">
-                                #replyTo#
-                            </isNotEmpty >
-                                                                                                                <isNotEmpty  prepend="," property="device">
-                                #device#
-                            </isNotEmpty >
-                                                                                                                <isNotEmpty  prepend="," property="ip">
-                                #ip#
-                            </isNotEmpty >
-                                                                                                            <isNotEmpty  prepend="," property="modifyTime">
-                            ,UNIX_TIMESTAMP()
-                        </isNotEmpty >
-                                                                                                                    <isNotEmpty  prepend="," property="floor">
-                                #floor#
-                            </isNotEmpty >
-                                                                                                                <isNotEmpty  prepend="," property="auditStatus">
-                                #auditStatus#
-                            </isNotEmpty >
+                                                                                                    <isNotEmpty  prepend="," property="newsId">#newsId#</isNotEmpty>
+                                                                                                            <isNotEmpty  prepend="," property="content">#content#</isNotEmpty>
+                                                                                    ,UNIX_TIMESTAMP()
+                                                                                                            <isNotEmpty  prepend="," property="replyTo">#replyTo#</isNotEmpty>
+                                                                                                            <isNotEmpty  prepend="," property="device">#device#</isNotEmpty>
+                                                                                                            <isNotEmpty  prepend="," property="ip">#ip#</isNotEmpty>
+                                                                                    ,UNIX_TIMESTAMP()
+                                                                                                            <isNotEmpty  prepend="," property="floor">#floor#</isNotEmpty>
+                                                                                                            <isNotEmpty  prepend="," property="auditStatus">#auditStatus#</isNotEmpty>
                                                         </dynamic>
         <selectKey resultClass="int" type="post" keyProperty="id">
             SELECT last_insert_id() AS id

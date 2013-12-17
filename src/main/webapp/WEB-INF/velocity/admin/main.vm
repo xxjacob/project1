@@ -83,6 +83,9 @@
                         <div id="legend" class="">
                             <legend class=""><a href="/asdf/news/list">文章修改查看</a>&nbsp;<a href="/asdf/news/updatepage">添加</a></legend>
                         </div>
+                         <div id="legend" class="">
+                            <legend class=""><a href="/asdf/comment/list">评论审核</a></legend>
+                        </div>
                         <div id="legend" class="">
                             <legend class="">首页、正文页、栏目页(所有栏目页通用一套配置) 静态链接设置</legend>
                         </div>

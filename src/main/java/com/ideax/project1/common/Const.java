@@ -19,4 +19,10 @@ public class Const {
     static {
         page_files.put(PAGE_INDEX, "index.html");
     }
+    
+    /**
+     * 
+     */
+    public static final byte COMMENT_PASS = 0;
+    public static final byte COMMENT_UNPASS = 1;
 }

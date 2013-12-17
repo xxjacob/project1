@@ -53,27 +53,31 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
             </iterate>
         </delete>
                                 <update id="Admin.updateAdminsByKeys" parameterClass="Admin">
-            UPDATE admin SET 
-            				            				                    <isNotNull prepend="," property="username">
+            UPDATE admin 
+            <dynamic prepend="SET">
+                                                                           <isNotNull prepend="," property="username">
                         username = #username#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="password">
+                                                                <isNotNull prepend="," property="password">
                         password = #password#
                     </isNotNull>
-                                        WHERE id in
+                                        </dynamic>
+            WHERE id in
             <iterate conjunction="," open="(" close=")" property="keys">
                 #keys[]#
             </iterate>
         </update>
         <update id="Admin.updateAdmin" parameterClass="Admin">
-            UPDATE admin SET modify_time=UNIX_TIMESTAMP()
-            				            				                    <isNotNull prepend="," property="username">
+            UPDATE admin 
+            <dynamic prepend="SET">
+                                                                           <isNotNull prepend="," property="username">
                         username = #username#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="password">
+                                                                <isNotNull prepend="," property="password">
                         password = #password#
                     </isNotNull>
-                                        WHERE id = #id#
+                                        </dynamic>
+            WHERE id = #id#
         </update>
             <select id="Admin.getAdminListWithPage" parameterClass="AdminQuery" resultMap="admin">
         <include refid="admin.selector" />
@@ -105,21 +109,13 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
         <insert id="Admin.insertAdmin" parameterClass="Admin">
         INSERT INTO admin
         <dynamic prepend="(" close=")">
-                                                                            <isNotEmpty prepend="," property="username">
-                        username
-                    </isNotEmpty >
-                                                                <isNotEmpty prepend="," property="password">
-                        password
-                    </isNotEmpty >
+                                                                            <isNotEmpty prepend="," property="username">username</isNotEmpty>
+                                                                <isNotEmpty prepend="," property="password">password</isNotEmpty>
                                     </dynamic>
         VALUES
         <dynamic prepend="(" close=")">
-                                                                                                        <isNotEmpty  prepend="," property="username">
-                                #username#
-                            </isNotEmpty >
-                                                                                                                <isNotEmpty  prepend="," property="password">
-                                #password#
-                            </isNotEmpty >
+                                                                                                    <isNotEmpty  prepend="," property="username">#username#</isNotEmpty>
+                                                                                                            <isNotEmpty  prepend="," property="password">#password#</isNotEmpty>
                                                         </dynamic>
         <selectKey resultClass="int" type="post" keyProperty="id">
             SELECT last_insert_id() AS id

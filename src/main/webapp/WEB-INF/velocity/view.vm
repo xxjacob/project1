@@ -16,7 +16,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 <meta name="keywords"
-			content="环球新闻网,新闻，环球，军事，新闻网，环球网，环球时报，娱乐，国内新闻，图片新闻网" />
+			content="战国军事网,国际军事,中国军事,军事视角,图说军事,社会趣闻,美女爱秀" />
 		<meta name="description" content="正文页" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta http-equiv="Cache-Control" content="no-cache" />
@@ -38,7 +38,7 @@
 			导航条
 			-->
 			<div class="nav">
-				<a href="/">XXX网</a>&gt;
+				<a href="/">战国军事网</a>&gt;
 				<a href="pd?id=$!{pindao.id}">$!{pindao.name}</a>&gt;
 				<a href="lm?id=$!{lanmu.id}">$!{lanmu.name}</a>
 			</div>
@@ -205,6 +205,7 @@ xmlHttp.send(null);
 		document.getElementById("commentForm").submit();
 	}
 </script>
+#if($news.showComment == 0)
 				<div class="search"  >
 					<form action="/comment/submit" id="commentForm" method="post">
 						<p>
@@ -249,20 +250,19 @@ xmlHttp.send(null);
 						</p>
 					</form>
 				</div>
-
 <div class="lanmu-line">
 					<a href="#">[网友评论]</a>
 				</div>
 				<div style="padding: 5px;">
 					#foreach($comment in $comments)
 						<p><a href="replypage?rid=$!{comment.id}&nid=$!{news.id}">[回复]</a>
-    					$!{comment.floor}楼 : $!{comment.content}
+    					$!{comment.floor}楼 : #if($comment.auditStatus == 0)$!{comment.content}#else该楼已删除#end
                         #set($millsecond = $comment.createTime * 1000)
 						#set($s = $date.format("MM-dd HH:mm",$millsecond))[$!{s} ] 
 							$!{$comment.device}</p>
 						#foreach($refid in $refIds[$foreach.index])
 							#set($cc = $refComments[$refid])
-							<div style="border:1px solid #AEAEF3;background:#eee;margin:5px;" ><p>$!{cc.floor} 楼: $!{cc.content}</p> 
+							<div style="border:1px solid #AEAEF3;background:#eee;margin:5px;" ><p>$!{cc.floor} 楼: #if($cc.auditStatus == 0)$!{cc.content}#else该楼已删除#end</p> 
 						#end
 						#foreach($refid in $refIds[$foreach.index])</div>#end
 					#end
@@ -272,6 +272,7 @@ xmlHttp.send(null);
 						<a href="comments?nid=$!{news.id}">&gt;&gt;全部评论</a>
 					</p>
 				</div>
+#end
  
 			<!--
 			动态广告位碎片      正文页-广告位-评论下方 122

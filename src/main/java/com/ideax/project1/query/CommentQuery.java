@@ -183,11 +183,11 @@ public class CommentQuery extends BaseQuery {
     	this.floor = floor;
     	return this;
     }
-	/** 0未审核 1审核通过 2不通过 **/
+	/** 0默认通过 1不通过 **/
     private Byte auditStatus;
 	/**
     * 获取属性:auditStatus
-    * 0未审核 1审核通过 2不通过
+    * 0默认通过 1不通过
     * @return auditStatus
     */
 	public Byte getAuditStatus () {
@@ -195,7 +195,7 @@ public class CommentQuery extends BaseQuery {
    	}
    	/**
      * 设置属性:auditStatus
-     * 0未审核 1审核通过 2不通过
+     * 0默认通过 1不通过
      * @param auditStatus
      */
     public CommentQuery setAuditStatus(Byte auditStatus) {
@@ -303,7 +303,7 @@ public class CommentQuery extends BaseQuery {
 		return this;
 	}
 	/**
-	 * 设置排序按属性：0未审核 1审核通过 2不通过
+	 * 设置排序按属性：0默认通过 1不通过
 	 * @param isAsc 是否升序，否则为降序
 	 */	
 	public CommentQuery orderbyAuditStatus(boolean isAsc){

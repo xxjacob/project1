@@ -57,51 +57,55 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
             </iterate>
         </delete>
                                 <update id="Pindao.updatePindaosByKeys" parameterClass="Pindao">
-            UPDATE pindao SET 
-            				            				                    <isNotNull prepend="," property="name">
+            UPDATE pindao 
+            <dynamic prepend="SET">
+                                                                           <isNotNull prepend="," property="name">
                         name = #name#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="orderNum">
+                                                                <isNotNull prepend="," property="orderNum">
                         order_num = #orderNum#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="logo">
+                                                                <isNotNull prepend="," property="logo">
                         logo = #logo#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="color">
+                                                                <isNotNull prepend="," property="color">
                         color = #color#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="cssStyle">
+                                                                <isNotNull prepend="," property="cssStyle">
                         css_style = #cssStyle#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="pageId">
+                                                                <isNotNull prepend="," property="pageId">
                         page_id = #pageId#
                     </isNotNull>
-                                        WHERE id in
+                                        </dynamic>
+            WHERE id in
             <iterate conjunction="," open="(" close=")" property="keys">
                 #keys[]#
             </iterate>
         </update>
         <update id="Pindao.updatePindao" parameterClass="Pindao">
-            UPDATE pindao SET modify_time=UNIX_TIMESTAMP()
-            				            				                    <isNotNull prepend="," property="name">
+            UPDATE pindao 
+            <dynamic prepend="SET">
+                                                                           <isNotNull prepend="," property="name">
                         name = #name#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="orderNum">
+                                                                <isNotNull prepend="," property="orderNum">
                         order_num = #orderNum#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="logo">
+                                                                <isNotNull prepend="," property="logo">
                         logo = #logo#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="color">
+                                                                <isNotNull prepend="," property="color">
                         color = #color#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="cssStyle">
+                                                                <isNotNull prepend="," property="cssStyle">
                         css_style = #cssStyle#
                     </isNotNull>
-                            				                    <isNotNull prepend="," property="pageId">
+                                                                <isNotNull prepend="," property="pageId">
                         page_id = #pageId#
                     </isNotNull>
-                                        WHERE id = #id#
+                                        </dynamic>
+            WHERE id = #id#
         </update>
             <select id="Pindao.getPindaoListWithPage" parameterClass="PindaoQuery" resultMap="pindao">
         <include refid="pindao.selector" />
@@ -137,45 +141,21 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
         <insert id="Pindao.insertPindao" parameterClass="Pindao">
         INSERT INTO pindao
         <dynamic prepend="(" close=")">
-                                                                            <isNotEmpty prepend="," property="name">
-                        name
-                    </isNotEmpty >
-                                                                <isNotEmpty prepend="," property="orderNum">
-                        order_num
-                    </isNotEmpty >
-                                                                <isNotEmpty prepend="," property="logo">
-                        logo
-                    </isNotEmpty >
-                                                                <isNotEmpty prepend="," property="color">
-                        color
-                    </isNotEmpty >
-                                                                <isNotEmpty prepend="," property="cssStyle">
-                        css_style
-                    </isNotEmpty >
-                                                                <isNotEmpty prepend="," property="pageId">
-                        page_id
-                    </isNotEmpty >
+                                                                            <isNotEmpty prepend="," property="name">name</isNotEmpty>
+                                                                <isNotEmpty prepend="," property="orderNum">order_num</isNotEmpty>
+                                                                <isNotEmpty prepend="," property="logo">logo</isNotEmpty>
+                                                                <isNotEmpty prepend="," property="color">color</isNotEmpty>
+                                                                <isNotEmpty prepend="," property="cssStyle">css_style</isNotEmpty>
+                                                                <isNotEmpty prepend="," property="pageId">page_id</isNotEmpty>
                                     </dynamic>
         VALUES
         <dynamic prepend="(" close=")">
-                                                                                                        <isNotEmpty  prepend="," property="name">
-                                #name#
-                            </isNotEmpty >
-                                                                                                                <isNotEmpty  prepend="," property="orderNum">
-                                #orderNum#
-                            </isNotEmpty >
-                                                                                                                <isNotEmpty  prepend="," property="logo">
-                                #logo#
-                            </isNotEmpty >
-                                                                                                                <isNotEmpty  prepend="," property="color">
-                                #color#
-                            </isNotEmpty >
-                                                                                                                <isNotEmpty  prepend="," property="cssStyle">
-                                #cssStyle#
-                            </isNotEmpty >
-                                                                                                                <isNotEmpty  prepend="," property="pageId">
-                                #pageId#
-                            </isNotEmpty >
+                                                                                                    <isNotEmpty  prepend="," property="name">#name#</isNotEmpty>
+                                                                                                            <isNotEmpty  prepend="," property="orderNum">#orderNum#</isNotEmpty>
+                                                                                                            <isNotEmpty  prepend="," property="logo">#logo#</isNotEmpty>
+                                                                                                            <isNotEmpty  prepend="," property="color">#color#</isNotEmpty>
+                                                                                                            <isNotEmpty  prepend="," property="cssStyle">#cssStyle#</isNotEmpty>
+                                                                                                            <isNotEmpty  prepend="," property="pageId">#pageId#</isNotEmpty>
                                                         </dynamic>
         <selectKey resultClass="int" type="post" keyProperty="id">
             SELECT last_insert_id() AS id

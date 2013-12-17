@@ -55,23 +55,26 @@ public class PindaoC {
 		return "pd";
 	}
 
+	final int LANMU_NEWS_SIZE = 20;
+
 	@RequestMapping("/lm")
 	public String lanmupage(@RequestParam int id, @RequestParam(required = false, defaultValue = "1") int page,
 			ModelMap model) {
 		// pindao
 		Lanmu lm = pindaoService.getLanmuByKey(id);
 		model.addAttribute("lanmu", lm);
-		if (lm != null)
-			model.addAttribute("pindao", pindaoService.getPindaoByKey(lm.getPdId()));
+		Pindao pd = pindaoService.getPindaoByKey(lm.getPdId());
+		model.addAttribute("pindao", pd);
 		// blocks
 		model.addAttribute("blocks", blockService.getAllBlocksByPageid(Const.PAGE_LANMU));
 		// lanmu news
-		Result<News> rst = newsService.getLanmuNewsListWithPage(lm.getPdId(), lm.getId(), page, 10);
+		Result<News> rst = newsService.getLanmuNewsListWithPage(lm.getPdId(), lm.getId(), page, LANMU_NEWS_SIZE);
 		model.addAttribute("newss", rst.getList());
-		model.addAttribute("total", rst.getCount() / 10 + (rst.getCount() % 10 == 0 ? 0 : 1));
+		model.addAttribute("total", rst.getCount() / LANMU_NEWS_SIZE + (rst.getCount() % LANMU_NEWS_SIZE == 0 ? 0 : 1));
 		model.addAttribute("page", page);
 		// 点击排行
-		// TODO
+		List<News> hotlist = newsService.getNewsListByViewcount(pd.getId(), page, 5);
+		model.addAttribute("hotlist", hotlist);
 		// 导航栏
 		model.addAttribute("pdmap", pindaoService.getPindaoMap());
 		return "lm";

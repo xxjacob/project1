@@ -1,9 +1,7 @@
 package com.ideax.project1.common;
 
-import java.util.List;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.List;
 
 
 /**

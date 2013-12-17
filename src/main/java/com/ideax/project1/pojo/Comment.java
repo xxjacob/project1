@@ -30,7 +30,7 @@ public class Comment implements Serializable{
     private Integer modifyTime;
 	/** 楼层 **/
     private Integer floor;
-	/** 0未审核 1审核通过 2不通过 **/
+	/** 0默认通过 1不通过 **/
     private Byte auditStatus;
 
 	
@@ -189,7 +189,7 @@ public class Comment implements Serializable{
 	
    /**
     * 获取属性:auditStatus
-    * 0未审核 1审核通过 2不通过
+    * 0默认通过 1不通过
     * @return auditStatus
     */
    public Byte getAuditStatus() {
@@ -197,7 +197,7 @@ public class Comment implements Serializable{
    }
    /**
     * 设置属性:auditStatus
-    * 0未审核 1审核通过 2不通过
+    * 0默认通过 1不通过
     * @param auditStatus
     */
    public void setAuditStatus(Byte auditStatus) {
