@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  *
- * @author 王永玲
+ * @author xxjacob
  */
 public class BlockQuery extends BaseQuery {
 	
@@ -219,6 +219,44 @@ public class BlockQuery extends BaseQuery {
      */
     public BlockQuery setTemplate(String template) {
     	this.template = template;
+    	return this;
+    }
+	/** 0其他链接, 1其他图片链接, 2本站新闻链接,3本站图片新闻链接 4 静态块 **/
+    private Byte type;
+	/**
+    * 获取属性:type
+    * 0其他链接, 1其他图片链接, 2本站新闻链接,3本站图片新闻链接 4 静态块
+    * @return type
+    */
+	public Byte getType () {
+    	return type;
+   	}
+   	/**
+     * 设置属性:type
+     * 0其他链接, 1其他图片链接, 2本站新闻链接,3本站图片新闻链接 4 静态块
+     * @param type
+     */
+    public BlockQuery setType(Byte type) {
+    	this.type = type;
+    	return this;
+    }
+	/** 0 false 1 true **/
+    private Byte isBold;
+	/**
+    * 获取属性:isBold
+    * 0 false 1 true
+    * @return isBold
+    */
+	public Byte getIsBold () {
+    	return isBold;
+   	}
+   	/**
+     * 设置属性:isBold
+     * 0 false 1 true
+     * @param isBold
+     */
+    public BlockQuery setIsBold(Byte isBold) {
+    	this.isBold = isBold;
     	return this;
     }
 	/** newsid **/

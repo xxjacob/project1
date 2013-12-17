@@ -15,7 +15,7 @@ import java.util.Collections;
 import com.ideax.project1.common.Result;
 import com.ideax.project1.query.PindaoQuery;
 /**
- * @author 王永玲
+ * @author xxjacob
  */
 @Repository
 public class PindaoDAO {

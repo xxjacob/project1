@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author 王永玲
+ * @author xxjacob
  */
 public class Comment implements Serializable{
 
@@ -30,6 +30,8 @@ public class Comment implements Serializable{
     private Integer modifyTime;
 	/** 楼层 **/
     private Integer floor;
+	/** 0未审核 1审核通过 2不通过 **/
+    private Byte auditStatus;
 
 	
    /**
@@ -183,6 +185,23 @@ public class Comment implements Serializable{
     */
    public void setFloor(Integer floor) {
        this.floor = floor;
+   }
+	
+   /**
+    * 获取属性:auditStatus
+    * 0未审核 1审核通过 2不通过
+    * @return auditStatus
+    */
+   public Byte getAuditStatus() {
+       return auditStatus;
+   }
+   /**
+    * 设置属性:auditStatus
+    * 0未审核 1审核通过 2不通过
+    * @param auditStatus
+    */
+   public void setAuditStatus(Byte auditStatus) {
+       this.auditStatus = auditStatus;
    }
 
 	/**

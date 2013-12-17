@@ -67,113 +67,111 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
             </iterate>
         </delete>
                                 <update id="Block.updateBlocksByKeys" parameterClass="Block">
-            UPDATE block 
-            <dynamic prepend="SET">
-                                                                           <isNotNull prepend="," property="blockGroup">
+            UPDATE block SET 
+            				            				                    <isNotNull prepend="," property="blockGroup">
                         block_group = #blockGroup#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="orderNum">
+                            				                    <isNotNull prepend="," property="orderNum">
                         order_num = #orderNum#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="pageId">
+                            				                    <isNotNull prepend="," property="pageId">
                         page_id = #pageId#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="pindaoId">
+                            				                    <isNotNull prepend="," property="pindaoId">
                         pindao_id = #pindaoId#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="lanmuId">
+                            				                    <isNotNull prepend="," property="lanmuId">
                         lanmu_id = #lanmuId#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="blockName">
+                            				                    <isNotNull prepend="," property="blockName">
                         block_name = #blockName#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="url">
+                            				                    <isNotNull prepend="," property="url">
                         url = #url#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="title">
+                            				                    <isNotNull prepend="," property="title">
                         title = #title#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="html">
+                            				                    <isNotNull prepend="," property="html">
                         html = #html#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="template">
+                            				                    <isNotNull prepend="," property="template">
                         template = #template#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="type">
+                            				                    <isNotNull prepend="," property="type">
                         type = #type#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="isBold">
+                            				                    <isNotNull prepend="," property="isBold">
                         is_bold = #isBold#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="newsId">
+                            				                    <isNotNull prepend="," property="newsId">
                         news_id = #newsId#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="img">
+                            				                    <isNotNull prepend="," property="img">
                         img = #img#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="createTime">
+                            				                    <isNotNull prepend="," property="createTime">
                         create_time = #createTime#
                     </isNotNull>
-                                                                <isNull prepend="," property="modifyTime" >modify_time=UNIX_TIMESTAMP()</isNull>
-                    <isNotNull prepend="," property="modifyTime" >modify_time=#modifyTime#</isNotNull>
-                                        </dynamic>
-            WHERE id in
+                            									<dynamic prepend=",">
+						modify_time=UNIX_TIMESTAMP()
+					</dynamic>
+				                        WHERE id in
             <iterate conjunction="," open="(" close=")" property="keys">
                 #keys[]#
             </iterate>
         </update>
         <update id="Block.updateBlock" parameterClass="Block">
-            UPDATE block 
-            <dynamic prepend="SET">
-                                                                           <isNotNull prepend="," property="blockGroup">
+            UPDATE block SET modify_time=UNIX_TIMESTAMP()
+            				            				                    <isNotNull prepend="," property="blockGroup">
                         block_group = #blockGroup#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="orderNum">
+                            				                    <isNotNull prepend="," property="orderNum">
                         order_num = #orderNum#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="pageId">
+                            				                    <isNotNull prepend="," property="pageId">
                         page_id = #pageId#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="pindaoId">
+                            				                    <isNotNull prepend="," property="pindaoId">
                         pindao_id = #pindaoId#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="lanmuId">
+                            				                    <isNotNull prepend="," property="lanmuId">
                         lanmu_id = #lanmuId#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="blockName">
+                            				                    <isNotNull prepend="," property="blockName">
                         block_name = #blockName#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="url">
+                            				                    <isNotNull prepend="," property="url">
                         url = #url#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="title">
+                            				                    <isNotNull prepend="," property="title">
                         title = #title#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="html">
+                            				                    <isNotNull prepend="," property="html">
                         html = #html#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="template">
+                            				                    <isNotNull prepend="," property="template">
                         template = #template#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="type">
+                            				                    <isNotNull prepend="," property="type">
                         type = #type#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="isBold">
+                            				                    <isNotNull prepend="," property="isBold">
                         is_bold = #isBold#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="newsId">
+                            				                    <isNotNull prepend="," property="newsId">
                         news_id = #newsId#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="img">
+                            				                    <isNotNull prepend="," property="img">
                         img = #img#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="createTime">
+                            				                    <isNotNull prepend="," property="createTime">
                         create_time = #createTime#
                     </isNotNull>
-                                                                <isNull prepend="," property="modifyTime" >modify_time=UNIX_TIMESTAMP()</isNull>
-                    <isNotNull prepend="," property="modifyTime" >modify_time=#modifyTime#</isNotNull>
-                                        </dynamic>
-            WHERE id = #id#
+                            									<dynamic prepend=",">
+						modify_time=UNIX_TIMESTAMP()
+					</dynamic>
+				                        WHERE id = #id#
         </update>
             <select id="Block.getBlockListWithPage" parameterClass="BlockQuery" resultMap="block">
         <include refid="block.selector" />
@@ -217,42 +215,106 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
         <insert id="Block.insertBlock" parameterClass="Block">
         INSERT INTO block
         <dynamic prepend="(" close=")">
-                                                                            <isNotEmpty prepend="," property="blockGroup">block_group</isNotEmpty>
-                                                                <isNotEmpty prepend="," property="orderNum">order_num</isNotEmpty>
-                                                                <isNotEmpty prepend="," property="pageId">page_id</isNotEmpty>
-                                                                <isNotEmpty prepend="," property="pindaoId">pindao_id</isNotEmpty>
-                                                                <isNotEmpty prepend="," property="lanmuId">lanmu_id</isNotEmpty>
-                                                                <isNotEmpty prepend="," property="blockName">block_name</isNotEmpty>
-                                                                <isNotEmpty prepend="," property="url">url</isNotEmpty>
-                                                                <isNotEmpty prepend="," property="title">title</isNotEmpty>
-                                                                <isNotEmpty prepend="," property="html">html</isNotEmpty>
-                                                                <isNotEmpty prepend="," property="template">template</isNotEmpty>
-                                                                <isNotEmpty prepend="," property="type">type</isNotEmpty>
-                                                                <isNotEmpty prepend="," property="isBold">is_bold</isNotEmpty>
-                                                                <isNotEmpty prepend="," property="newsId">news_id</isNotEmpty>
-                                                                <isNotEmpty prepend="," property="img">img</isNotEmpty>
-                                                                ,create_time
-                                                                ,modify_time
+                                                                            <isNotEmpty prepend="," property="blockGroup">
+                        block_group
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="orderNum">
+                        order_num
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="pageId">
+                        page_id
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="pindaoId">
+                        pindao_id
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="lanmuId">
+                        lanmu_id
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="blockName">
+                        block_name
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="url">
+                        url
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="title">
+                        title
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="html">
+                        html
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="template">
+                        template
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="type">
+                        type
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="isBold">
+                        is_bold
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="newsId">
+                        news_id
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="img">
+                        img
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="createTime">
+                        create_time
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="modifyTime">
+                        modify_time
+                    </isNotEmpty >
                                     </dynamic>
         VALUES
         <dynamic prepend="(" close=")">
-                                                                                                    <isNotEmpty  prepend="," property="blockGroup">#blockGroup#</isNotEmpty>
-                                                                                                            <isNotEmpty  prepend="," property="orderNum">#orderNum#</isNotEmpty>
-                                                                                                            <isNotEmpty  prepend="," property="pageId">#pageId#</isNotEmpty>
-                                                                                                            <isNotEmpty  prepend="," property="pindaoId">#pindaoId#</isNotEmpty>
-                                                                                                            <isNotEmpty  prepend="," property="lanmuId">#lanmuId#</isNotEmpty>
-                                                                                                            <isNotEmpty  prepend="," property="blockName">#blockName#</isNotEmpty>
-                                                                                                            <isNotEmpty  prepend="," property="url">#url#</isNotEmpty>
-                                                                                                            <isNotEmpty  prepend="," property="title">#title#</isNotEmpty>
-                                                                                                            <isNotEmpty  prepend="," property="html">#html#</isNotEmpty>
-                                                                                                            <isNotEmpty  prepend="," property="template">#template#</isNotEmpty>
-                                                                                                            <isNotEmpty  prepend="," property="type">#type#</isNotEmpty>
-                                                                                                            <isNotEmpty  prepend="," property="isBold">#isBold#</isNotEmpty>
-                                                                                                            <isNotEmpty  prepend="," property="newsId">#newsId#</isNotEmpty>
-                                                                                                            <isNotEmpty  prepend="," property="img">#img#</isNotEmpty>
-                                                                                    ,UNIX_TIMESTAMP()
-                                                                                    ,UNIX_TIMESTAMP()
-                                                        </dynamic>
+                                                                                                        <isNotEmpty  prepend="," property="blockGroup">
+                                #blockGroup#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="orderNum">
+                                #orderNum#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="pageId">
+                                #pageId#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="pindaoId">
+                                #pindaoId#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="lanmuId">
+                                #lanmuId#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="blockName">
+                                #blockName#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="url">
+                                #url#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="title">
+                                #title#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="html">
+                                #html#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="template">
+                                #template#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="type">
+                                #type#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="isBold">
+                                #isBold#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="newsId">
+                                #newsId#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="img">
+                                #img#
+                            </isNotEmpty >
+                                                                                                            <isNotEmpty  prepend="," property="createTime">
+                            ,UNIX_TIMESTAMP()
+                        </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="modifyTime">
+                            ,UNIX_TIMESTAMP()
+                        </isNotEmpty >
+                                                            </dynamic>
         <selectKey resultClass="int" type="post" keyProperty="id">
             SELECT last_insert_id() AS id
         </selectKey>

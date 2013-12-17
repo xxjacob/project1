@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  *
- * @author 王永玲
+ * @author xxjacob
  */
 public class UserQuery extends BaseQuery {
 	
@@ -67,6 +67,25 @@ public class UserQuery extends BaseQuery {
      */
     public UserQuery setNickname(String nickname) {
     	this.nickname = nickname;
+    	return this;
+    }
+	/** 性别 **/
+    private Byte gender;
+	/**
+    * 获取属性:gender
+    * 性别
+    * @return gender
+    */
+	public Byte getGender () {
+    	return gender;
+   	}
+   	/**
+     * 设置属性:gender
+     * 性别
+     * @param gender
+     */
+    public UserQuery setGender(Byte gender) {
+    	this.gender = gender;
     	return this;
     }
 	/** 出生年 **/
@@ -164,6 +183,25 @@ public class UserQuery extends BaseQuery {
     	this.introduce = introduce;
     	return this;
     }
+	/** 0 单身，1 恋爱中 **/
+    private Byte loveStatus;
+	/**
+    * 获取属性:loveStatus
+    * 0 单身，1 恋爱中
+    * @return loveStatus
+    */
+	public Byte getLoveStatus () {
+    	return loveStatus;
+   	}
+   	/**
+     * 设置属性:loveStatus
+     * 0 单身，1 恋爱中
+     * @param loveStatus
+     */
+    public UserQuery setLoveStatus(Byte loveStatus) {
+    	this.loveStatus = loveStatus;
+    	return this;
+    }
 	/** height **/
     private Integer height;
 	/**
@@ -181,6 +219,139 @@ public class UserQuery extends BaseQuery {
      */
     public UserQuery setHeight(Integer height) {
     	this.height = height;
+    	return this;
+    }
+	/** 学历,1 高中，2大专，3本科，4硕士，5博士，6博士后 **/
+    private Byte education;
+	/**
+    * 获取属性:education
+    * 学历,1 高中，2大专，3本科，4硕士，5博士，6博士后
+    * @return education
+    */
+	public Byte getEducation () {
+    	return education;
+   	}
+   	/**
+     * 设置属性:education
+     * 学历,1 高中，2大专，3本科，4硕士，5博士，6博士后
+     * @param education
+     */
+    public UserQuery setEducation(Byte education) {
+    	this.education = education;
+    	return this;
+    }
+	/** 1 a 2b 3ab 4o 5其他 **/
+    private Byte bloodGroup;
+	/**
+    * 获取属性:bloodGroup
+    * 1 a 2b 3ab 4o 5其他
+    * @return bloodGroup
+    */
+	public Byte getBloodGroup () {
+    	return bloodGroup;
+   	}
+   	/**
+     * 设置属性:bloodGroup
+     * 1 a 2b 3ab 4o 5其他
+     * @param bloodGroup
+     */
+    public UserQuery setBloodGroup(Byte bloodGroup) {
+    	this.bloodGroup = bloodGroup;
+    	return this;
+    }
+	/** 收入 **/
+    private Byte earning;
+	/**
+    * 获取属性:earning
+    * 收入
+    * @return earning
+    */
+	public Byte getEarning () {
+    	return earning;
+   	}
+   	/**
+     * 设置属性:earning
+     * 收入
+     * @param earning
+     */
+    public UserQuery setEarning(Byte earning) {
+    	this.earning = earning;
+    	return this;
+    }
+	/** profession **/
+    private Byte profession;
+	/**
+    * 获取属性:profession
+    * profession
+    * @return profession
+    */
+	public Byte getProfession () {
+    	return profession;
+   	}
+   	/**
+     * 设置属性:profession
+     * profession
+     * @param profession
+     */
+    public UserQuery setProfession(Byte profession) {
+    	this.profession = profession;
+    	return this;
+    }
+	/** 无房，有房，准备购房 **/
+    private Byte houseStatus;
+	/**
+    * 获取属性:houseStatus
+    * 无房，有房，准备购房
+    * @return houseStatus
+    */
+	public Byte getHouseStatus () {
+    	return houseStatus;
+   	}
+   	/**
+     * 设置属性:houseStatus
+     * 无房，有房，准备购房
+     * @param houseStatus
+     */
+    public UserQuery setHouseStatus(Byte houseStatus) {
+    	this.houseStatus = houseStatus;
+    	return this;
+    }
+	/** 无车，有车，准备购车 **/
+    private Byte carStatus;
+	/**
+    * 获取属性:carStatus
+    * 无车，有车，准备购车
+    * @return carStatus
+    */
+	public Byte getCarStatus () {
+    	return carStatus;
+   	}
+   	/**
+     * 设置属性:carStatus
+     * 无车，有车，准备购车
+     * @param carStatus
+     */
+    public UserQuery setCarStatus(Byte carStatus) {
+    	this.carStatus = carStatus;
+    	return this;
+    }
+	/** 0 未激活,1 未完善, 2,可用 **/
+    private Byte status;
+	/**
+    * 获取属性:status
+    * 0 未激活,1 未完善, 2,可用
+    * @return status
+    */
+	public Byte getStatus () {
+    	return status;
+   	}
+   	/**
+     * 设置属性:status
+     * 0 未激活,1 未完善, 2,可用
+     * @param status
+     */
+    public UserQuery setStatus(Byte status) {
+    	this.status = status;
     	return this;
     }
 	/** create_time **/

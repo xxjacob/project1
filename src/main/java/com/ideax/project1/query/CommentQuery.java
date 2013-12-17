@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  *
- * @author 王永玲
+ * @author xxjacob
  */
 public class CommentQuery extends BaseQuery {
 	
@@ -183,6 +183,25 @@ public class CommentQuery extends BaseQuery {
     	this.floor = floor;
     	return this;
     }
+	/** 0未审核 1审核通过 2不通过 **/
+    private Byte auditStatus;
+	/**
+    * 获取属性:auditStatus
+    * 0未审核 1审核通过 2不通过
+    * @return auditStatus
+    */
+	public Byte getAuditStatus () {
+    	return auditStatus;
+   	}
+   	/**
+     * 设置属性:auditStatus
+     * 0未审核 1审核通过 2不通过
+     * @param auditStatus
+     */
+    public CommentQuery setAuditStatus(Byte auditStatus) {
+    	this.auditStatus = auditStatus;
+    	return this;
+    }
 	/**==============================批量查询时的Order条件顺序设置==================================**/
 	public class OrderField{
 		public OrderField(String fieldName, String order) {
@@ -281,6 +300,14 @@ public class CommentQuery extends BaseQuery {
 	 */	
 	public CommentQuery orderbyFloor(boolean isAsc){
 		orderFields.add(new OrderField("floor",isAsc?"ASC":"DESC"));
+		return this;
+	}
+	/**
+	 * 设置排序按属性：0未审核 1审核通过 2不通过
+	 * @param isAsc 是否升序，否则为降序
+	 */	
+	public CommentQuery orderbyAuditStatus(boolean isAsc){
+		orderFields.add(new OrderField("audit_status",isAsc?"ASC":"DESC"));
 		return this;
 	}
 }

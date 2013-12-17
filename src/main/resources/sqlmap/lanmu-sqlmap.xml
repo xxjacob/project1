@@ -55,43 +55,39 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
             </iterate>
         </delete>
                                 <update id="Lanmu.updateLanmusByKeys" parameterClass="Lanmu">
-            UPDATE lanmu 
-            <dynamic prepend="SET">
-                                                                           <isNotNull prepend="," property="name">
+            UPDATE lanmu SET 
+            				            				                    <isNotNull prepend="," property="name">
                         name = #name#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="pdId">
+                            				                    <isNotNull prepend="," property="pdId">
                         pd_id = #pdId#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="orderNum">
+                            				                    <isNotNull prepend="," property="orderNum">
                         order_num = #orderNum#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="pageId">
+                            				                    <isNotNull prepend="," property="pageId">
                         page_id = #pageId#
                     </isNotNull>
-                                        </dynamic>
-            WHERE id in
+                                        WHERE id in
             <iterate conjunction="," open="(" close=")" property="keys">
                 #keys[]#
             </iterate>
         </update>
         <update id="Lanmu.updateLanmu" parameterClass="Lanmu">
-            UPDATE lanmu 
-            <dynamic prepend="SET">
-                                                                           <isNotNull prepend="," property="name">
+            UPDATE lanmu SET modify_time=UNIX_TIMESTAMP()
+            				            				                    <isNotNull prepend="," property="name">
                         name = #name#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="pdId">
+                            				                    <isNotNull prepend="," property="pdId">
                         pd_id = #pdId#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="orderNum">
+                            				                    <isNotNull prepend="," property="orderNum">
                         order_num = #orderNum#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="pageId">
+                            				                    <isNotNull prepend="," property="pageId">
                         page_id = #pageId#
                     </isNotNull>
-                                        </dynamic>
-            WHERE id = #id#
+                                        WHERE id = #id#
         </update>
             <select id="Lanmu.getLanmuListWithPage" parameterClass="LanmuQuery" resultMap="lanmu">
         <include refid="lanmu.selector" />
@@ -125,17 +121,33 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
         <insert id="Lanmu.insertLanmu" parameterClass="Lanmu">
         INSERT INTO lanmu
         <dynamic prepend="(" close=")">
-                                                                            <isNotEmpty prepend="," property="name">name</isNotEmpty>
-                                                                <isNotEmpty prepend="," property="pdId">pd_id</isNotEmpty>
-                                                                <isNotEmpty prepend="," property="orderNum">order_num</isNotEmpty>
-                                                                <isNotEmpty prepend="," property="pageId">page_id</isNotEmpty>
+                                                                            <isNotEmpty prepend="," property="name">
+                        name
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="pdId">
+                        pd_id
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="orderNum">
+                        order_num
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="pageId">
+                        page_id
+                    </isNotEmpty >
                                     </dynamic>
         VALUES
         <dynamic prepend="(" close=")">
-                                                                                                    <isNotEmpty  prepend="," property="name">#name#</isNotEmpty>
-                                                                                                            <isNotEmpty  prepend="," property="pdId">#pdId#</isNotEmpty>
-                                                                                                            <isNotEmpty  prepend="," property="orderNum">#orderNum#</isNotEmpty>
-                                                                                                            <isNotEmpty  prepend="," property="pageId">#pageId#</isNotEmpty>
+                                                                                                        <isNotEmpty  prepend="," property="name">
+                                #name#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="pdId">
+                                #pdId#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="orderNum">
+                                #orderNum#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="pageId">
+                                #pageId#
+                            </isNotEmpty >
                                                         </dynamic>
         <selectKey resultClass="int" type="post" keyProperty="id">
             SELECT last_insert_id() AS id

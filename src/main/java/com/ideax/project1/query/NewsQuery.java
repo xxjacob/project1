@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  *
- * @author 王永玲
+ * @author xxjacob
  */
 public class NewsQuery extends BaseQuery {
 	
@@ -164,6 +164,25 @@ public class NewsQuery extends BaseQuery {
     	this.coverImg = coverImg;
     	return this;
     }
+	/** 0不在列表页展现图片，1展现 **/
+    private Byte showCover;
+	/**
+    * 获取属性:showCover
+    * 0不在列表页展现图片，1展现
+    * @return showCover
+    */
+	public Byte getShowCover () {
+    	return showCover;
+   	}
+   	/**
+     * 设置属性:showCover
+     * 0不在列表页展现图片，1展现
+     * @param showCover
+     */
+    public NewsQuery setShowCover(Byte showCover) {
+    	this.showCover = showCover;
+    	return this;
+    }
 	/** url1,url2,url3 **/
     private String images;
 	/**
@@ -181,6 +200,44 @@ public class NewsQuery extends BaseQuery {
      */
     public NewsQuery setImages(String images) {
     	this.images = images;
+    	return this;
+    }
+	/** 0show 1disable **/
+    private Byte showComment;
+	/**
+    * 获取属性:showComment
+    * 0show 1disable
+    * @return showComment
+    */
+	public Byte getShowComment () {
+    	return showComment;
+   	}
+   	/**
+     * 设置属性:showComment
+     * 0show 1disable
+     * @param showComment
+     */
+    public NewsQuery setShowComment(Byte showComment) {
+    	this.showComment = showComment;
+    	return this;
+    }
+	/** 0 not 1yes **/
+    private Byte showBold;
+	/**
+    * 获取属性:showBold
+    * 0 not 1yes
+    * @return showBold
+    */
+	public Byte getShowBold () {
+    	return showBold;
+   	}
+   	/**
+     * 设置属性:showBold
+     * 0 not 1yes
+     * @param showBold
+     */
+    public NewsQuery setShowBold(Byte showBold) {
+    	this.showBold = showBold;
     	return this;
     }
 	/** modify_time **/

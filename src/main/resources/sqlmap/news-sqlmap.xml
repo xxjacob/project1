@@ -72,143 +72,141 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
             </iterate>
         </delete>
                                 <update id="News.updateNewssByKeys" parameterClass="News">
-            UPDATE news 
-            <dynamic prepend="SET">
-                                                                           <isNotNull prepend="," property="shortTitle">
+            UPDATE news SET 
+            				            				                    <isNotNull prepend="," property="shortTitle">
                         short_title = #shortTitle#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="title">
+                            				                    <isNotNull prepend="," property="title">
                         title = #title#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="content">
+                            				                    <isNotNull prepend="," property="content">
                         content = #content#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="pdId">
+                            				                    <isNotNull prepend="," property="pdId">
                         pd_id = #pdId#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="lmId">
+                            				                    <isNotNull prepend="," property="lmId">
                         lm_id = #lmId#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="source">
+                            				                    <isNotNull prepend="," property="source">
                         source = #source#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="coverImg">
+                            				                    <isNotNull prepend="," property="coverImg">
                         cover_img = #coverImg#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="showCover">
+                            				                    <isNotNull prepend="," property="showCover">
                         show_cover = #showCover#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="images">
+                            				                    <isNotNull prepend="," property="images">
                         images = #images#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="showComment">
+                            				                    <isNotNull prepend="," property="showComment">
                         show_comment = #showComment#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="showBold">
+                            				                    <isNotNull prepend="," property="showBold">
                         show_bold = #showBold#
                     </isNotNull>
-                                                                <isNull prepend="," property="modifyTime" >modify_time=UNIX_TIMESTAMP()</isNull>
-                    <isNotNull prepend="," property="modifyTime" >modify_time=#modifyTime#</isNotNull>
-                                                                <isNotNull prepend="," property="createTime">
+                            									<dynamic prepend=",">
+						modify_time=UNIX_TIMESTAMP()
+					</dynamic>
+				            				                    <isNotNull prepend="," property="createTime">
                         create_time = #createTime#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="sendTime">
+                            				                    <isNotNull prepend="," property="sendTime">
                         send_time = #sendTime#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="cmtNumLv5">
+                            				                    <isNotNull prepend="," property="cmtNumLv5">
                         cmt_num_lv5 = #cmtNumLv5#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="cmtNumLv4">
+                            				                    <isNotNull prepend="," property="cmtNumLv4">
                         cmt_num_lv4 = #cmtNumLv4#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="cmtNumLv3">
+                            				                    <isNotNull prepend="," property="cmtNumLv3">
                         cmt_num_lv3 = #cmtNumLv3#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="cmtNumLv2">
+                            				                    <isNotNull prepend="," property="cmtNumLv2">
                         cmt_num_lv2 = #cmtNumLv2#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="cmtNumLv1">
+                            				                    <isNotNull prepend="," property="cmtNumLv1">
                         cmt_num_lv1 = #cmtNumLv1#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="cmtNum">
+                            				                    <isNotNull prepend="," property="cmtNum">
                         cmt_num = #cmtNum#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="viewCount">
+                            				                    <isNotNull prepend="," property="viewCount">
                         view_count = #viewCount#
                     </isNotNull>
-                                        </dynamic>
-            WHERE id in
+                                        WHERE id in
             <iterate conjunction="," open="(" close=")" property="keys">
                 #keys[]#
             </iterate>
         </update>
         <update id="News.updateNews" parameterClass="News">
-            UPDATE news 
-            <dynamic prepend="SET">
-                                                                           <isNotNull prepend="," property="shortTitle">
+            UPDATE news SET modify_time=UNIX_TIMESTAMP()
+            				            				                    <isNotNull prepend="," property="shortTitle">
                         short_title = #shortTitle#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="title">
+                            				                    <isNotNull prepend="," property="title">
                         title = #title#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="content">
+                            				                    <isNotNull prepend="," property="content">
                         content = #content#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="pdId">
+                            				                    <isNotNull prepend="," property="pdId">
                         pd_id = #pdId#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="lmId">
+                            				                    <isNotNull prepend="," property="lmId">
                         lm_id = #lmId#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="source">
+                            				                    <isNotNull prepend="," property="source">
                         source = #source#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="coverImg">
+                            				                    <isNotNull prepend="," property="coverImg">
                         cover_img = #coverImg#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="showCover">
+                            				                    <isNotNull prepend="," property="showCover">
                         show_cover = #showCover#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="images">
+                            				                    <isNotNull prepend="," property="images">
                         images = #images#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="showComment">
+                            				                    <isNotNull prepend="," property="showComment">
                         show_comment = #showComment#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="showBold">
+                            				                    <isNotNull prepend="," property="showBold">
                         show_bold = #showBold#
                     </isNotNull>
-                                                                <isNull prepend="," property="modifyTime" >modify_time=UNIX_TIMESTAMP()</isNull>
-                    <isNotNull prepend="," property="modifyTime" >modify_time=#modifyTime#</isNotNull>
-                                                                <isNotNull prepend="," property="createTime">
+                            									<dynamic prepend=",">
+						modify_time=UNIX_TIMESTAMP()
+					</dynamic>
+				            				                    <isNotNull prepend="," property="createTime">
                         create_time = #createTime#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="sendTime">
+                            				                    <isNotNull prepend="," property="sendTime">
                         send_time = #sendTime#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="cmtNumLv5">
+                            				                    <isNotNull prepend="," property="cmtNumLv5">
                         cmt_num_lv5 = #cmtNumLv5#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="cmtNumLv4">
+                            				                    <isNotNull prepend="," property="cmtNumLv4">
                         cmt_num_lv4 = #cmtNumLv4#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="cmtNumLv3">
+                            				                    <isNotNull prepend="," property="cmtNumLv3">
                         cmt_num_lv3 = #cmtNumLv3#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="cmtNumLv2">
+                            				                    <isNotNull prepend="," property="cmtNumLv2">
                         cmt_num_lv2 = #cmtNumLv2#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="cmtNumLv1">
+                            				                    <isNotNull prepend="," property="cmtNumLv1">
                         cmt_num_lv1 = #cmtNumLv1#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="cmtNum">
+                            				                    <isNotNull prepend="," property="cmtNum">
                         cmt_num = #cmtNum#
                     </isNotNull>
-                                                                <isNotNull prepend="," property="viewCount">
+                            				                    <isNotNull prepend="," property="viewCount">
                         view_count = #viewCount#
                     </isNotNull>
-                                        </dynamic>
-            WHERE id = #id#
+                                        WHERE id = #id#
         </update>
             <select id="News.getNewsListWithPage" parameterClass="NewsQuery" resultMap="news">
         <include refid="news.selector" />
@@ -257,51 +255,135 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
         <insert id="News.insertNews" parameterClass="News">
         INSERT INTO news
         <dynamic prepend="(" close=")">
-                                                                            <isNotEmpty prepend="," property="shortTitle">short_title</isNotEmpty>
-                                                                <isNotEmpty prepend="," property="title">title</isNotEmpty>
-                                                                <isNotEmpty prepend="," property="content">content</isNotEmpty>
-                                                                <isNotEmpty prepend="," property="pdId">pd_id</isNotEmpty>
-                                                                <isNotEmpty prepend="," property="lmId">lm_id</isNotEmpty>
-                                                                <isNotEmpty prepend="," property="source">source</isNotEmpty>
-                                                                <isNotEmpty prepend="," property="coverImg">cover_img</isNotEmpty>
-                                                                <isNotEmpty prepend="," property="showCover">show_cover</isNotEmpty>
-                                                                <isNotEmpty prepend="," property="images">images</isNotEmpty>
-                                                                <isNotEmpty prepend="," property="showComment">show_comment</isNotEmpty>
-                                                                <isNotEmpty prepend="," property="showBold">show_bold</isNotEmpty>
-                                                                ,modify_time
-                                                                ,create_time
-                                                                <isNotEmpty prepend="," property="sendTime">send_time</isNotEmpty>
-                                                                <isNotEmpty prepend="," property="cmtNumLv5">cmt_num_lv5</isNotEmpty>
-                                                                <isNotEmpty prepend="," property="cmtNumLv4">cmt_num_lv4</isNotEmpty>
-                                                                <isNotEmpty prepend="," property="cmtNumLv3">cmt_num_lv3</isNotEmpty>
-                                                                <isNotEmpty prepend="," property="cmtNumLv2">cmt_num_lv2</isNotEmpty>
-                                                                <isNotEmpty prepend="," property="cmtNumLv1">cmt_num_lv1</isNotEmpty>
-                                                                <isNotEmpty prepend="," property="cmtNum">cmt_num</isNotEmpty>
-                                                                <isNotEmpty prepend="," property="viewCount">view_count</isNotEmpty>
+                                                                            <isNotEmpty prepend="," property="shortTitle">
+                        short_title
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="title">
+                        title
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="content">
+                        content
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="pdId">
+                        pd_id
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="lmId">
+                        lm_id
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="source">
+                        source
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="coverImg">
+                        cover_img
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="showCover">
+                        show_cover
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="images">
+                        images
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="showComment">
+                        show_comment
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="showBold">
+                        show_bold
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="modifyTime">
+                        modify_time
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="createTime">
+                        create_time
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="sendTime">
+                        send_time
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="cmtNumLv5">
+                        cmt_num_lv5
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="cmtNumLv4">
+                        cmt_num_lv4
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="cmtNumLv3">
+                        cmt_num_lv3
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="cmtNumLv2">
+                        cmt_num_lv2
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="cmtNumLv1">
+                        cmt_num_lv1
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="cmtNum">
+                        cmt_num
+                    </isNotEmpty >
+                                                                <isNotEmpty prepend="," property="viewCount">
+                        view_count
+                    </isNotEmpty >
                                     </dynamic>
         VALUES
         <dynamic prepend="(" close=")">
-                                                                                                    <isNotEmpty  prepend="," property="shortTitle">#shortTitle#</isNotEmpty>
-                                                                                                            <isNotEmpty  prepend="," property="title">#title#</isNotEmpty>
-                                                                                                            <isNotEmpty  prepend="," property="content">#content#</isNotEmpty>
-                                                                                                            <isNotEmpty  prepend="," property="pdId">#pdId#</isNotEmpty>
-                                                                                                            <isNotEmpty  prepend="," property="lmId">#lmId#</isNotEmpty>
-                                                                                                            <isNotEmpty  prepend="," property="source">#source#</isNotEmpty>
-                                                                                                            <isNotEmpty  prepend="," property="coverImg">#coverImg#</isNotEmpty>
-                                                                                                            <isNotEmpty  prepend="," property="showCover">#showCover#</isNotEmpty>
-                                                                                                            <isNotEmpty  prepend="," property="images">#images#</isNotEmpty>
-                                                                                                            <isNotEmpty  prepend="," property="showComment">#showComment#</isNotEmpty>
-                                                                                                            <isNotEmpty  prepend="," property="showBold">#showBold#</isNotEmpty>
-                                                                                    ,UNIX_TIMESTAMP()
-                                                                                    ,UNIX_TIMESTAMP()
-                                                                                                            <isNotEmpty  prepend="," property="sendTime">#sendTime#</isNotEmpty>
-                                                                                                            <isNotEmpty  prepend="," property="cmtNumLv5">#cmtNumLv5#</isNotEmpty>
-                                                                                                            <isNotEmpty  prepend="," property="cmtNumLv4">#cmtNumLv4#</isNotEmpty>
-                                                                                                            <isNotEmpty  prepend="," property="cmtNumLv3">#cmtNumLv3#</isNotEmpty>
-                                                                                                            <isNotEmpty  prepend="," property="cmtNumLv2">#cmtNumLv2#</isNotEmpty>
-                                                                                                            <isNotEmpty  prepend="," property="cmtNumLv1">#cmtNumLv1#</isNotEmpty>
-                                                                                                            <isNotEmpty  prepend="," property="cmtNum">#cmtNum#</isNotEmpty>
-                                                                                                            <isNotEmpty  prepend="," property="viewCount">#viewCount#</isNotEmpty>
+                                                                                                        <isNotEmpty  prepend="," property="shortTitle">
+                                #shortTitle#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="title">
+                                #title#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="content">
+                                #content#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="pdId">
+                                #pdId#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="lmId">
+                                #lmId#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="source">
+                                #source#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="coverImg">
+                                #coverImg#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="showCover">
+                                #showCover#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="images">
+                                #images#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="showComment">
+                                #showComment#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="showBold">
+                                #showBold#
+                            </isNotEmpty >
+                                                                                                            <isNotEmpty  prepend="," property="modifyTime">
+                            ,UNIX_TIMESTAMP()
+                        </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="createTime">
+                            ,UNIX_TIMESTAMP()
+                        </isNotEmpty >
+                                                                                                                    <isNotEmpty  prepend="," property="sendTime">
+                                #sendTime#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="cmtNumLv5">
+                                #cmtNumLv5#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="cmtNumLv4">
+                                #cmtNumLv4#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="cmtNumLv3">
+                                #cmtNumLv3#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="cmtNumLv2">
+                                #cmtNumLv2#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="cmtNumLv1">
+                                #cmtNumLv1#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="cmtNum">
+                                #cmtNum#
+                            </isNotEmpty >
+                                                                                                                <isNotEmpty  prepend="," property="viewCount">
+                                #viewCount#
+                            </isNotEmpty >
                                                         </dynamic>
         <selectKey resultClass="int" type="post" keyProperty="id">
             SELECT last_insert_id() AS id
