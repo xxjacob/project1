@@ -23,4 +23,9 @@ public class LocalMapStore implements KVStore {
         map.put(key, value);
     }
 
+    @Override
+    public void clear() {
+        map.clear();
+    }
+
 }

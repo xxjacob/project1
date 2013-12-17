@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ideax.common.KVStore;
 import com.ideax.common.Util;
 import com.ideax.common.exception.IllegalException;
 import com.ideax.project1.common.Result;
@@ -52,6 +53,8 @@ public class AdminC {
 	AdminService adminService;
 	@Autowired
 	PindaoService pindaoService;
+	@Autowired
+	KVStore kvStore;
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String loginpage() {
@@ -61,7 +64,7 @@ public class AdminC {
 	@RequestMapping(value = "clean", method = RequestMethod.GET)
 	@ResponseBody
 	public String clean() {
-		AdminLoginFilter.loginAdmins.clear();
+	    kvStore.clear();
 		return "OK";
 	}
 

@@ -1,12 +1,8 @@
 <!DOCTYPE html>
 <html>
-    #include( "model_header.vm" )
     <body>
-        #include( "model_head.vm" )
         <div class="container-fluid">
-           
-                <div class="alert alert-success"> #if($info)${info}#else 请求错误！ #end</div>
-           
+			500-战国军事
         </div>
     </body>
 </html>

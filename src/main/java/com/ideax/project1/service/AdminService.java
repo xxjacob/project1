@@ -14,7 +14,6 @@ import com.ideax.project1.dao.AdminDAO;
 import com.ideax.project1.dao.BlockDAO;
 import com.ideax.project1.dao.LanmuDAO;
 import com.ideax.project1.pojo.Admin;
-import com.ideax.project1.pojo.User;
 import com.ideax.project1.query.AdminQuery;
 
 @Service

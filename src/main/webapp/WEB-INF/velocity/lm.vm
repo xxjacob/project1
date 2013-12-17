@@ -74,7 +74,7 @@
                     #set($v = $page - 1)
                     #if($page > 1)<a href="/lm?id=$!{lanmu.id}&page=$v">|上一页 </a>#end 
                     #set($v = $page + 1)
-                    #if($page < $total) <a href="/lm?id=$!{news.id}&page=$v">|下一页</a>#end
+                    #if($page < $total) <a href="/lm?id=$!{lanmu.id}&page=$v">|下一页</a>#end
                     <a href="/lm?id=$!{lanmu.id}&page=$total">|尾页</a></div>
 
  

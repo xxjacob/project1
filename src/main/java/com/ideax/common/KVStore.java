@@ -6,4 +6,6 @@ public interface KVStore {
     public Object get(Object key);
 
     public <T> void put(Object key, T value);
+    
+    public void clear();
 }
