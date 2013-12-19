@@ -8,6 +8,18 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
     <typeAlias alias="Comment" type="com.ideax.project1.pojo.Comment" />
     <resultMap id="comment" class="Comment">
                     <result property="id" column="id" />
+                                <result property="newsId" column="news_id" />
+                                <result property="content" column="content" />
+                                <result property="createTime" column="create_time" />
+                                <result property="replyTo" column="reply_to" />
+                                <result property="device" column="device" />
+                                <result property="ip" column="ip" />
+                                <result property="modifyTime" column="modify_time" />
+                                <result property="floor" column="floor" />
+                                <result property="auditStatus" column="audit_status" />
+                        </resultMap>
+    <resultMap id="commentall" class="Comment">
+                    <result property="id" column="id" />
                     <result property="newsId" column="news_id" />
                     <result property="content" column="content" />
                     <result property="createTime" column="create_time" />
@@ -20,6 +32,10 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
             </resultMap>
     <!-- Select SQL -->
     <sql id="comment.selector">
+        SELECT id,news_id,content,create_time,reply_to,device,ip,modify_time,floor,audit_status FROM comment
+    </sql>
+    <!--包含TEXT 等大数据-->
+    <sql id="comment.selectorall">
         SELECT id,news_id,content,create_time,reply_to,device,ip,modify_time,floor,audit_status FROM comment
     </sql>
     <sql id="commentList.where">
@@ -40,8 +56,8 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
             </isGreaterThan>
         </dynamic>
     </sql>
-            <select id="Comment.getComment" resultMap="comment">
-            <include refid="comment.selector" />
+            <select id="Comment.getComment" resultMap="commentall">
+            <include refid="comment.selectorall" />
             WHERE id=#id#
         </select>
                 <select id="Comment.getCommentsByKeys" resultMap="comment">

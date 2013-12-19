@@ -51,16 +51,16 @@
 		<appender-ref ref="DEBUGOUT" />
 	</logger>
 	<logger name="com.ideax" additivity="false">
-		<level value="DEBUG" />
+		<level value="INFO" />
 		<appender-ref ref="sysAppender" />
 		<appender-ref ref="DEBUGOUT" />
 	</logger>
 	<logger name="com.ibatis" additivity="false">
-        <level value="DEBUG" />
+        <level value="INFO" />
         <appender-ref ref="DEBUGOUT" />
     </logger>
 	<logger name="java">
-		<level value="DEBUG" />
+		<level value="INFO" />
 		<appender-ref ref="DEBUGOUT" />
 	</logger>
 

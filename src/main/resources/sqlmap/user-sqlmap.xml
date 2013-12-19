@@ -8,6 +8,29 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
     <typeAlias alias="User" type="com.ideax.project1.pojo.User" />
     <resultMap id="user" class="User">
                     <result property="id" column="id" />
+                                <result property="openid" column="openid" />
+                                <result property="nickname" column="nickname" />
+                                <result property="gender" column="gender" />
+                                <result property="birthY" column="birth_y" />
+                                <result property="birthMd" column="birth_md" />
+                                <result property="figureurl" column="figureurl" />
+                                <result property="region" column="region" />
+                                <result property="introduce" column="introduce" />
+                                <result property="loveStatus" column="love_status" />
+                                <result property="height" column="height" />
+                                <result property="education" column="education" />
+                                <result property="bloodGroup" column="blood_group" />
+                                <result property="earning" column="earning" />
+                                <result property="profession" column="profession" />
+                                <result property="houseStatus" column="house_status" />
+                                <result property="carStatus" column="car_status" />
+                                <result property="status" column="status" />
+                                <result property="createTime" column="create_time" />
+                                <result property="modifyTime" column="modify_time" />
+                                <result property="invitor" column="invitor" />
+                        </resultMap>
+    <resultMap id="userall" class="User">
+                    <result property="id" column="id" />
                     <result property="openid" column="openid" />
                     <result property="nickname" column="nickname" />
                     <result property="gender" column="gender" />
@@ -33,6 +56,10 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
     <sql id="user.selector">
         SELECT id,openid,nickname,gender,birth_y,birth_md,figureurl,region,introduce,love_status,height,education,blood_group,earning,profession,house_status,car_status,status,create_time,modify_time,invitor FROM user
     </sql>
+    <!--包含TEXT 等大数据-->
+    <sql id="user.selectorall">
+        SELECT id,openid,nickname,gender,birth_y,birth_md,figureurl,region,introduce,love_status,height,education,blood_group,earning,profession,house_status,car_status,status,create_time,modify_time,invitor FROM user
+    </sql>
     <sql id="userList.where">
 		<dynamic prepend=" WHERE ">
             <isNotNull property="id" prepend=" AND ">id=#id#</isNotNull><isNotNull property="openid" prepend=" AND ">openid=#openid#</isNotNull><isNotNull property="nickname" prepend=" AND ">nickname=#nickname#</isNotNull><isNotNull property="gender" prepend=" AND ">gender=#gender#</isNotNull><isNotNull property="birthY" prepend=" AND ">birth_y=#birthY#</isNotNull><isNotNull property="birthMd" prepend=" AND ">birth_md=#birthMd#</isNotNull><isNotNull property="figureurl" prepend=" AND ">figureurl=#figureurl#</isNotNull><isNotNull property="region" prepend=" AND ">region=#region#</isNotNull><isNotNull property="introduce" prepend=" AND ">introduce=#introduce#</isNotNull><isNotNull property="loveStatus" prepend=" AND ">love_status=#loveStatus#</isNotNull><isNotNull property="height" prepend=" AND ">height=#height#</isNotNull><isNotNull property="education" prepend=" AND ">education=#education#</isNotNull><isNotNull property="bloodGroup" prepend=" AND ">blood_group=#bloodGroup#</isNotNull><isNotNull property="earning" prepend=" AND ">earning=#earning#</isNotNull><isNotNull property="profession" prepend=" AND ">profession=#profession#</isNotNull><isNotNull property="houseStatus" prepend=" AND ">house_status=#houseStatus#</isNotNull><isNotNull property="carStatus" prepend=" AND ">car_status=#carStatus#</isNotNull><isNotNull property="status" prepend=" AND ">status=#status#</isNotNull><isNotNull property="createTime" prepend=" AND ">create_time=#createTime#</isNotNull><isNotNull property="modifyTime" prepend=" AND ">modify_time=#modifyTime#</isNotNull><isNotNull property="invitor" prepend=" AND ">invitor=#invitor#</isNotNull>        </dynamic>
@@ -51,8 +78,8 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
             </isGreaterThan>
         </dynamic>
     </sql>
-            <select id="User.getUser" resultMap="user">
-            <include refid="user.selector" />
+            <select id="User.getUser" resultMap="userall">
+            <include refid="user.selectorall" />
             WHERE id=#id#
         </select>
                 <select id="User.getUsersByKeys" resultMap="user">

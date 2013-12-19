@@ -8,6 +8,15 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
     <typeAlias alias="Pindao" type="com.ideax.project1.pojo.Pindao" />
     <resultMap id="pindao" class="Pindao">
                     <result property="id" column="id" />
+                                <result property="name" column="name" />
+                                <result property="orderNum" column="order_num" />
+                                <result property="logo" column="logo" />
+                                <result property="color" column="color" />
+                                <result property="cssStyle" column="css_style" />
+                                <result property="pageId" column="page_id" />
+                        </resultMap>
+    <resultMap id="pindaoall" class="Pindao">
+                    <result property="id" column="id" />
                     <result property="name" column="name" />
                     <result property="orderNum" column="order_num" />
                     <result property="logo" column="logo" />
@@ -17,6 +26,10 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
             </resultMap>
     <!-- Select SQL -->
     <sql id="pindao.selector">
+        SELECT id,name,order_num,logo,color,css_style,page_id FROM pindao
+    </sql>
+    <!--包含TEXT 等大数据-->
+    <sql id="pindao.selectorall">
         SELECT id,name,order_num,logo,color,css_style,page_id FROM pindao
     </sql>
     <sql id="pindaoList.where">
@@ -37,8 +50,8 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
             </isGreaterThan>
         </dynamic>
     </sql>
-            <select id="Pindao.getPindao" resultMap="pindao">
-            <include refid="pindao.selector" />
+            <select id="Pindao.getPindao" resultMap="pindaoall">
+            <include refid="pindao.selectorall" />
             WHERE id=#id#
         </select>
                 <select id="Pindao.getPindaosByKeys" resultMap="pindao">

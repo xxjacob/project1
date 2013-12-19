@@ -2,6 +2,7 @@ package com.ideax.project1.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -212,15 +213,28 @@ public class AdminC {
 
 	@RequestMapping("news/list")
 	public String list(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "0") int pdId,
-			@RequestParam(defaultValue = "0") int lmId, @RequestParam(defaultValue = "") String info, Model model) {
-		Result<News> rst = newsService.getLanmuNewsListWithPage(pdId, lmId, page, NESLISTSIZE);
-		model.addAttribute("total", rst.getCount() / NESLISTSIZE + (rst.getCount() % NESLISTSIZE == 0 ? 0 : 1));
-		model.addAttribute("page", page);
-		model.addAttribute("newslist", rst.getList());
-		Map<Pindao, List<Lanmu>> s = pindaoService.getPindaoMap();
-		model.addAttribute("pdmap", s);
+			@RequestParam(defaultValue = "0") int lmId, @RequestParam(defaultValue = "") String info,
+			@RequestParam(defaultValue = "0") int id, Model model) {
+
+		if (id > 0) {
+			News n = newsService.getNewsById(id);
+			List<News> list = new ArrayList<News>(1);
+			if (n != null)
+				list.add(n);
+			model.addAttribute("total", 1);
+			model.addAttribute("page", 1);
+			model.addAttribute("newslist", list);
+			model.addAttribute("id", id);
+		} else {
+			Result<News> rst = newsService.getLanmuNewsListWithPage(pdId, lmId, page, NESLISTSIZE);
+			model.addAttribute("total", rst.getCount() / NESLISTSIZE + (rst.getCount() % NESLISTSIZE == 0 ? 0 : 1));
+			model.addAttribute("page", page);
+			model.addAttribute("newslist", rst.getList());
+		}
 		model.addAttribute("pdId", pdId);
 		model.addAttribute("lmId", lmId);
+		Map<Pindao, List<Lanmu>> s = pindaoService.getPindaoMap();
+		model.addAttribute("pdmap", s);
 		if ("success".equals(info)) {
 			model.addAttribute("info", "操作成功");
 		}

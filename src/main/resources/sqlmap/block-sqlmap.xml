@@ -8,6 +8,25 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
     <typeAlias alias="Block" type="com.ideax.project1.pojo.Block" />
     <resultMap id="block" class="Block">
                     <result property="id" column="id" />
+                                <result property="blockGroup" column="block_group" />
+                                <result property="orderNum" column="order_num" />
+                                <result property="pageId" column="page_id" />
+                                <result property="pindaoId" column="pindao_id" />
+                                <result property="lanmuId" column="lanmu_id" />
+                                <result property="blockName" column="block_name" />
+                                <result property="url" column="url" />
+                                <result property="title" column="title" />
+                                <result property="html" column="html" />
+                                <result property="template" column="template" />
+                                <result property="type" column="type" />
+                                <result property="isBold" column="is_bold" />
+                                <result property="newsId" column="news_id" />
+                                <result property="img" column="img" />
+                                <result property="createTime" column="create_time" />
+                                <result property="modifyTime" column="modify_time" />
+                        </resultMap>
+    <resultMap id="blockall" class="Block">
+                    <result property="id" column="id" />
                     <result property="blockGroup" column="block_group" />
                     <result property="orderNum" column="order_num" />
                     <result property="pageId" column="page_id" />
@@ -29,6 +48,10 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
     <sql id="block.selector">
         SELECT id,block_group,order_num,page_id,pindao_id,lanmu_id,block_name,url,title,html,template,type,is_bold,news_id,img,create_time,modify_time FROM block
     </sql>
+    <!--包含TEXT 等大数据-->
+    <sql id="block.selectorall">
+        SELECT id,block_group,order_num,page_id,pindao_id,lanmu_id,block_name,url,title,html,template,type,is_bold,news_id,img,create_time,modify_time FROM block
+    </sql>
     <sql id="blockList.where">
 		<dynamic prepend=" WHERE ">
             <isNotNull property="id" prepend=" AND ">id=#id#</isNotNull><isNotNull property="blockGroup" prepend=" AND ">block_group=#blockGroup#</isNotNull><isNotNull property="orderNum" prepend=" AND ">order_num=#orderNum#</isNotNull><isNotNull property="pageId" prepend=" AND ">page_id=#pageId#</isNotNull><isNotNull property="pindaoId" prepend=" AND ">pindao_id=#pindaoId#</isNotNull><isNotNull property="lanmuId" prepend=" AND ">lanmu_id=#lanmuId#</isNotNull><isNotNull property="blockName" prepend=" AND ">block_name=#blockName#</isNotNull><isNotNull property="url" prepend=" AND ">url=#url#</isNotNull><isNotNull property="title" prepend=" AND ">title=#title#</isNotNull><isNotNull property="html" prepend=" AND ">html=#html#</isNotNull><isNotNull property="template" prepend=" AND ">template=#template#</isNotNull><isNotNull property="type" prepend=" AND ">type=#type#</isNotNull><isNotNull property="isBold" prepend=" AND ">is_bold=#isBold#</isNotNull><isNotNull property="newsId" prepend=" AND ">news_id=#newsId#</isNotNull><isNotNull property="img" prepend=" AND ">img=#img#</isNotNull><isNotNull property="createTime" prepend=" AND ">create_time=#createTime#</isNotNull><isNotNull property="modifyTime" prepend=" AND ">modify_time=#modifyTime#</isNotNull>        </dynamic>
@@ -47,8 +70,8 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
             </isGreaterThan>
         </dynamic>
     </sql>
-            <select id="Block.getBlock" resultMap="block">
-            <include refid="block.selector" />
+            <select id="Block.getBlock" resultMap="blockall">
+            <include refid="block.selectorall" />
             WHERE id=#id#
         </select>
                 <select id="Block.getBlocksByKeys" resultMap="block">

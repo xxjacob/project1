@@ -8,6 +8,29 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
     <typeAlias alias="News" type="com.ideax.project1.pojo.News" />
     <resultMap id="news" class="News">
                     <result property="id" column="id" />
+                                <result property="shortTitle" column="short_title" />
+                                <result property="title" column="title" />
+                                                    <result property="pdId" column="pd_id" />
+                                <result property="lmId" column="lm_id" />
+                                <result property="source" column="source" />
+                                <result property="coverImg" column="cover_img" />
+                                <result property="showCover" column="show_cover" />
+                                <result property="images" column="images" />
+                                <result property="showComment" column="show_comment" />
+                                <result property="showBold" column="show_bold" />
+                                <result property="modifyTime" column="modify_time" />
+                                <result property="createTime" column="create_time" />
+                                <result property="sendTime" column="send_time" />
+                                <result property="cmtNumLv5" column="cmt_num_lv5" />
+                                <result property="cmtNumLv4" column="cmt_num_lv4" />
+                                <result property="cmtNumLv3" column="cmt_num_lv3" />
+                                <result property="cmtNumLv2" column="cmt_num_lv2" />
+                                <result property="cmtNumLv1" column="cmt_num_lv1" />
+                                <result property="cmtNum" column="cmt_num" />
+                                <result property="viewCount" column="view_count" />
+                        </resultMap>
+    <resultMap id="newsall" class="News">
+                    <result property="id" column="id" />
                     <result property="shortTitle" column="short_title" />
                     <result property="title" column="title" />
                     <result property="content" column="content" />
@@ -32,6 +55,10 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
             </resultMap>
     <!-- Select SQL -->
     <sql id="news.selector">
+        SELECT id,short_title,title,pd_id,lm_id,source,cover_img,show_cover,images,show_comment,show_bold,modify_time,create_time,send_time,cmt_num_lv5,cmt_num_lv4,cmt_num_lv3,cmt_num_lv2,cmt_num_lv1,cmt_num,view_count FROM news
+    </sql>
+    <!--包含TEXT 等大数据-->
+    <sql id="news.selectorall">
         SELECT id,short_title,title,content,pd_id,lm_id,source,cover_img,show_cover,images,show_comment,show_bold,modify_time,create_time,send_time,cmt_num_lv5,cmt_num_lv4,cmt_num_lv3,cmt_num_lv2,cmt_num_lv1,cmt_num,view_count FROM news
     </sql>
     <sql id="newsList.where">
@@ -52,8 +79,8 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
             </isGreaterThan>
         </dynamic>
     </sql>
-            <select id="News.getNews" resultMap="news">
-            <include refid="news.selector" />
+            <select id="News.getNews" resultMap="newsall">
+            <include refid="news.selectorall" />
             WHERE id=#id#
         </select>
                 <select id="News.getNewssByKeys" resultMap="news">

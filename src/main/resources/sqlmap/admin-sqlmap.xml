@@ -8,11 +8,20 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
     <typeAlias alias="Admin" type="com.ideax.project1.pojo.Admin" />
     <resultMap id="admin" class="Admin">
                     <result property="id" column="id" />
+                                <result property="username" column="username" />
+                                <result property="password" column="password" />
+                        </resultMap>
+    <resultMap id="adminall" class="Admin">
+                    <result property="id" column="id" />
                     <result property="username" column="username" />
                     <result property="password" column="password" />
             </resultMap>
     <!-- Select SQL -->
     <sql id="admin.selector">
+        SELECT id,username,password FROM admin
+    </sql>
+    <!--包含TEXT 等大数据-->
+    <sql id="admin.selectorall">
         SELECT id,username,password FROM admin
     </sql>
     <sql id="adminList.where">
@@ -33,8 +42,8 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
             </isGreaterThan>
         </dynamic>
     </sql>
-            <select id="Admin.getAdmin" resultMap="admin">
-            <include refid="admin.selector" />
+            <select id="Admin.getAdmin" resultMap="adminall">
+            <include refid="admin.selectorall" />
             WHERE id=#id#
         </select>
                 <select id="Admin.getAdminsByKeys" resultMap="admin">

@@ -8,6 +8,13 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
     <typeAlias alias="Lanmu" type="com.ideax.project1.pojo.Lanmu" />
     <resultMap id="lanmu" class="Lanmu">
                     <result property="id" column="id" />
+                                <result property="name" column="name" />
+                                <result property="pdId" column="pd_id" />
+                                <result property="orderNum" column="order_num" />
+                                <result property="pageId" column="page_id" />
+                        </resultMap>
+    <resultMap id="lanmuall" class="Lanmu">
+                    <result property="id" column="id" />
                     <result property="name" column="name" />
                     <result property="pdId" column="pd_id" />
                     <result property="orderNum" column="order_num" />
@@ -15,6 +22,10 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
             </resultMap>
     <!-- Select SQL -->
     <sql id="lanmu.selector">
+        SELECT id,name,pd_id,order_num,page_id FROM lanmu
+    </sql>
+    <!--包含TEXT 等大数据-->
+    <sql id="lanmu.selectorall">
         SELECT id,name,pd_id,order_num,page_id FROM lanmu
     </sql>
     <sql id="lanmuList.where">
@@ -35,8 +46,8 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
             </isGreaterThan>
         </dynamic>
     </sql>
-            <select id="Lanmu.getLanmu" resultMap="lanmu">
-            <include refid="lanmu.selector" />
+            <select id="Lanmu.getLanmu" resultMap="lanmuall">
+            <include refid="lanmu.selectorall" />
             WHERE id=#id#
         </select>
                 <select id="Lanmu.getLanmusByKeys" resultMap="lanmu">

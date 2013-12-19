@@ -54,6 +54,7 @@
                             #foreach( $foo in $pdmap[$pd] )<option value='$!{foo.id}' #if($foo.id == $lmId) selected #end>$!{foo.name}</option>
                             #end
                         </select>
+                        ID:<input name="id" value="$!{id}"/>
                         <input class="btn" type="submit"/>
                     </div>
                 </div>

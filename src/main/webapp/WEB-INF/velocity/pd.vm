@@ -30,7 +30,7 @@
         <div>
     </div>
 <div class="loginline">
-    <a href="nav.html" style="font-weight:bold;float:left;">导航</a>
+    <a href="/" style="font-weight:bold;float:left;">导航</a>
 </div>
 <!-- <div class="logoline">  -->
 <div>
@@ -54,29 +54,27 @@
             <div style="clear: both;"></div>
         </div>
 
-        <!-- 静态碎片 -->
+        <!-- 静态碎片
         <div class="lanmu-line">
-            <img src="/s/img/r.png" /> <a href="">[热点]</a> <a
-                href="gd.html?id=31">滚动</a> 
+            <img src="/s/img/r.png" /> <a href="">[热点]</a>
         </div>
-        <!-- 动态碎片推荐位     热点推荐 -->
         <div>
-            <div class="block">
-   #foreach( $blk in $blocks)
+<div class="block">
+#foreach( $blk in $blocks)
     <p>
         $link
     </p>
 #end
-        </div>
-
 </div>
+
+</div> -->
 
 
         <!--  循环显示子频道 -->
 #foreach($lm in $lanmus)
 <div class="lanmu-line">
     <img src="/s/img/r.png" /> <a
-        href="lm?id=$!{lm.ld}">[$!{lm.name}]</a>
+        href="lm?id=$!{lm.id}">[$!{lm.name}]</a>
 </div>
 <div class="block">
 #set($newss = $newsss[$foreach.index])

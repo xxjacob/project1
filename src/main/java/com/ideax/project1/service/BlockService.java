@@ -121,7 +121,6 @@ public class BlockService implements InitializingBean {
 
 			VelocityEngine engine = velocityConfig.getVelocityEngine();
 			Template tpl = engine.getTemplate("index.vm", "UTF-8");
-			System.out.println(tpl.getName());
 			tpl.setEncoding("UTF-8");
 			VelocityContext ctx = new VelocityContext();
 			ctx.put("blocks", blocks);

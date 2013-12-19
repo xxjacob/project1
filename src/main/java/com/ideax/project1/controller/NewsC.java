@@ -51,6 +51,8 @@ public class NewsC {
     @RequestMapping("/view")
     public String view(@RequestParam int id, @RequestParam(required = false, defaultValue = "1") int page,
             @RequestParam(required = false, defaultValue = "1") int r, ModelMap model) {
+    	long t1 = System.currentTimeMillis();
+    	long t2 = System.currentTimeMillis();
         News news = newsService.getNewsById(id);
         int currentPage = 0;
         int pagefrom = 0, pageto = 0;
@@ -60,7 +62,6 @@ public class NewsC {
             currentPage += 1;
             pagefrom = pageto == 0 ? 0 : (pageto + breakline.length());
             int pos = content.indexOf(breakline, pagefrom);
-            System.out.println(pos);
             if (pos != -1) {
                 pageto = pos;
             } else {
@@ -76,7 +77,7 @@ public class NewsC {
                 break;
 
         } while (true);
-
+    	System.out.println((t1=System.currentTimeMillis()) - t2); // timing ..................
         if (page > currentPage)
             realContent.append(content.substring(pagefrom, pageto));
         news.setContent(realContent.toString());
@@ -84,14 +85,17 @@ public class NewsC {
         model.addAttribute("total", currentPage);
         model.addAttribute("page", page);
         model.addAttribute("r", r);
+        System.out.println((t2=System.currentTimeMillis()) - t1); // timing ..................
         // pindao
         int lmid = news.getLmId();
         Lanmu lm = pindaoService.getLanmuByKey(lmid);
         model.addAttribute("lanmu", lm);
         if (lm != null)
             model.addAttribute("pindao", pindaoService.getPindaoByKey(lm.getPdId()));
+        System.out.println((t1=System.currentTimeMillis()) - t2); // timing ..................
         // blocks
         model.addAttribute("blocks", blockService.getAllBlocksByPageid(Const.PAGE_VIEW_NEWS));
+        System.out.println((t2=System.currentTimeMillis()) - t1); // timing ..................
         // 评论
         Map<Integer, Comment> requiredRef = new HashMap<Integer, Comment>();
         List<Comment> comments = commentService.getCommentsByNewsid(id, 1, 10, requiredRef);
@@ -110,19 +114,24 @@ public class NewsC {
         }
         model.addAttribute("refIds", refIds);
         model.addAttribute("refComments", requiredRef);
+        System.out.println((t1=System.currentTimeMillis()) - t2); // timing ..................
         // 最新消息
         model.addAttribute("newestNews", newsService.getNewsList(1, 6));
+        System.out.println((t2=System.currentTimeMillis()) - t1); // timing ..................
         // 导航栏
         model.addAttribute("pdmap", pindaoService.getPindaoMap());
+        System.out.println((t1=System.currentTimeMillis()) - t2); // timing ..................
 
         // 点击排名
         model.addAttribute("hot", newsService.getNewsListByViewcount(0, 1, 5));
+        System.out.println((t2=System.currentTimeMillis()) - t1); // timing ..................
 
         // 增加访问量
         News update = new News();
         update.setId(news.getId());
         update.setViewCount(news.getViewCount() + 1);
         newsService.updateNewsById(update);
+        System.out.println((t1=System.currentTimeMillis()) - t2); // timing ..................
         return "view";
     }
 
