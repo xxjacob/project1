@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -69,7 +70,8 @@ public class CommentC {
 	}
 
 	@RequestMapping("/replypage")
-	public String replyPage(@RequestParam int rid, @RequestParam int nid, HttpServletRequest request, ModelMap model) {
+	public String replyPage(@RequestParam int rid, @RequestParam int nid, HttpServletRequest request,
+			HttpServletResponse response, ModelMap model) {
 		News news = newsService.getNewsById(nid);
 		model.addAttribute("news", news);
 		// pindao
@@ -79,12 +81,13 @@ public class CommentC {
 		if (lm != null)
 			model.addAttribute("pindao", pindaoService.getPindaoByKey(lm.getPdId()));
 		model.addAttribute("rcomment", commentService.getCommentsById(rid));
+		model.addAttribute("hmtPixel", _HMT.getTongjiUrl(request, response));
 		return "reply";
 	}
 
 	@RequestMapping("/comments")
 	public String commentlist(@RequestParam int nid, @RequestParam(required = false, defaultValue = "1") int page,
-			HttpServletRequest request, ModelMap model) {
+			HttpServletRequest request, HttpServletResponse response, ModelMap model) {
 		News news = newsService.getNewsById(nid);
 		model.addAttribute("news", news);
 		// pindao
@@ -117,6 +120,7 @@ public class CommentC {
 		model.addAttribute("count", rst.getCount());
 		// 导航栏
 		model.addAttribute("pdmap", pindaoService.getPindaoMap());
+		model.addAttribute("hmtPixel", _HMT.getTongjiUrl(request, response));
 		return "commentlist";
 	}
 }

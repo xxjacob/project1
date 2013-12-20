@@ -30,7 +30,7 @@
 			<div>
 	</div>
 <div class="loginline">
-	<a href="nav.html" style="font-weight:bold;float:left;">导航</a>
+	<a href="/" style="font-weight:bold;float:left;">导航</a>
 </div>
 <div style="clear:both;">
 </div>
@@ -313,7 +313,7 @@ xmlHttp.send(null);
 			导航条
 			-->
 			<div class="nav" style="margin-bottom: 10px;">
-				<a href="/">XXX网</a>&gt;
+				<a href="/">战国军事网</a>&gt;
 				<a href="pd?id=$!{pindao.id}">$!{pindao.name}</a>&gt;
 				<a href="lm?id=$!{lanmu.id}">$!{lanmu.name}</a>
 			</div>

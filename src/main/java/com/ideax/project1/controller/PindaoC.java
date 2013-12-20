@@ -3,6 +3,9 @@ package com.ideax.project1.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +38,8 @@ public class PindaoC {
 	CommentService commentService;
 
 	@RequestMapping("/pd")
-	public String pindaopage(@RequestParam int id, ModelMap model) {
+	public String pindaopage(@RequestParam int id, HttpServletRequest request, HttpServletResponse response,
+			ModelMap model) {
 		// pindao
 		Pindao pd = pindaoService.getPindaoByKey(id);
 		model.addAttribute("pindao", pd);
@@ -52,6 +56,7 @@ public class PindaoC {
 		model.addAttribute("newsss", newsss);
 		// 导航栏
 		model.addAttribute("pdmap", pindaoService.getPindaoMap());
+		model.addAttribute("hmtPixel", _HMT.getTongjiUrl(request, response));
 		return "pd";
 	}
 
@@ -59,7 +64,7 @@ public class PindaoC {
 
 	@RequestMapping("/lm")
 	public String lanmupage(@RequestParam int id, @RequestParam(required = false, defaultValue = "1") int page,
-			ModelMap model) {
+			HttpServletRequest request, HttpServletResponse response, ModelMap model) {
 		// pindao
 		Lanmu lm = pindaoService.getLanmuByKey(id);
 		model.addAttribute("lanmu", lm);
@@ -77,6 +82,7 @@ public class PindaoC {
 		model.addAttribute("hotlist", hotlist);
 		// 导航栏
 		model.addAttribute("pdmap", pindaoService.getPindaoMap());
+		model.addAttribute("hmtPixel", _HMT.getTongjiUrl(request, response));
 		return "lm";
 	}
 }
