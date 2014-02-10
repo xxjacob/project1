@@ -12,6 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -40,7 +41,8 @@ public class NewsC {
 	BlockService blockService;
 	@Autowired
 	CommentService commentService;
-
+	@Value("${img.upload.path}")
+	String staticPath;
 	static final int charPerPage = 1000;
 
 	static final String breakline = "<p>--------------------------------分页符--------------------------------</p>";
@@ -126,6 +128,13 @@ public class NewsC {
 		model.addAttribute("hmtPixel", _HMT.getTongjiUrl(request, response));
 		System.out.println(model.get("hmtPixel"));
 		return "view";
+	}
+
+	@RequestMapping("")
+	public String staticindex(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
+		model.addAttribute("cachedIndexBody", NewsService.cachedIndexBody);
+		model.addAttribute("hmtPixel", _HMT.getTongjiUrl(request, response));
+		return "staticindex";
 	}
 
 	@RequestMapping("/oldindex")

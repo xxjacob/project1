@@ -1,7 +1,7 @@
 package com.ideax.project1.service;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.sql.SQLException;
@@ -27,7 +27,6 @@ import org.springframework.web.servlet.view.velocity.VelocityConfigurer;
 
 import com.ideax.common.exception.EC;
 import com.ideax.common.exception.IllegalException;
-import com.ideax.project1.common.Const;
 import com.ideax.project1.dao.BlockDAO;
 import com.ideax.project1.dao.LanmuDAO;
 import com.ideax.project1.pojo.Block;
@@ -127,10 +126,14 @@ public class BlockService implements InitializingBean {
 			ctx.put("pdmap", pindaoService.getPindaoMap());
 			// BufferedWriter writer = new BufferedWriter(new
 			// FileWriter(staticPath + Const.page_files.get(pageId)));
-			OutputStreamWriter pw = new OutputStreamWriter(new FileOutputStream(
-					(staticPath + Const.page_files.get(pageId))), "UTF-8");
+			// OutputStreamWriter pw = new OutputStreamWriter(new
+			// FileOutputStream(
+			// (staticPath + Const.page_files.get(pageId))), "UTF-8");
+			ByteArrayOutputStream bo = new ByteArrayOutputStream();
+			OutputStreamWriter pw = new OutputStreamWriter(bo, "UTF-8");
 			tpl.merge(ctx, pw);
 			pw.flush();
+			NewsService.cachedIndexBody = bo.toString("UTF-8");
 			pw.close();
 			return;
 		} catch (ResourceNotFoundException e) {

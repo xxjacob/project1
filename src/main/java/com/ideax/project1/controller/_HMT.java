@@ -250,8 +250,8 @@ public class _HMT {
 	}
 
 	public static String getTongjiUrl(HttpServletRequest request, HttpServletResponse response) {
-		_HMT _hmt = new _HMT("2dcfc14053b37dfd31fc9c2e9d62a445");
-		_hmt.setDomainName("zhanguojs.com");
+		_HMT _hmt = new _HMT("6a67e91302149baf37e0d0202999f8ae");
+		_hmt.setDomainName("3g.zhanguojs.com");
 		_hmt.setHttpServletObjects(request, response);
 		return _hmt.trackPageview();
 	}

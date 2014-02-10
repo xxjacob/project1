@@ -23,6 +23,8 @@ public class NewsService {
 	@Autowired
 	NewsDAO newsDAO;
 
+	public static String cachedIndexBody;
+
 	public News getNewsById(int id) {
 		try {
 			News list = newsDAO.getNewsbyKey(id);

@@ -91,7 +91,7 @@
 <div class="$!{pindao.cssStyle}">
 #parse("frag/menu.vm")
 </div>
-#include( "frag/foot.htm" ) 
+#parse("frag/foot.vm")
 </div>
 </body>
 </html>

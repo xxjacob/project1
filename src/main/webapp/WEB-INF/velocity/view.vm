@@ -387,7 +387,7 @@ xmlHttp.send(null);
 <div class="nav">
 #parse("frag/menu.vm")
 </div>
-#include( "frag/foot.htm" ) 
+#parse("frag/foot.vm")
 </div>
 	</body>
 </html>
