@@ -1,6 +1,12 @@
 package com.ideax.project1.controller;
 
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +35,13 @@ import com.ideax.project1.service.BlockService;
 import com.ideax.project1.service.CommentService;
 import com.ideax.project1.service.NewsService;
 import com.ideax.project1.service.PindaoService;
+import com.rometools.rome.feed.synd.SyndContent;
+import com.rometools.rome.feed.synd.SyndContentImpl;
+import com.rometools.rome.feed.synd.SyndEntry;
+import com.rometools.rome.feed.synd.SyndEntryImpl;
+import com.rometools.rome.feed.synd.SyndFeed;
+import com.rometools.rome.feed.synd.SyndFeedImpl;
+import com.rometools.rome.io.SyndFeedOutput;
 
 @Controller
 public class NewsC {
@@ -174,6 +187,59 @@ public class NewsC {
 			return "FAIL";
 		}
 		return "OK";
+	}
+
+	@RequestMapping("/rss")
+	public void rss(HttpServletResponse response) {
+		try {
+
+			SyndFeed feed = new SyndFeedImpl();
+			feed.setEncoding("UTF-8");
+			feed.setFeedType("rss_2.0");
+			feed.setTitle("zhanguojs");
+			feed.setLink("http://3g.zhanguojs.com");
+			feed.setDescription("zhanguojs");
+
+			List<News> newsss = new ArrayList<News>();
+			for (int id : new int[] { 1, 2, 3, 4 }) {
+				List<News> newss = newsService.getLanmuNewsList(id, 1, 10);
+				newsss.addAll(newss);
+			}
+
+			Collections.sort(newsss, new Comparator<News>() {
+				@Override
+				public int compare(News o1, News o2) {
+					return o2.getCreateTime() - o1.getCreateTime();
+				}
+
+			});
+
+			List<SyndEntry> entries = new ArrayList<SyndEntry>();
+
+			for (News news : newsss) {
+				SyndEntry entry;
+				SyndContent description;
+				entry = new SyndEntryImpl();
+				entry.setTitle(news.getTitle());
+				entry.setLink("http://3g.zhanguojs.com/view?id=" + news.getId());
+				entry.setPublishedDate(new Date(news.getCreateTime() * 1000L));
+				description = new SyndContentImpl();
+				description.setType("text/html");
+				description.setValue(news.getContent());
+				entry.setDescription(description);
+				entries.add(entry);
+				feed.setEntries(entries);
+			}
+
+			response.setContentType("text/xml; charset=UTF-8");
+
+			Writer writer = new PrintWriter(new OutputStreamWriter(response.getOutputStream(), "UTF-8"));
+			SyndFeedOutput output = new SyndFeedOutput();
+			output.output(feed, writer);
+			writer.flush();
+		} catch (Exception ex) {
+			System.out.println("ERROR: " + ex.getMessage());
+		}
 	}
 
 	@ExceptionHandler(Throwable.class)
